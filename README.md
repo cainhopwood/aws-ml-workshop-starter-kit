@@ -26,8 +26,20 @@ You should then have a site being served out of http://localhost:1313/
 1. Adjust review event engine instructions 
 1. Create some kind of slackbot, system for distributing event engine hashes.
 1. Create a CI/CD Pipeline CF template
+1. Finish/review cloning instructiions for workshop and remove this section from the README
 
 ## Instructions for new workshop deployment
 
+This github repo is a framework you can customise to your workshop topic and populate with labs, videos and content. Once that's coen you can use the cloud formation template to deploy the site.
+
+General Steps to developing a new workshop:
+
+1. Clone this repo.
+1. Edit the XXX and XXXX pages with your general descriptions
+1. Add survey QR codes/links
+1. Get contributors to add to your clone using the instructions below.
+1. Deploy.
 
 ## Info for Contributors
+
+Firstly ensure that you're working in
