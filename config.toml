@@ -1,0 +1,45 @@
+# RelativeURLs=true
+# CanonifyURLs=true
+languageCode = "en-US"
+defaultContentLanguage = "en"
+
+title = "AWS Cloud Security Virtual Event"
+theme = "learn"
+metaDataFormat = "yaml"
+defaultContentLanguageInSubdir= true
+
+
+
+# uglyurls = true
+# sectionPagesMenu = "main"
+# pygmentsCodeFences = true
+# pygmentsStyle = "monokai"
+
+[params]
+  ordersectionsby = "weight"
+  editURL = ""
+  description = "AWS Cloud Security Virtual Event"
+  author = "Sumit Patel"
+  disableBreadcrumb = false
+  disableNextPrev = false
+  themeVariant = "walabs"
+  disableSearch = true
+  disableAssetsBusting = true
+  disableLanguageSwitchingButton = true
+  disableShortcutsTitle = true
+  disableInlineCopyToClipBoard = true
+  showVisitedLinks = true
+
+[outputs]
+home = [ "HTML", "RSS", "JSON"]
+
+[blackfriday]
+plainIDAnchors = true
+hrefTargetBlank = true
+
+[Languages]
+[Languages.en]
+title = "AWS Cloud Security Virtual Event"
+weight = 1
+languageName = "English"
+
