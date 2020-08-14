@@ -3,11 +3,10 @@
 languageCode = "en-US"
 defaultContentLanguage = "en"
 
-title = "AWS Cloud Security Virtual Event"
+title = "AWS AI/ML Virtual Event"
 theme = "learn"
 metaDataFormat = "yaml"
 defaultContentLanguageInSubdir= true
-
 
 
 # uglyurls = true
@@ -18,8 +17,10 @@ defaultContentLanguageInSubdir= true
 [params]
   ordersectionsby = "weight"
   editURL = ""
-  description = "AWS Cloud Security Virtual Event"
-  author = "Sumit Patel"
+  description = "AWS AI/ML Virtual Event"
+  topic = "Artificial Inteligence and Machine Learning"
+  servicelist = "Amazon Sagemaker, Amazon Rekognition, Amazon Comprehend and Amazon Polly"
+  author = "Cain Hopwood"
   disableBreadcrumb = false
   disableNextPrev = false
   themeVariant = "walabs"
@@ -39,7 +40,7 @@ hrefTargetBlank = true
 
 [Languages]
 [Languages.en]
-title = "AWS Cloud Security Virtual Event"
+title = "AWS AI/ML Virtual Event"
 weight = 1
 languageName = "English"
 

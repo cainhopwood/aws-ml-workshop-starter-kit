@@ -5,14 +5,14 @@ toc = true
 
 +++
 
-The AWS Cloud Security Virtual event aims to improve your cloud security skills through a series of guided workshops, Security JAM scenario challenges and on-demand talks. In this portal you will find the following:
+The {{< param description >}} aims to improve your cloud {{< param topic >}} skills through a series of guided workshops, JAM scenario challenges and on-demand talks. In this portal you will find the following:
 
   - [Workshops](#workshops) 
   - [On-Demand Tracks](#on-demand-tracks)   
  
 ## Workshops
 
-These workshops are designed to help you get familiar with AWS Security and Operational services so you can improve your security and compliance objectives. You'll be working with services such as AWS Systems Manager (operational management), AWS Config (configuration change management), Amazon Inspector (vulnerability & behavior analysis) and AWS WAF (web application firewall). 
+These workshops are designed to help you get familiar with {{< param topic >}} services so you can use these services to fulfull your business objectives in new and exciting ways. You'll be working with services such as {{< param servicelist >}}. 
 
 At the start of each workshop you will be able to watch a short video that will provide you an overview and a real world example.
 
