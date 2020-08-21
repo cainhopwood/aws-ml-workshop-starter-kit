@@ -1,21 +1,30 @@
 # Base Portal For AWS ML Workshops
 
-This project is the framework for an AWS AI/ML Workshop portal. Once clones and populated with content it can be used to create a temporary website for an online workshop with event engine, help etc
+This project is the framework for an AWS AI/ML Workshop portal. It can be cloned and populated with content it can be used to create a temporary website for an online workshop with event engine, help etc
 
 ## Development
 
 We'll remove this section once the Portal is in a clean, stable, ready to be cloned state
 
-### Setup
+## Instructions for Contributors
 
+### Setup site locally
 Install hugo as per https://gohugo.io/getting-started/installing/
 
-Clone this repo, cd to the directory and run:
+in a local directory clone this repo and run hugo to confirm you have the site working locally
 ```
+git clone https://github.com/cainhopwood/aws-ml-workshop-starter-kit.git
 hugo server
 ```
 
 You should then have a site being served out of http://localhost:1313/
+
+### Create A New Workshop
+
+
+
+### Create A New On Demand Talk
+
 
 ### TODOs
 

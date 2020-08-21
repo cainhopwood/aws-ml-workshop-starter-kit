@@ -5,8 +5,8 @@ weight =5
 +++
 
 ## Workshop architecture
-![](/images/sec-arch.png)
-This environment consists of a VPC with two subnets. The subnets contains an Amazon EC2 bastion host running Amazon Linux 2 used for running AWS CLI commands and a private, not publicly-accessible, Amazon RDS MySQL database instance. The subnets are chosen based on the availability of an interface VPC endpoint for AWS Secrets Manager. The VPC also contains an AWS Fargate container running the Amazon Linux 2 operating system. In the RDS and Fargate phases of the workshop, you will learn how to use AWS Secrets Manager to access the RDS database from both a standard EC2 instance and the Fargate container.
+![](/images/virtual-proctor/sec-arch.png)
+This environment consists of ...
 
 ## Environment Setup
 
