@@ -19,8 +19,18 @@ hugo server
 
 You should then have a site being served out of http://localhost:1313/
 
-### Create A New Workshop
+### Instructions for Contributors (Create A New Workshop)
 
+Once you have the site down locally and/or running create a new workshop with the following steps:
+
+1. Copy the Content Folder "Workshops/module-template" to "Workshops/module-XXXX" Where XXXX is the name of your workshop.
+1. Copy/Create an Images Folder "static/images/module-XXXX" 
+1. Edit "Workshops/module-XXXX/_index.en.md" In the top of this file you'll see a metadata section delimited by "+++" adjust the "title" property to reflect your workshop name.
+1. You can also adjust the weight property, which controls what order the lab appears in menus etc. Leavign it at 30 is fine. 
+1. Replace the two introductory paragraphs.
+1. Edit the URL in the Lab Overview section to point to your pre-recorded video.
+
+The Workshop template consists of an example with an overview/scenario page and two pages with Lab Steps. You can add/remove steps as required, just be sure to adjust the "weight" property in the metadata section on each page to reflect it's order so that menus etc show the steps correctly.
 
 
 ### Create A New On Demand Talk
