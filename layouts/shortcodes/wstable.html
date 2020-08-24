@@ -1,0 +1,39 @@
+{{ $currentNode := . }}
+{{ $sectionName := .Get 0 }}
+<table>
+    <thead>
+        <tr>
+        <th>Topic</th>
+        <th>Description</th>
+        <th>Skill Level</th>
+        <th>Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{if eq .Site.Params.ordersectionsby "title"}}
+          {{ range where .Site.Pages.ByWeight "Section" "==" $sectionName }}
+          {{ template "section-table-row" dict "page" . "currentnode" $currentNode }}
+          {{end}}
+        {{else}}
+          {{ range where .Site.Pages.ByWeight "Section" "==" $sectionName }}
+          {{ template "section-table-row" dict "page" . "currentnode" $currentNode }}
+          {{end}}
+        {{end}}
+    </tbody>
+</table>
+    
+<!-- templates -->
+{{ define "section-table-row" }}
+{{ $currentNode := .currentnode }}
+    {{with .page}}
+        {{if eq .Params.inlists true}} 
+            <tr>
+            {{safeHTML .Params.head}}
+            <td> <a href="{{.URL}}" class="highlight">{{.Title}}</a> </td>
+            <td>{{.Params.description}}</td>
+            <td>{{.Params.difficulty}}</td>
+            <td>{{.Params.time}}</td>
+            </tr>
+        {{ end }}
+    {{ end }}
+{{ end }}

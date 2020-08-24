@@ -1,8 +1,12 @@
 +++
 title = "Lab 1: Virtual Proctor Using Amazon Recognition"
+description = "This lab guides you through buiding a virtual proctor using Amazon Recognition. Jenny, insert more detail here."
 date = 2019-11-18T08:23:04+11:00
 weight = 30
 chapter = false
+difficulty = "Intermediate / Advanced"
+time = "1hr"
+inlists = true
 +++
 
 This lab guides you through buiding a virtual proctor using Amazon Recognition. In Step 1 you will .... 
