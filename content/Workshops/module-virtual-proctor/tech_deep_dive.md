@@ -1,58 +1,55 @@
 +++
-title = "3. Technical Deep Dive"
+title = "4. Technical Deep Dive"
 date = 2019-11-18T17:11:28+11:00
 weight =5
 +++
 
-## Workshop architecture
-![](/images/virtual-proctor/sec-arch.png)
-This environment consists of ...
 
-## Environment Setup
+## Technical Deep Dive
+You should now be looking at a live video of yourself within the Virtual Proctor solution. Follow the steps below to fully exercise the solution before we dive into the technical aspects of the implementation.
+![](/images/virtual-proctor/vp_demo/initial_screen.png#floatleft)  
 
-{{%expand "Click here if you're not at an AWS event or are using your own account" %}}
+1.	Click on the button `Start Virtual Proctor`
+![](/images/virtual-proctor/vp_demo/start_button.png#floatleft)  
 
-In order to complete these workshops, you'll need a valid, usable [AWS Account](https://aws.amazon.com/getting-started/). Use a personal account or create a new AWS account to ensure you have the necessary access and that you do not accidentally modify corporate resources. Do **not** use an AWS account from the company you work for. **We strongly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account. If multiple participants are sharing a single account you should use unique names for the stack set and resources created in the console.**
+2. 	On the right side of your screen you should now see details of any relevant content detected in the scene
+![](/images/virtual-proctor/vp_demo/start_screen.png#floatleft)  
+> Note: The “Person Recognition” field shows a warning as we have not yet uploaded any face images and names.
 
-**Create an admin user**
+3.  Hold up some objects of interest that our virtual proctor is watching for
+![](/images/virtual-proctor/vp_demo/coffee_cup.png#floatleft)  
+Oh dear, our examinee has been detected with banned objects!
+![](/images/virtual-proctor/vp_demo/mobile_phone.png#floatleft)  
 
-If you don't already have an AWS IAM user with admin permissions, please use the following instructions to create one:
+4.	Duck out of view and watch the results panel
+![](/images/virtual-proctor/vp_demo/zero_people.png#floatleft)  
+Has our examinee left the room? Better alert the proctor!
 
-1. Browse to the [AWS IAM](https://console.aws.amazon.com/iam/) console.
-2. Click **Users** on the left navigation and then click **Add User**.
-3. Enter a **User Name**, check the checkbox for **AWS Management Console** access, enter a **Custom Password,** and click **Next:Permissions**.
-4. Click **Attach existing policies directly**, click the checkbox next to the **AdministratorAccess**, and click **Next:review**.
-5. Click **Create User**
-6. Click **Dashboard** on the left navigation and use the **IAM users sign-in link** to login as the admin user you just created."
+5.	If possible, have a friend stand next to you
+![](/images/virtual-proctor/vp_demo/two_people.png#floatleft)  
+Our examinee is not alone. Alert the proctor!
 
-To setup the workshop environment, launch the CloudFormation stack below in the **ap-southeast-2** AWS region using the "Deploy to AWS" links below. This will automatically take you to the console to run the template. In order to complete these workshops, you'll need a valid, usable AWS Account. Use a personal account or create a new [AWS account](https://aws.amazon.com/getting-started/) to ensure you have the necessary access and that you do not accidentally modify corporate resources. Do not use an AWS account from the company you work for. **We strongly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account. If multiple participants are sharing a single account you should use unique names for the stack set and resources created in the console.**
+6.	Let’s move on to registering our face with the Virtual Proctor. Imagine in this step we are loading the photo from the examinee’s photo ID.
 
-| Lab | Template | Region |
-|-----|----------|---------|
-| Lab 4 - AWS Secrets Manager with Amazon RDS and AWS Fargate | [![](/images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=ap-southeast-2#/stacks/new?stackName=secrets&templateURL=https://patesumi-webcontent.s3-ap-southeast-2.amazonaws.com/downloads/secretsmgr.yml) | AP Southeast 2 (Sydney) |
+Find a photo of yourself, or use the Virtual Proctor display and your favourite screen capture tool to capture a photo and save it.
+> Note: I am a Mac user, so I take screen captures by holding down [Command]+[Control]+[Shift]+[4] together and then selecting the screen region to capture.
 
-1. Click **Next** on the Specify Template section.
+Click on the button `Add a new user`
+![](/images/virtual-proctor/vp_demo/add_new_user_button.png#floatleft) 
 
-2. Click **Next** on the Specify stack details section
+7.	Type your name and select the image of yourself from your hard-drive.
+![](/images/virtual-proctor/vp_demo/add_new_user_dialog.png#floatleft) 
+Click `Add User`
 
-3. Click **Next** on the Configure stack options section.
+8.  After just a few seconds you should see the success message below:
+![](/images/virtual-proctor/vp_demo/add_new_user_success.png#floatleft) 
+Click `Close`
 
-4. Finally, acknowledge that the template will create IAM roles under Capabilities and click **Create**.
+9.	Now look at the field “Person Recognition” in the side panel.
+![](/images/virtual-proctor/vp_demo/person_recognition.png#floatleft) 
 
-This will bring you back to the CloudFormation console. You can refresh the page to see the stack starting to create. Before moving on, make sure the stack is in a **CREATE_COMPLETE** status. 
-
-{{% /expand%}}
+10.	(optional) If you are feeling brave, partial or full nudity will trigger the “Unsafe Content” field. Up to you…
 
 
-{{%expand "Click here if you are at an AWS event where the Event Engine is being used" %}}
 
-### Confirm the CFN template has been deployed
 
-Browse to [AWS CloudFormation Console](https://ap-southeast-2.console.aws.amazon.com/cloudformation)
-You should see the stacks as displayed below deployed in your account. Look for the Stack that has the description "Session Manager Workshop"
-
-![](/images/sec-2.png)
-
-Confirm it has been deployed successfully, Status should be "***CREATE_COMPLETE***", if not reach out to the support team for help.
-
-{{% /expand%}}
