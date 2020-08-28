@@ -1,0 +1,13 @@
+/* CSS spcific to this site */
+
+/* Allow figures to be left aligned with a class */
+#body figure.img-left {
+    margin-left: 0;
+}
+#body figure.img-left > a > img {
+    margin-left: 0;
+}
+
+#body figure.img-raw > a > img[style] {
+    display: inline !important;
+}

@@ -13,7 +13,10 @@ In this phase...
 
 Here is a screen shot
 
-![](/images/module-template/ScreenShot1.png)
+![](/images/module-template/ScreenShot1.png )
+
+Left aligned screenshot using figure shortcode and a class in the site CSS. This also allows other things like titles to be specified
+{{< figure src="/images/module-template/ScreenShot1.png" title="Title of left aligned Image" class="img-left" >}}
 
 This is an example of a table 
 

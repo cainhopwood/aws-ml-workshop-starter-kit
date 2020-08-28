@@ -32,6 +32,7 @@ baseURL = "http://localhost:1313/"
   disableShortcutsTitle = true
   disableInlineCopyToClipBoard = true
   showVisitedLinks = true
+  custom_css = ["/css/custom.css"]
 
 [outputs]
 home = [ "HTML", "RSS", "JSON"]
