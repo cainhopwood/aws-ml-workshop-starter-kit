@@ -22,29 +22,51 @@ Now HTML
 
 <img align="left" width="100" height="200" src="../../../static/images/virtual-proctor/solution_deployment/quicklink_regions.png">
 
-quicklink_regions.png tre
+4.	The Create stack screen will open in your AWS console
+![](/images/virtual-proctor/solution_deployment/create_stack.png#floatleft)  
+Click `Next`
 
-## Workflows
-### Register a new face to the collection:
-1)	User clicks “Add a new user”.
-2)	The website prompts the user to select an image of the new user from their hard-drive.
-3)	The website prompts the user to provide a name (fullName) for the new image.
-4)	The website calls the API “/faces/index” with the POST method, passing the image and the name.
-5)	The AWS API Gateway has LAMBDA_PROXY integration so it sends the data to the IndexFaceFunction Lambda function as-is.
-6)	The IndexFaceFunction Lambda function generates a unique reference ID.
-7)	The IndexFaceFunction Lambda function calls the Rekognition IndexFaces method to index the face with the unique reference ID and stores it in an existing Rekognition collection.
-8)	The IndexFaceFunction Lambda function stores the reference ID and corresponding name (fullName) in the DynamoDB table.
-9)	If all processing is successful, the IndexFaceFunction Lambda function returns a HTTP 200 status code.
+5.	The Specify stack details screen will open with the following parameter options:
 
-### Process a new image
-1)	The website continually captures new images from the web-cam.
-2)	It calls the API “/process” with the POST method, passing only the image.
-3)	The AWS API Gateway has LAMBDA_PROXY integration and sends the data to the ProcessImageFunction Lambda function as-is.
-4)	The ProcessImageFunction Lambda function calls the Rekognition DetectLabels method to find all labels about the image that have a confidence score of greater than our set threshold (default 85%).
-5)	The ProcessImageFunction Lambda function filters the labels to count how many occurrences of “Person” are detected.
-6)	The ProcessImageFunction Lambda function filters the labels against the specified objects of interest (e.g. mobile phone) to determine if any such objects are detected.
-7)	The ProcessImageFunction Lambda function calls the Rekognition SearchFacesByImage method to check if the largest face in the image matches an indexed face in the Rekognition collection. If a match is found, the corresponding full name for face is looked up in the DynamoDB table.
-8)	The ProcessImageFunction Lambda function calls the Rekognition DetectFaces method to check that there is one face, and only 1 face in the image
-9)	The ProcessImageFunction Lambda function calls the Rekognition DetectModerationLabels method to find all moderation labels (such as explicit adult content or violent content) about the image that have a confidence score of greater than the set threshold (default 85%).
-10)	If all processing is successful, the Lambda function returns a HTTP 200 status code and includes the results as a JSON string in the HTTP body.
+-	`AdminEmail` - Enter an email address you have access to today. This email address will be your username to authenticate to the virtual proctor site. A temporary password will be sent to this email address.
+-	`CreateCloudFrontDistribution` - Leave at the default value of true.
+-	` MinConfidence` - If this is your first time through the workshop, leave this at its default setting of 85 - reducing this value will result in a lower confidence threshold being set for Amazon Rekognition. Note that it is possible to modify this value later in the workshop.
+-	`ObjectsOfInterestLabels` - Do not delete the default labels; however, you can add additional objects to the parameter using comma separation. For example if you have a drink with you, try adding appending the labels “Drink,Glass,Cup” to this field. Note that it is possible to modify this field later in the workshop.
+-	`ResourcePrefix` - If you are sharing your account with someone else,ensure you both set a different value for this prefix.
+![](/images/virtual-proctor/solution_deployment/stack_parameters.png#floatleft)  
+Click `Next`
 
+6.	At the Configure stack options page keep all the defaults
+![](/images/virtual-proctor/solution_deployment/stack_options.png#floatleft)  
+Click `Next`
+
+7.	At the Review page, scroll all the way to the bottom.
+Tick the three checkboxes to acknowledge that you are granting CloudFormation access to create resources in your AWS account.
+![](/images/virtual-proctor/solution_deployment/stack_permissions.png#floatleft)  
+Click `Create stack`
+
+8.	You can watch the progress of resource creation by periodically clicking the refresh button.
+![](/images/virtual-proctor/solution_deployment/stack_progress.png#floatleft)  
+The stack will take about 5 minutes to deploy
+
+9.	Once the stack creation is complete, open the ‘Outputs’ tab and find the URL for your static website.
+![](/images/virtual-proctor/solution_deployment/stack_outputs.png#floatleft)  
+Open this URL in a new tab
+
+10.	You will be prompted to sign in to your account.
+![](/images/virtual-proctor/solution_deployment/site_signin.png#floatleft)  
+
+11.	Wait a minute or two to receive your temporary credentials via email.
+![](/images/virtual-proctor/solution_deployment/email_credentials.png#floatleft)  
+
+12.	Sign in with the temporary credentials
+![](/images/virtual-proctor/solution_deployment/site_signin_password.png#floatleft)  
+Click `SIGN IN`
+
+13.	Set your new password when prompted.
+
+14.	Allow the website to access your web-cam and microphone.
+![](/images/virtual-proctor/solution_deployment/site_local_access.png#floatleft)  
+Click `Allow`
+
+15.	You have now deployed the virtual proctor solution. Move on to the next section to examine the features of the solution
