@@ -15,8 +15,13 @@ Here is a screen shot
 
 ![](/images/module-template/ScreenShot1.png )
 
-Left aligned screenshot using figure shortcode and a class in the site CSS. This also allows other things like titles to be specified
-{{< figure src="/images/module-template/ScreenShot1.png" title="Title of left aligned Image" class="img-left" >}}
+Left aligned screenshot using figure shortcode and a class in the site CSS. This also allows other things like titles to be specified, but width and height will be overriden by Hugo
+
+{{< figure src="/images/module-template/ScreenShot1.png" class="img-left" >}}
+
+Using figure shortcode To add a title to the image
+
+{{< figure src="/images/module-template/ScreenShot1.png" title="Title of the Image" >}}
 
 This is an example of a table 
 
