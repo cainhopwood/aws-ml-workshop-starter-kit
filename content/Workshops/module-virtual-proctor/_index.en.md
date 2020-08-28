@@ -7,6 +7,8 @@ chapter = false
 difficulty = "Intermediate / Advanced"
 time = "1hr"
 inlists = true
+CFTemplate = "https://solution-builders-ap-southeast-2.s3.ap-southeast-2.amazonaws.com/amazon-rekognition-virtual-proctor/latest/template.yaml"
+CFTemplateName = "VirtualProctor"
 +++
 
 Historically, proctored exams were done in a room with other students under the supervision of one or more proctors. The role of the proctors is to ensure that everyone follows the rules, and no one is cheating.
