@@ -1,19 +1,28 @@
 +++
-title = "1. Architecture"
+title = "2. Solution Deployment"
 date = 2019-11-18T17:11:28+11:00
 weight =5
 +++
+<link rel="stylesheet" href="/static/css/virtual-proctor.css">
 
-## Workshop architecture
+## Solution Deployment
 
-The backend architecture of this solution is shown below:
-![](/images/virtual-proctor/architecture/architecture_diagram.png)
+This solution is deployed through a QuickLink provided in the GitHub repository.The QuickLink launches a CloudFormation stack in your AWS account. The template will build all the required resources.
 
-- A static website is hosted on Amazon S3 and distributed using the Amazon CloudFront content delivery network.
-- Javascript code runs in the user’s browser to authenticate the user to Cognito and request access to the local web-cam.
+> Note: In future you may want to use this repository as the basis of your own website. If this is the case, take a look at the file `CONTRIBUTING.md` where the authors run you through deploying a customised version of the Web UI.
 
-The website has a button to “Add a new user” which will call the ‘/faces/index’ API
-There is also a button to “Start Virtual Proctor” which initiates the process of regularly grabbing frames from the web-cam and sending them to the ‘process’ API. 
+### Deploy the solution to your account
+1.	Log into your AWS account on the console
+2.	In another browser tab, navigate to:
+https://github.com/aws-samples/amazon-rekognition-virtual-proctor
+3.	Select the QuickLink for your closest AWS region
+![](/images/virtual-proctor/solution_deployment/quicklink_regions.png#floatleft)
+
+Now HTML
+
+<img align="left" width="100" height="200" src="../../../static/images/virtual-proctor/solution_deployment/quicklink_regions.png">
+
+quicklink_regions.png tre
 
 ## Workflows
 ### Register a new face to the collection:
