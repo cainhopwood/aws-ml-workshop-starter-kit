@@ -14,14 +14,7 @@ If you prefer to run the labs in your own AWS account, launch the relevant Cloud
 Instructions on how to deploy the templates below are in the respective labs.
 {{% /notice %}}
 
-| Lab | Template | Region |
-|-----|----------|---------|
-| Lab 1 - Eliminate bastion hosts with AWS Systems Manager Session Manager | [![](/images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=ap-southeast-2#/stacks/new?stackName=sessionmgr&templateURL=https://patesumi-webcontent.s3-ap-southeast-2.amazonaws.com/downloads/sessionmgrv2.yml) | AP Southeast 2 (Sydney) |
-| Lab 2 - Security through Good Governance (1 - Systems Manager) | [![](/images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?region=ap-southeast-2&stackName=SSMPatchLabStack1&templateURL=https://patesumi-webcontent.s3-ap-southeast-2.amazonaws.com/module2/SSMLabStack.yml) | AP Southeast 2 (Sydney) |
-| Lab 2 - Security through Good Governance (2 - Config) | [![](/images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?region=ap-southeast-2&stackName=ConfigLabStack&templateURL=https://patesumi-webcontent.s3-ap-southeast-2.amazonaws.com/ConfigLabStack.yml) | AP Southeast 2 (Sydney) |
-| Lab 3 - Protecting Workloads from the Instance to the Edge | [![](/images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=ap-southeast-2#/stacks/new?stackName=pww&templateURL=https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/pww-workshop-env-build.yml) | AP Southeast 2 (Sydney) |
-| Lab 4 - AWS Secrets Manager with Amazon RDS and AWS Fargate | [![](/images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=ap-southeast-2#/stacks/new?stackName=secrets&templateURL=https://patesumi-webcontent.s3-ap-southeast-2.amazonaws.com/downloads/secretsmgr.yml) | AP Southeast 2 (Sydney) |
-
+{{< wscftable Workshops >}}
 
 
 ### AWS Security Partners Additional Info

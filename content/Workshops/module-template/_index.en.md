@@ -5,6 +5,8 @@ date = 2019-11-18T08:23:04+11:00
 weight = 20
 chapter = false
 difficulty = "Intermediate / Advanced"
+CFTemplate = "http://s3.amazon./com/yaml/UC-ElasticSearch.yml"
+CFTemplateName = "elasticsearch-cluster"
 time = "1hr"
 inlists = true
 +++

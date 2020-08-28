@@ -26,11 +26,13 @@ Once you have the site down locally and/or running create a new workshop with th
 1. Copy the Content Folder "Workshops/module-template" to "Workshops/module-XXXX" Where XXXX is the name of your workshop.
 1. Copy/Create an Images Folder "static/images/module-XXXX" 
 1. Edit "Workshops/module-XXXX/_index.en.md" In the top of this file you'll see a metadata section delimited by "+++" adjust the "title" property to reflect your workshop name.
+1. Likewise adjust the "Description" meta data. This is used in the agenda and overview pages of the site.
 1. You can also adjust the weight property, which controls what order the lab appears in menus etc. Leavign it at 30 is fine. 
 1. Replace the two introductory paragraphs.
 1. Edit the URL in the Lab Overview section to point to your pre-recorded video.
+1. Edit "CFTemplate" and "CFTemplateName" in the meta data. This is used both in the help instructions, and in the "links" section of the event site. At this point the CFTemplate must be an S3 URL (That may change). If your workshop doesn't have a CF Template, leave that value empty and the tempaltes will adapt.
 
-The Workshop template consists of an example with an overview/scenario page and two pages with Lab Steps. You can add/remove steps as required, just be sure to adjust the "weight" property in the metadata section on each page to reflect it's order so that menus etc show the steps correctly.
+The Workshop template consists of an example with an overview/scenario page and two pages with Lab Steps. You can add/remove steps as required, just be sure to adjust the "weight" property in the metadata section on each page to reflect it's order so that menus etc show the steps in the desired order.
 
 
 ### Create A New On Demand Talk
@@ -53,6 +55,3 @@ General Steps to developing a new workshop:
 1. Get contributors to add to your clone using the instructions below.
 1. Deploy.
 
-## Info for Contributors
-
-Firstly ensure that you're working in

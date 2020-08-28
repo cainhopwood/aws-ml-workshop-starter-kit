@@ -1,0 +1,37 @@
+{{ $currentNode := . }}
+{{ $sectionName := .Get 0 }}
+<table>
+    <thead>
+        <tr>
+        <th>Lab</th>
+        <th>Template</th>
+        <th>Region</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{if eq .Site.Params.ordersectionsby "title"}}
+          {{ range where .Site.Pages.ByWeight "Section" "==" $sectionName }}
+          {{ template "cf-table-row" dict "page" . "currentnode" $currentNode }}
+          {{end}}
+        {{else}}
+          {{ range where .Site.Pages.ByWeight "Section" "==" $sectionName }}
+          {{ template "cf-table-row" dict "page" . "currentnode" $currentNode }}
+          {{end}}
+        {{end}}
+    </tbody>
+</table>
+    
+<!-- templates -->
+{{ define "cf-table-row" }}
+{{ $currentNode := .currentnode }}
+    {{with .page}}
+        {{ if .Params.CFTemplate  }}
+            <tr>
+            {{safeHTML .Params.head}}
+            <td>{{.Params.title}}</td>
+            <td> <a href="https://console.aws.amazon.com/cloudformation/home?region=ap-southeast-2#/stacks/new?stackName={{.Params.CFTemplateName}}&templateURL={{.Params.CFTemplate}}" class="highlight"><img src="/images/deploy-to-aws.png" alt="deploy to aws" style="width: auto; height: auto;"/></a> </td>
+            <td>AP Southeast 2 (Sydney)</td>
+            </tr>
+        {{ end }}
+    {{ end }}
+{{ end }}
