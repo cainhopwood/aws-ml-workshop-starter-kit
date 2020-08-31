@@ -180,17 +180,26 @@ This is how we are securing access to our API.
 8.	Click on the `POST` method under the `/process` path.
 {{< figure src="/images/virtual-proctor/tech_deep_dive/select_process_post_method.png" class="img-left" >}}
 
+9.	Now we can see the full API definition for this method
+{{< figure src="/images/virtual-proctor/tech_deep_dive/process_api_definition.png" class="img-left" >}}
+Click on `Method Request`
+
+10.	We can see that our API method uses the `CognitoAuthorizer` that we previously looked at to ensure calls to this API come from authenticated sources
+{{< figure src="/images/virtual-proctor/tech_deep_dive/api_security_settings.png" class="img-left" >}}
+
+11.	Return to the `Method Execution` view
+{{< figure src="/images/virtual-proctor/tech_deep_dive/return_method_execution.png" class="img-left" >}}
+
+12.	Click on `Integration Request`
+{{< figure src="/images/virtual-proctor/tech_deep_dive/api_integration_request.png" class="img-left" >}}
+Our API uses Lambda Proxy integration which essentially just passes the full HTTP request to the backend Lambda function and requires the Lambda function to handle returning the correct HTTP response code
 
 
 
-{{< highlight go "linenos=table,hl_lines=8 15-17,linenostart=199" >}}
-aws s3 cp s3://solution-builders-ap-southeast-2/amazon-rekognition-virtual-proctor/v0.9/fd120cdc4339f4680e29c3ae3144d6fe 
+### Summary
+We've looked at the Lambda functions which drive the API calls to Amazon Rekognition; and we've also looked at the API Gateway definitions which expose external REST APIs that our website can call
 
-unzip fd120cdc4339f4680e29c3ae3144d6fe
-{{< / highlight >}}
+Now move on to defining our own API (this time without an authenticator) that we can call using the Postan tool (or any other API test tool)
 
-`aws s3 cp s3://solution-builders-ap-southeast-2/amazon-rekognition-virtual-proctor/v0.9/fd120cdc4339f4680e29c3ae3144d6fe 
-
-unzip fd120cdc4339f4680e29c3ae3144d6fe
-`
+Click [here](../build_your_own_api/) to get started!
 

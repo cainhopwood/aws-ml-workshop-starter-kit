@@ -35,7 +35,13 @@ There is also a button to “Start Virtual Proctor” which initiates the proces
 5)	The ProcessImageFunction Lambda function filters the labels to count how many occurrences of “Person” are detected.
 6)	The ProcessImageFunction Lambda function filters the labels against the specified objects of interest (e.g. mobile phone) to determine if any such objects are detected.
 7)	The ProcessImageFunction Lambda function calls the Rekognition SearchFacesByImage method to check if the largest face in the image matches an indexed face in the Rekognition collection. If a match is found, the corresponding full name for face is looked up in the DynamoDB table.
-8)	The ProcessImageFunction Lambda function calls the Rekognition DetectFaces method to check that there is one face, and only 1 face in the image
+8)	The ProcessImageFunction Lambda function calls the Rekognition DetectFaces method to check that there is one face, and only one face in the image
 9)	The ProcessImageFunction Lambda function calls the Rekognition DetectModerationLabels method to find all moderation labels (such as explicit adult content or violent content) about the image that have a confidence score of greater than the set threshold (default 85%).
 10)	If all processing is successful, the Lambda function returns a HTTP 200 status code and includes the results as a JSON string in the HTTP body.
 
+### Summary
+We've looked at the Architecture for this solution as well as walking through the two workflows that this solution provides for our website to interact with.
+
+Now move on to deploying this solution in the account that you are using today.
+
+Click [here](../solution_deployment/) to get started!

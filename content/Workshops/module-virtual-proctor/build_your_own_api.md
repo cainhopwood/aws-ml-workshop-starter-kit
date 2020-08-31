@@ -4,55 +4,86 @@ date = 2019-11-18T17:11:28+11:00
 weight =5
 +++
 
-## Workshop architecture
-![](/images/virtual-proctor/sec-arch.png)
-This environment consists of ...
+## Build and test our own API
+> Note: Testing the API you build here requires that you have the Postman app on your machine. 
+> You can download this app from here: https://www.postman.com/downloads/
 
-## Environment Setup
+### Build an API
+So that we gain the experience, let's set up a method of our own within the existing API definition.
 
-{{%expand "Click here if you're not at an AWS event or are using your own account" %}}
+1.	Select the root path of the API
+{{< figure src="/images/virtual-proctor/build_your_own_api/api_definition_root.png" class="img-left" >}}
 
-In order to complete these workshops, you'll need a valid, usable [AWS Account](https://aws.amazon.com/getting-started/). Use a personal account or create a new AWS account to ensure you have the necessary access and that you do not accidentally modify corporate resources. Do **not** use an AWS account from the company you work for. **We strongly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account. If multiple participants are sharing a single account you should use unique names for the stack set and resources created in the console.**
+2.	Select `Actions` -> `Create Resource`
+{{< figure src="/images/virtual-proctor/build_your_own_api/api_create_resource.png" class="img-left" >}}
 
-**Create an admin user**
+3.	For the `Resource Name`, type `sample`
+{{< figure src="/images/virtual-proctor/build_your_own_api/new_child_resource.png" class="img-left" >}}
+Click `Create Resource`
 
-If you don't already have an AWS IAM user with admin permissions, please use the following instructions to create one:
+4.	Select the new resource path `/sample`
+{{< figure src="/images/virtual-proctor/build_your_own_api/resource_path_sample.png" class="img-left" >}}
 
-1. Browse to the [AWS IAM](https://console.aws.amazon.com/iam/) console.
-2. Click **Users** on the left navigation and then click **Add User**.
-3. Enter a **User Name**, check the checkbox for **AWS Management Console** access, enter a **Custom Password,** and click **Next:Permissions**.
-4. Click **Attach existing policies directly**, click the checkbox next to the **AdministratorAccess**, and click **Next:review**.
-5. Click **Create User**
-6. Click **Dashboard** on the left navigation and use the **IAM users sign-in link** to login as the admin user you just created."
+5.	Select `Action` -> `Create Method`
+{{< figure src="/images/virtual-proctor/build_your_own_api/api_create_method.png" class="img-left" >}}
 
-To setup the workshop environment, launch the CloudFormation stack below in the **ap-southeast-2** AWS region using the "Deploy to AWS" links below. This will automatically take you to the console to run the template. In order to complete these workshops, you'll need a valid, usable AWS Account. Use a personal account or create a new [AWS account](https://aws.amazon.com/getting-started/) to ensure you have the necessary access and that you do not accidentally modify corporate resources. Do not use an AWS account from the company you work for. **We strongly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account. If multiple participants are sharing a single account you should use unique names for the stack set and resources created in the console.**
+6.	From the drop-down options, select `POST`
+{{< figure src="/images/virtual-proctor/build_your_own_api/method_post.png" class="img-left" >}}
 
-| Lab | Template | Region |
-|-----|----------|---------|
-| Lab 4 - AWS Secrets Manager with Amazon RDS and AWS Fargate | [![](/images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=ap-southeast-2#/stacks/new?stackName=secrets&templateURL=https://patesumi-webcontent.s3-ap-southeast-2.amazonaws.com/downloads/secretsmgr.yml) | AP Southeast 2 (Sydney) |
+7.	Click the tick box to the right of `POST`
+{{< figure src="/images/virtual-proctor/build_your_own_api/method_post_tick.png" class="img-left" >}}
+If you get a message regarding “Invalid model identifier specified: Empty”; just close it
 
-1. Click **Next** on the Specify Template section.
+8. You will now be at the setup screen for the integration point for your API. Configure as follows:
+- Leave the Integration type set to `Lambda Function`. 
+- Select the checkbox to the right of `Use Lambda Proxy integration`. 
+- In the Lambda Function selection box, type the letter `v` and then select the function starting with `VirtualProctor-ProcessImageFunction`
+{{< figure src="/images/virtual-proctor/build_your_own_api/select_lambda_function.png" class="img-left" >}}
 
-2. Click **Next** on the Specify stack details section
+9. Your setup should now look like this (although your Lambda function will have a different unique suffix):
+{{< figure src="/images/virtual-proctor/build_your_own_api/setup_integration.png" class="img-left" >}}
+Click `Save`
 
-3. Click **Next** on the Configure stack options section.
+10.	Select “Actions -> Deploy API”
+{{< figure src="/images/virtual-proctor/build_your_own_api/deploy_api.png" class="img-left" >}}
 
-4. Finally, acknowledge that the template will create IAM roles under Capabilities and click **Create**.
+11.	Select `Prod` for the Deployment Stage and click `Deploy`
 
-This will bring you back to the CloudFormation console. You can refresh the page to see the stack starting to create. Before moving on, make sure the stack is in a **CREATE_COMPLETE** status. 
+12.	That’s it, we’ve just created a public API method to call our Lambda function to process images. The difference from this method to the existing method is that our new method does not have an authorizer so it can be called by anyone.
+Take note of the Invoke URL for your API at the top of the screen; something like:
+{{< figure src="/images/virtual-proctor/build_your_own_api/invoke_url.png" class="img-left" >}}
 
-{{% /expand%}}
+### Test the API
+So that we gain the experience, let's set up a method of our own within the existing API definition.
 
+1.	Make sure you have an image saved on your laptop/PC that has a picture of you holding a mobile phone (or other item of interest)
 
-{{%expand "Click here if you are at an AWS event where the Event Engine is being used" %}}
+2.	Use a tool to Base64 encode your image. Here is one such tool on the internet: https://base64.guru/converter/encode/image
+> Note: If you use this tool; select Output Format “Plain text -- just the Base64 value”)
 
-### Confirm the CFN template has been deployed
+> Select your local file; encode; and copy the Base64 output to your clipboard
 
-Browse to [AWS CloudFormation Console](https://ap-southeast-2.console.aws.amazon.com/cloudformation)
-You should see the stacks as displayed below deployed in your account. Look for the Stack that has the description "Session Manager Workshop"
+3.	Open the Postman tool and create a `POST` request to your API URL with `/sample` appended. E.G:
+{{< figure src="/images/virtual-proctor/build_your_own_api/postman_request.png" class="img-left" >}}
 
-![](/images/sec-2.png)
+4.	In the Body of your API request select `raw` and enter the following text in the body entry:
+{{< highlight yaml >}}
+{ “image” : “<paste your Base64 value here>” }
+{{< / highlight >}}
+> Note: Replace the text `<paste your Base64 value here>` with your Base64 encoded image text
 
-Confirm it has been deployed successfully, Status should be "***CREATE_COMPLETE***", if not reach out to the support team for help.
+5.	Click `Send`
+{{< figure src="/images/virtual-proctor/build_your_own_api/postman_send_button.png" class="img-left" >}}
 
-{{% /expand%}}
+6.	Your response should look something like the following:
+{{< figure src="/images/virtual-proctor/build_your_own_api/postman_response.png" class="img-left" >}}
+
+7.  When you have finished testing your API method, you can delete it by selecting the `/sample` resource and selecting `Delete Resource` from the `Actions` menu
+{{< figure src="/images/virtual-proctor/build_your_own_api/api_delete_resource.png" class="img-left" >}}
+
+### Summary
+Congratulations, not only have you used the Virtual Proctor solution; now you have also deployed your own API method to interact with one of the backend Lambda functions.
+
+Once you've finished, we will delete the resources that the CloudFormation template created
+
+Click [here](../cleanup/) to get started!

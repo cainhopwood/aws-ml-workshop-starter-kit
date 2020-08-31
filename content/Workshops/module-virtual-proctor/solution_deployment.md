@@ -1,5 +1,5 @@
 +++
-title = "3. Solution Deployment"
+title = "2. Solution Deployment"
 date = 2019-11-18T17:11:28+11:00
 weight =5
 +++
@@ -69,3 +69,11 @@ Click `SIGN IN`
 Click `Allow`
 
 15.	You have now deployed the virtual proctor solution. Move on to the next section to examine the features of the solution
+
+### Summary
+We've deployed this solution in your own account from a CloudFormation template.
+We've also completed the intial authentication to our site.
+
+Now move on to exercising this solution to see what it can do.
+
+Click [here](../vp_demo/) to get started!

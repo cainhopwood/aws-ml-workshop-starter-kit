@@ -1,5 +1,5 @@
 +++
-title = "2. Virtual Proctor Demonstration"
+title = "3. Virtual Proctor Demonstration"
 date = 2019-11-18T17:11:28+11:00
 weight =5
 +++
@@ -49,5 +49,10 @@ Click `Close`
 
 10.	(optional) If you are feeling brave, partial or full nudity will trigger the “Unsafe Content” field. Up to you…
 
+### Summary
+We've seen the power of this solution running as a website.
 
+Now move on to diving deep into the technical components of this solution to better understand how it works.
+
+Click [here](../tech_deep_dive/) to get started!
 
