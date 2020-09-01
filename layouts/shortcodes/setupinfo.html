@@ -1,0 +1,112 @@
+{{ $currentNode := .Page }}
+{{ $currentDir := .Page.Dir }}
+{{ $scratch := newScratch }}
+{{ $scratch.Set "parentTitle" "Workshop" }}
+{{ range where .Site.Pages.ByWeight "Section" "==" "Workshops" }}
+    {{if and ( eq .File.LogicalName "_index.en.md") ( eq .File.Dir $currentDir)}}
+        <p>{{ .File.Path }}</p>
+        {{ with .Site.GetPage .File.Path }}
+            {{ $parentParams := .Params }}
+            <p> Params: {{ .Params.title }}</p>
+            {{ $scratch.Set "parentTitle" .Params.title }}
+            {{ $scratch.Set "CFTemplate" .Params.CFTemplate }}
+            {{ $scratch.Set "CFTemplateName" .Params.CFTemplateName }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+<h2 id="environment-setup">Environment Setup </h2>
+
+<div class="expand">
+    <div class="expand-label" style="cursor: pointer;"
+        onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+        <i style="font-size:x-small;" class="fas fa-chevron-right"></i>
+        <span>
+            Click here if you're not at an AWS event or are using your own account
+        </span>
+    </div>
+    <div class="expand-content" style="display: none;">
+        <p>In order to complete these workshops, you’ll need a valid, usable <a
+                href="https://aws.amazon.com/getting-started/" class="highlight">AWS Account</a>. Use a personal account
+            or create a new AWS account to ensure you have the necessary access and that you do not accidentally modify
+            corporate resources. Do <strong>not</strong> use an AWS account from the company you work for. <strong>We
+                strongly recommend that you use a non-production AWS account for this workshop such as a training,
+                sandbox or personal account. If multiple participants are sharing a single account you should use unique
+                names for the stack set and resources created in the console.</strong></p>
+        <p><strong>Create an admin user</strong></p>
+        <p>If you don’t already have an AWS IAM user with admin permissions, please use the following instructions to
+            create one:</p>
+        <ol>
+            <li>Browse to the <a href="https://console.aws.amazon.com/iam/" class="highlight">AWS IAM</a> console.</li>
+            <li>Click <strong>Users</strong> on the left navigation and then click <strong>Add User</strong>.</li>
+            <li>Enter a <strong>User Name</strong>, check the checkbox for <strong>AWS Management Console</strong>
+                access, enter a <strong>Custom Password,</strong> and click <strong>Next:Permissions</strong>.</li>
+            <li>Click <strong>Attach existing policies directly</strong>, click the checkbox next to the
+                <strong>AdministratorAccess</strong>, and click <strong>Next:review</strong>.</li>
+            <li>Click <strong>Create User</strong></li>
+            <li>Click <strong>Dashboard</strong> on the left navigation and use the <strong>IAM users sign-in
+                    link</strong> to login as the admin user you just created.”</li>
+        </ol>
+        <p>To setup the workshop environment, launch the CloudFormation stack below in the
+            <strong>ap-southeast-2</strong> AWS region using the “Deploy to AWS” links below. This will automatically
+            take you to the console to run the template. </p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Lab</th>
+                    <th>Template</th>
+                    <th>Region</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> {{ $scratch.Get "parentTitle" }}</td>
+                    <td> <a href="https://console.aws.amazon.com/cloudformation/home?region={{.Site.Params.cfregion}}#/stacks/new?stackName={{$scratch.Get "CFTemplateName"}}&templateURL={{$scratch.Get "CFTemplate"}}" class="highlight"><img src="/images/deploy-to-aws.png" alt="deploy to aws" style="width: auto; height: auto;"/></a> </td>
+                    <td>{{.Site.Params.cfregiondisplay}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <ol>
+            <li>
+                <p>Click <strong>Next</strong> on the Specify Template section.</p>
+            </li>
+            <li>
+                <p>Click <strong>Next</strong> on the Specify stack details section</p>
+            </li>
+            <li>
+                <p>Click <strong>Next</strong> on the Configure stack options section.</p>
+            </li>
+            <li>
+                <p>Finally, acknowledge that the template will create IAM roles under Capabilities and click
+                    <strong>Create</strong>.</p>
+            </li>
+        </ol>
+        <p>This will bring you back to the CloudFormation console. You can refresh the page to see the stack starting to
+            create. Before moving on, make sure the stack is in a <strong>CREATE_COMPLETE</strong> status.</p>
+
+    </div>
+</div>
+
+<div class="expand">
+    <div class="expand-label" style="cursor: pointer;"
+        onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+        <i style="font-size:x-small;" class="fas fa-chevron-right"></i>
+        <span>
+
+
+            Click here if you are at an AWS event where the Event Engine is being used
+
+        </span>
+    </div>
+    <div class="expand-content" style="display: none;">
+        <h3 id="confirm-the-cfn-template-has-been-deployed">Confirm the CFN template has been deployed</h3>
+        <p>Browse to <a href="https://ap-southeast-2.console.aws.amazon.com/cloudformation" class="highlight">AWS
+                CloudFormation Console</a>
+            You should see the stacks as displayed below deployed in your account. Look for the Stack that has the
+            description “Session Manager Workshop”</p>
+        <p><a href="http://localhost:1313/images/sec-2.png" data-featherlight="image"><img src="/images/sec-2.png"
+                    alt="" style="width: auto; height: auto;"></a></p>
+        <p>Confirm it has been deployed successfully, Status should be “<em><strong>CREATE_COMPLETE</strong></em>”, if
+            not reach out to the support team for help.</p>
+
+    </div>
+</div>
