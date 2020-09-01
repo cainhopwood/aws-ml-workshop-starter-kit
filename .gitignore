@@ -3,3 +3,9 @@ hugo.exe
 nohup.out
 cover.out
 .DS_Store
+.DS_Store
+/public/
+/resources/_gen/
+hugo.exe
+hugo.linux
+hugo.darwin
