@@ -65,7 +65,7 @@ The scope of this workshop is to:
 
 
 ### Lab Steps
-{{% children depth=2 %}}
+{{% children depth="2" %}}
 
 
 Click [here](./architecture/) to get started!

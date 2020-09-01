@@ -31,7 +31,7 @@ In steps 2 and 3 you will...
 
 
 ### Lab Steps
-{{% children depth=2 %}}
+{{% children depth="2" %}}
 
 
 Click [here](./scenario/) to get started!
