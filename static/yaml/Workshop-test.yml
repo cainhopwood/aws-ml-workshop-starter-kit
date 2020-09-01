@@ -1,0 +1,665 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+Description: >
+    "Elastic Search Domain with VPC Option"
+
+Mappings:
+  Send:
+    AnonymousUsage:
+      Data: "Yes"
+
+Parameters:
+  DomainName:
+    Description: Domain name for Elasticsearch service
+    Type: String
+    AllowedPattern: "^[a-z0-9-]*$"
+    MaxLength: 28
+    ConstraintDescription: "The name must start with a lowercase letter and must be between 3 and 28 characters.
+        Valid characters are a-z (lowercase only), 0-9, and - (hyphen). Must have length less than or equal to 28"
+  InstanceType:
+    Description: "Instance type for Amazon Elasticsearch domain. https://aws.amazon.com/elasticsearch-service/pricing/"
+    Type: String
+    Default: 'm4.large.elasticsearch'
+    AllowedValues:
+      - 'c5.large.elasticsearch'
+      - 'c5.xlarge.elasticsearch'
+      - 'c5.2xlarge.elasticsearch'
+      - 'c5.4xlarge.elasticsearch'
+      - 'c5.9xlarge.elasticsearch'
+      - 'c5.18xlarge.elasticsearch'
+      - 'i3.large.elasticsearch'
+      - 'i3.xlarge.elasticsearch'
+      - 'i3.2xlarge.elasticsearch'
+      - 'i3.4xlarge.elasticsearch'
+      - 'i3.8xlarge.elasticsearch'
+      - 'i3.16xlarge.elasticsearch'
+      - 'm5.large.elasticsearch'
+      - 'm5.xlarge.elasticsearch'
+      - 'm5.2xlarge.elasticsearch'
+      - 'm5.4xlarge.elasticsearch'
+      - 'm5.12xlarge.elasticsearch'
+      - 'r5.large.elasticsearch'
+      - 'r5.xlarge.elasticsearch'
+      - 'r5.2xlarge.elasticsearch'
+      - 'r5.4xlarge.elasticsearch'
+      - 'r5.12xlarge.elasticsearch'
+      - 't2.small.elasticsearch'
+      - 't2.medium.elasticsearch'
+      - 'c4.large.elasticsearch'
+      - 'c4.xlarge.elasticsearch'
+      - 'c4.2xlarge.elasticsearch'
+      - 'c4.4xlarge.elasticsearch'
+      - 'c4.8xlarge.elasticsearch'
+      - 'i2.xlarge.elasticsearch'
+      - 'i2.2xlarge.elasticsearch'
+      - 'm4.large.elasticsearch'
+      - 'm4.xlarge.elasticsearch'
+      - 'm4.2xlarge.elasticsearch'
+      - 'm4.4xlarge.elasticsearch'
+      - 'm4.10xlarge.elasticsearch'
+      - 'r4.large.elasticsearch'
+      - 'r4.xlarge.elasticsearch'
+      - 'r4.2xlarge.elasticsearch'
+      - 'r4.4xlarge.elasticsearch'
+      - 'r4.8xlarge.elasticsearch'
+      - 'r4.16xlarge.elasticsearch'
+      - 'm3.medium.elasticsearch'
+      - 'm3.large.elasticsearch'
+      - 'm3.xlarge.elasticsearch'
+      - 'm3.2xlarge.elasticsearch'
+      - 'r3.large.elasticsearch'
+      - 'r3.xlarge.elasticsearch'
+      - 'r3.2xlarge.elasticsearch'
+      - 'r3.4xlarge.elasticsearch'
+      - 'r3.8xlarge.elasticsearch'
+      - 'ultrawarm1.medium.elasticsearch'
+      - 'ultrawarm1.large.elasticsearch'
+    ConstraintDescription: must select a valid instance type
+  InstanceCount:
+    Description: The number of instances for the Elasticsearch domain.
+    Type: Number
+    Default: 2
+    MinValue: 2
+  ESVersion:
+    Description: Version of Elasticsearch to deploy
+    Type: String
+    Default: '7.7'
+    AllowedValues:
+      - '7.7'
+      - '7.4'
+      - '7.1'
+      - '6.8'
+      - '6.7'
+      - '6.5'
+      - '6.4'
+      - '6.3'
+      - '6.2'
+      - '6.0'
+      - '5.6'
+      - '5.5'
+      - '5.3'
+      - '5.1'
+      - '2.3'
+      - '1.5'
+    ConstraintDescription: must select a valid version
+  EnableVPC:
+    Description: Enable or disable VPC for lambda & Elasticsearch
+    Type: String
+    Default: 'false'
+    AllowedValues: ['true', 'false']
+  IAMQueryUser:
+    Description: The Name of an existing IAM User who will be allowed to send signed query requests to the ES Cluster.
+    Type: String
+    AllowedPattern: '[a-zA-Z0-9_+=,.@\-]+'
+    MinLength: 6
+    MaxLength: 50
+  IPToAccessKibanaDashboard:
+    Description: The ip address or cidr you want to grant access to Elasticsearch domain. Note this won't be used if you enabled VPC.
+    Type: String
+    Default: 10.0.0.0/16
+    AllowedPattern: "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/([0-9]|[1-2][0-9]|3[0-2]))?$"
+  CognitoIdentityPoolId:
+    Description: The ID of the identity pool used to Authenticate Kibana users. Will be added to the Kibana access role
+    Type: String
+    AllowedPattern: '[a-zA-Z0-9_+=:\-]+'
+  # Elasticsearch VPC
+  VpcCidrBlock:
+    Description: CidrBlock for VPC
+    Type: String
+    Default: 10.0.0.0/16
+    AllowedPattern: "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/([0-9]|[1-2][0-9]|3[0-2]))$"
+  PublicSubnet01Block:
+    Description: CidrBlock for public subnet 1
+    Type: String
+    Default: 10.0.0.0/24
+    AllowedPattern: "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/([0-9]|[1-2][0-9]|3[0-2]))$"
+  PublicSubnet02Block:
+    Description: CidrBlock for public subnet 2
+    Type: String
+    Default: 10.0.1.0/24
+    AllowedPattern: "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/([0-9]|[1-2][0-9]|3[0-2]))$"
+  PrivateSubnet01Block:
+    Description: CidrBlock for private subnet 1
+    Type: String
+    Default: 10.0.2.0/24
+    AllowedPattern: "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/([0-9]|[1-2][0-9]|3[0-2]))$"
+  PrivateSubnet02Block:
+    Description: CidrBlock for private subnet 2
+    Type: String
+    Default: 10.0.3.0/24
+    AllowedPattern: "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/([0-9]|[1-2][0-9]|3[0-2]))$"
+  # Elasticsearch Encryption
+  EnableEncryptionAtRest:
+    Type: String
+    Default: 'true'
+    AllowedValues: ['true', 'false']
+  EnableNodeToNodeEncryption:
+    Type: String
+    Default: 'true'
+    AllowedValues: ['true', 'false']
+  # Elasticsearch EBS
+  ElasticsearchEnableEBS:
+    Description: Enable or disable EBS storage type for Elasticsearch
+    Type: String
+    Default: 'true'
+    AllowedValues: ['true', 'false']
+  EBSVolumeType:
+    Description: Elasticsearch EBS volume type
+    Type: String
+    Default: 'standard'
+    AllowedValues: ['standard', 'gp2', 'io1', 'st1', 'sc1']
+  EBSVolumeSizeInGB:
+    Description: Elasticsearch EBS storage size per node.
+    Type: Number
+    Default: 10
+    MaxValue: 3584
+    MinValue: 10
+    ConstraintDescription: "Volume size must be an integer between 10 and 3584."
+  # Elasticsearch ClusterConfig
+  EnableDedicatedMaster:
+    Type: String
+    Default: 'false'
+    AllowedValues: ['true', 'false']
+  DedicatedMasterCount:
+    Type: Number
+    Default: 0
+  DedicatedMasterType:
+    Type: String
+    Default: 'm4.large.elasticsearch'
+    AllowedValues:
+      - 'c5.large.elasticsearch'
+      - 'c5.xlarge.elasticsearch'
+      - 'c5.2xlarge.elasticsearch'
+      - 'c5.4xlarge.elasticsearch'
+      - 'c5.9xlarge.elasticsearch'
+      - 'c5.18xlarge.elasticsearch'
+      - 'i3.large.elasticsearch'
+      - 'i3.xlarge.elasticsearch'
+      - 'i3.2xlarge.elasticsearch'
+      - 'i3.4xlarge.elasticsearch'
+      - 'i3.8xlarge.elasticsearch'
+      - 'i3.16xlarge.elasticsearch'
+      - 'm5.large.elasticsearch'
+      - 'm5.xlarge.elasticsearch'
+      - 'm5.2xlarge.elasticsearch'
+      - 'm5.4xlarge.elasticsearch'
+      - 'm5.12xlarge.elasticsearch'
+      - 'r5.large.elasticsearch'
+      - 'r5.xlarge.elasticsearch'
+      - 'r5.2xlarge.elasticsearch'
+      - 'r5.4xlarge.elasticsearch'
+      - 'r5.12xlarge.elasticsearch'
+      - 't2.small.elasticsearch'
+      - 't2.medium.elasticsearch'
+      - 'c4.large.elasticsearch'
+      - 'c4.xlarge.elasticsearch'
+      - 'c4.2xlarge.elasticsearch'
+      - 'c4.4xlarge.elasticsearch'
+      - 'c4.8xlarge.elasticsearch'
+      - 'i2.xlarge.elasticsearch'
+      - 'i2.2xlarge.elasticsearch'
+      - 'm4.large.elasticsearch'
+      - 'm4.xlarge.elasticsearch'
+      - 'm4.2xlarge.elasticsearch'
+      - 'm4.4xlarge.elasticsearch'
+      - 'm4.10xlarge.elasticsearch'
+      - 'r4.large.elasticsearch'
+      - 'r4.xlarge.elasticsearch'
+      - 'r4.2xlarge.elasticsearch'
+      - 'r4.4xlarge.elasticsearch'
+      - 'r4.8xlarge.elasticsearch'
+      - 'r4.16xlarge.elasticsearch'
+      - 'm3.medium.elasticsearch'
+      - 'm3.large.elasticsearch'
+      - 'm3.xlarge.elasticsearch'
+      - 'm3.2xlarge.elasticsearch'
+      - 'r3.large.elasticsearch'
+      - 'r3.xlarge.elasticsearch'
+      - 'r3.2xlarge.elasticsearch'
+      - 'r3.4xlarge.elasticsearch'
+      - 'r3.8xlarge.elasticsearch'
+      - 'ultrawarm1.medium.elasticsearch'
+      - 'ultrawarm1.large.elasticsearch'
+    ConstraintDescription: must select a valid instance type
+  EnableZoneAwareness:
+    Type: String
+    Default: 'true'
+    AllowedValues: ['true', 'false']
+
+  # Optional
+  ESServiceRoleExists:
+    Description: Choose whether ServiceLinkedRole for Elasticsearch VPC access already exists"
+    Type: String
+    Default: 'false'
+    AllowedValues: ['true', 'false']
+
+Conditions:
+  IsVPCEnabled:
+    Fn::Equals:
+      - Ref: EnableVPC
+      - 'true'
+  IsEBSEnabled:
+    Fn::Equals:
+      - Ref: ElasticsearchEnableEBS
+      - 'true'
+  ServiceRoleNotExists:
+    Fn::Equals:
+      - Ref: ESServiceRoleExists
+      - 'false'
+  HasDedicatedMaster:
+    Fn::Equals:
+      - Ref: EnableDedicatedMaster
+      - 'true'
+
+Outputs:
+  ElasticsearchEndpoint:
+    Description: 'Elasticsearch endpoint'
+    Value:
+      Fn::Join:
+        - ''
+        - - 'https://'
+          - Fn::GetAtt: 'ESDomain.DomainEndpoint'
+  KibanaDashboardURL:
+    Description: 'URL to access Kibana dashboard'
+    Value:
+      Fn::Join:
+        - ''
+        - - 'https://'
+          - Fn::GetAtt: 'ESDomain.DomainEndpoint'
+          - '/_plugin/kibana'
+
+Resources:
+  # Elasticsearch Domain
+  ESDomain:
+    Type: AWS::Elasticsearch::Domain
+    Metadata:
+      cfn_nag:
+        rules_to_suppress:
+          - id: W28
+            reason: "Name is needed to construct the domain policy, which refers to the domain arn"
+    Properties:
+      DomainName: {Ref: DomainName}
+      ElasticsearchVersion: {Ref: ESVersion}
+      EncryptionAtRestOptions:
+        Enabled: {Ref: EnableEncryptionAtRest}
+      NodeToNodeEncryptionOptions:
+        Enabled: {Ref: EnableNodeToNodeEncryption}
+      ElasticsearchClusterConfig:
+        InstanceCount: {Ref: InstanceCount}
+        InstanceType: {Ref: InstanceType}
+        DedicatedMasterEnabled: {Ref: EnableDedicatedMaster}
+        DedicatedMasterType: 
+          Fn::If:
+            - HasDedicatedMaster
+            - Ref: DedicatedMasterType
+            - Ref: AWS::NoValue
+        DedicatedMasterCount:   
+          Fn::If:
+            - HasDedicatedMaster
+            - Ref: DedicatedMasterCount
+            - Ref: AWS::NoValue
+        ZoneAwarenessEnabled: {Ref: EnableZoneAwareness}
+      AdvancedSecurityOptions:
+        Enabled: false
+        InternalUserDatabaseEnabled: false
+      EBSOptions:
+        EBSEnabled:
+          Ref: ElasticsearchEnableEBS
+        VolumeType:
+          Fn::If:
+            - IsEBSEnabled
+            - Ref: EBSVolumeType
+            - Ref: AWS::NoValue
+        VolumeSize:
+          Fn::If:
+            - IsEBSEnabled
+            - Ref: EBSVolumeSizeInGB
+            - Ref: AWS::NoValue
+      SnapshotOptions:
+        AutomatedSnapshotStartHour: 0
+      AccessPolicies:
+        Fn::If:
+          - IsVPCEnabled
+          - Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Principal:
+                  AWS:
+                    - Fn::Sub: 'arn:${AWS::Partition}:iam::${AWS::AccountId}:role/${ESSiteIAMRole}'
+                Action: 'es:*'
+                Resource:
+                  Fn::Sub: 'arn:${AWS::Partition}:es:${AWS::Region}:${AWS::AccountId}:domain/${DomainName}/*'
+          - Version: '2012-10-17'
+            Statement:
+            - Effect: Allow
+              Principal:
+                AWS:
+                  - Fn::Sub: 'arn:${AWS::Partition}:iam::${AWS::AccountId}:role/${ESSiteIAMRole}'
+              Action: es:ESHttp*
+              Resource:
+              - Fn::Sub: 'arn:${AWS::Partition}:es:${AWS::Region}:${AWS::AccountId}:domain/${DomainName}/_plugin/kibana'
+              - Fn::Sub: 'arn:${AWS::Partition}:es:${AWS::Region}:${AWS::AccountId}:domain/${DomainName}/_plugin/kibana/*'
+              Condition:
+                IpAddress:
+                  aws:SourceIp: {Ref: IPToAccessKibanaDashboard}
+            - Effect: Allow
+              Principal:
+                AWS: 
+                  - Fn::Sub: 'arn:${AWS::Partition}:iam::${AWS::AccountId}:user/${IAMQueryUser}'
+              Action: es:ESHttp*
+              Resource:
+                Fn::Sub: 'arn:${AWS::Partition}:es:${AWS::Region}:${AWS::AccountId}:domain/${DomainName}/_msearch'
+
+      AdvancedOptions:
+        rest.action.multi.allow_explicit_index: 'true'
+      VPCOptions:
+        Fn::If:
+          - IsVPCEnabled
+          - SecurityGroupIds:
+              - Ref: ESSecurityGroup
+            SubnetIds:
+              - Ref: ESPublicSubnet01
+              - Ref: ESPublicSubnet02
+          - Ref: AWS::NoValue
+  
+  ElasticsearchServiceLinkedRole:
+    Type: AWS::IAM::ServiceLinkedRole
+    Description: "Enable a service-linked role to give Amazon ES permissions to access VPC"
+    Condition: ServiceRoleNotExists
+    Properties:
+      AWSServiceName: "es.amazonaws.com"
+  
+  ESSiteIAMRole:
+    Type: AWS::IAM::Role
+    Description: Role that needs to set in Cognito Identity Pool as Authenticate Role when enabling Cognito Authentication
+    Properties:
+      Policies:
+        - PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action: 
+                - mobileanalytics:PutEvents
+                - cognito-sync:*
+                - cognito-identity:*
+                Resource:
+                - "*"
+          PolicyName: es-cognito-access-policy
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Action: ['sts:AssumeRole']
+            Principal:
+              AWS:
+                Fn::Sub: 'arn:${AWS::Partition}:iam::${AWS::AccountId}:root'
+          - Effect: Allow
+            Principal:
+              Federated: cognito-identity.amazonaws.com
+            Action: sts:AssumeRoleWithWebIdentity
+            Condition:
+              StringEquals:
+                cognito-identity.amazonaws.com:aud: {Ref: CognitoIdentityPoolId}
+              ForAnyValue:StringLike:
+                cognito-identity.amazonaws.com:amr: authenticated
+        Version: '2012-10-17'
+
+  # VPC
+  ESVPC:
+    Condition: IsVPCEnabled
+    Properties:
+      CidrBlock: {Ref: VpcCidrBlock}
+      Tags:
+        - Key: Name
+          Value: 'ESVPC'
+    Type: AWS::EC2::VPC
+  
+  # Subnet
+  ESPublicSubnet01:
+    Condition: IsVPCEnabled
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+          - '0'
+          - Fn::GetAZs: {Ref: 'AWS::Region'}
+      CidrBlock: {Ref: PublicSubnet01Block}
+      Tags:
+        - Key: Name
+          Value: 'ESPublicSubnet01'
+      VpcId: {Ref: ESVPC}
+    Type: AWS::EC2::Subnet
+  ESPublicSubnet02:
+    Condition: IsVPCEnabled
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+          - '1'
+          - Fn::GetAZs: {Ref: 'AWS::Region'}
+      CidrBlock: {Ref: PublicSubnet02Block}
+      Tags:
+        - Key: Name
+          Value: 'ESPublicSubnet02'
+      VpcId: {Ref: ESVPC}
+    Type: AWS::EC2::Subnet
+  ESPrivateSubnet01:
+    Condition: IsVPCEnabled
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+          - '0'
+          - Fn::GetAZs: {Ref: 'AWS::Region'}
+      CidrBlock: {Ref: PrivateSubnet01Block}
+      Tags:
+        - Key: Name
+          Value: 'ESPrivateSubnet01'
+      VpcId: {Ref: ESVPC}
+    Type: AWS::EC2::Subnet
+  ESPrivateSubnet02:
+    Condition: IsVPCEnabled
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+          - '1'
+          - Fn::GetAZs: {Ref: 'AWS::Region'}
+      CidrBlock: {Ref: PrivateSubnet02Block}
+      Tags:
+        - Key: Name
+          Value: 'ESPrivateSubnet02'
+      VpcId: {Ref: ESVPC}
+    Type: AWS::EC2::Subnet
+  
+  # Elastic IP
+  ESEIP01:
+    Condition: IsVPCEnabled
+    Properties:
+      Domain: vpc
+    Type: AWS::EC2::EIP
+  ESEIP02:
+    Condition: IsVPCEnabled
+    Properties:
+      Domain: vpc
+    Type: AWS::EC2::EIP
+  
+  # Gateway
+  ESInternetGateway:
+    Condition: IsVPCEnabled
+    Properties:
+      Tags:
+        - Key: Name
+          Value: 'ESInternetGateway'
+    Type: 'AWS::EC2::InternetGateway'
+  ESGatewayAttachement:
+    Condition: IsVPCEnabled
+    Properties:
+      InternetGatewayId: {Ref: ESInternetGateway}
+      VpcId: {Ref: ESVPC}
+    Type: AWS::EC2::VPCGatewayAttachment
+  ESNATFromPublicSubnet01:
+    Condition: IsVPCEnabled
+    DependsOn: ESGatewayAttachement
+    Properties:
+      AllocationId:
+        Fn::GetAtt: [ESEIP01, AllocationId]
+      SubnetId: {Ref: ESPublicSubnet01}
+      Tags:
+        - Key: Name
+          Value: 'ESNATFromPublicSubnet01'
+    Type: AWS::EC2::NatGateway
+  ESNATFromPublicSubnet02:
+    Condition: IsVPCEnabled
+    DependsOn: ESGatewayAttachement
+    Properties:
+      AllocationId:
+        Fn::GetAtt: [ESEIP02, AllocationId]
+      SubnetId: {Ref: ESPublicSubnet02}
+      Tags:
+        - Key: Name
+          Value: 'ESNATFromPublicSubnet02'
+    Type: AWS::EC2::NatGateway
+  
+  # RouteTable
+  ESPublicRouteTable:
+    Condition: IsVPCEnabled
+    Properties:
+      Tags:
+        - Key: Name
+          Value: 'ESPublicRouteTable'
+      VpcId: {Ref: ESVPC}
+    Type: AWS::EC2::RouteTable
+  ESPrivateRouteTable01:
+    Condition: IsVPCEnabled
+    Properties:
+      Tags:
+        - Key: Name
+          Value: 'ESPrivateRouteTable01'
+      VpcId: {Ref: ESVPC}
+    Type: AWS::EC2::RouteTable
+  ESPrivateRouteTable02:
+    Condition: IsVPCEnabled
+    Properties:
+      Tags:
+        - Key: Name
+          Value: 'ESPrivateRouteTable02'
+      VpcId: {Ref: ESVPC}
+    Type: AWS::EC2::RouteTable
+  
+  # Route
+  ESPublicRouteTableIGWRoute:
+    Condition: IsVPCEnabled
+    DependsOn: ESGatewayAttachement
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: {Ref: ESInternetGateway}
+      RouteTableId: {Ref: ESPublicRouteTable}
+    Type: AWS::EC2::Route
+  ESPrivateNATInternetRoute01:
+    Condition: IsVPCEnabled
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      NatGatewayId: {Ref: ESNATFromPublicSubnet01}
+      RouteTableId: {Ref: ESPrivateRouteTable01}
+    Type: AWS::EC2::Route
+  ESPrivateNATInternetRoute02:
+    Condition: IsVPCEnabled
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      NatGatewayId: {Ref: ESNATFromPublicSubnet02}
+      RouteTableId: {Ref: ESPrivateRouteTable02}
+    Type: AWS::EC2::Route
+  # RouteTable Association
+  ESPublicSubnetRouteTableAssociation01:
+    Condition: IsVPCEnabled
+    Metadata: {Comment: Associate subnet to Public route}
+    Properties:
+      RouteTableId: {Ref: ESPublicRouteTable}
+      SubnetId: {Ref: ESPublicSubnet01}
+    Type: AWS::EC2::SubnetRouteTableAssociation
+  ESPublicSubnetRouteTableAssociation02:
+    Condition: IsVPCEnabled
+    Metadata: {Comment: Associate subnet to Public route}
+    Properties:
+      RouteTableId: {Ref: ESPublicRouteTable}
+      SubnetId: {Ref: ESPublicSubnet02}
+    Type: AWS::EC2::SubnetRouteTableAssociation
+  ESPrivateSubnetRouteTableAssociation01:
+    Condition: IsVPCEnabled
+    Metadata: {Comment: Associate subnet to private route}
+    Properties:
+      RouteTableId: {Ref: ESPrivateRouteTable01}
+      SubnetId: {Ref: ESPrivateSubnet01}
+    Type: AWS::EC2::SubnetRouteTableAssociation
+  ESPrivateSubnetRouteTableAssociation02:
+    Condition: IsVPCEnabled
+    Metadata: {Comment: Associate subnet to private route}
+    Properties:
+      RouteTableId: {Ref: ESPrivateRouteTable02}
+      SubnetId: {Ref: ESPrivateSubnet02}
+    Type: AWS::EC2::SubnetRouteTableAssociation
+  
+  # Security Group
+  ESSecurityGroup:
+    Condition: IsVPCEnabled
+    Properties:
+      GroupDescription: Allow HTTPs inbound traffic and all outbound access
+      Tags:
+        - Key: Name
+          Value: 'ESSecurityGroup'
+      VpcId: {Ref: ESVPC}
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 443
+          ToPort: 443
+          Description: "ingress traffic on port 443 from vpc cidr blocker"
+          CidrIp: {Ref: VpcCidrBlock}
+      SecurityGroupEgress:
+        - IpProtocol: tcp
+          FromPort: 443
+          ToPort: 443
+          Description: "egress traffic on port 443 from vpc cidr blocker"
+          CidrIp: {Ref: VpcCidrBlock}
+    Type: AWS::EC2::SecurityGroup
+  ProxyServiceSecurityGroup:
+    Condition: IsVPCEnabled
+    Metadata:
+      cfn_nag:
+        rules_to_suppress:
+          - id: W5
+            reason: "this is security group for lambda function to access Amazon Comprehend. Egress to internet should be permitted."
+    Properties:
+      GroupDescription: Allow HTTPs inbound traffic and all outbound access
+      Tags:
+        - Key: Name
+          Value: 'ProxyServiceSecurityGroup'
+      VpcId: {Ref: ESVPC}
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 443
+          ToPort: 443
+          Description: "ingress traffic on port 443 from vpc cidr blocker"
+          CidrIp: {Ref: VpcCidrBlock}
+      SecurityGroupEgress:
+        - IpProtocol: tcp
+          FromPort: 443
+          ToPort: 443
+          Description: "egress traffic on port 443 to internet to access Amazon Comprehend"
+          CidrIp: 0.0.0.0/0
+    Type: AWS::EC2::SecurityGroup
