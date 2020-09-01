@@ -17,10 +17,6 @@ https://github.com/aws-samples/amazon-rekognition-virtual-proctor
 3.	Select the QuickLink for your closest AWS region
 {{< figure src="/images/virtual-proctor/solution_deployment/quicklink_regions.png" class="img-left" >}}
 
-Now HTML
-
-<img align="left" width="100" height="200" src="../../../static/images/virtual-proctor/solution_deployment/quicklink_regions.png">
-
 4.	The Create stack screen will open in your AWS console
 {{< figure src="/images/virtual-proctor/solution_deployment/create_stack.png" class="img-left" >}}
 Click `Next`
