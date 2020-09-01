@@ -1,6 +1,9 @@
 version: 1
 frontend:
   phases:
+    preBuild:
+      commands:
+        - bash pre-build.sh
     build:
       commands:
         - hugo
