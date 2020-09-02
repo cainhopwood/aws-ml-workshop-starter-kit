@@ -44,24 +44,24 @@ This workshop will deploy a solution from the AWS Samples GitHub library and wil
 ### Amazon Rekognition Images
 The key machine learning component of this solution is the use of Amazon Rekognition, a managed video/image analysis service offered by AWS.
 
-Amazon Rekognition provides two sets of APIs, one for images and one for videos. Amazon Rekognition Images provides pre-trained machine learning models which can identify thousands of different types of objects in a scene, can identify text in a scene, perform facial recognition and more. 
+Amazon Rekognition provides APIs which can identify content in both images and videos, today we will be working with images. Amazon Rekognition Images provides pre-trained machine learning models which can identify thousands of different types of objects in a scene, can identify text in a scene, perform facial recognition and more. 
 
 To find out more about the capabilities of Amazon Rekognition, check out the product page: https://aws.amazon.com/rekognition
 
 We will use the Amazon Rekognition Image APIs to regularly examine the scene from the web-cam and look for the following:
-- Objects of interest (Mobile Phone)
-- Number of people detected in the scene
-- Number of faces detected in the scene
-- Facial recognition against a catalogue of registered faces
-- Any unsafe content in the scene (such as explicit or suggestive adult content, violent content or weapons)
+-   Objects of interest (Mobile Phone)
+-   Number of people detected in the scene
+-   Number of faces detected in the scene
+-   Facial recognition against a catalogue of registered faces
+-   Any unsafe content in the scene (such as explicit or suggestive adult content, violent content or weapons)
 
 
 ### Workshop scope
 The scope of this workshop is to:
-- Understand the architecture of the solutions
-- Deploy the solution in your account using a CloudFormation template
-- Dive deep into several key components of the solution such as the API definitions and the Lambda functions which make the calls to Rekognition
-- Build and test your own API definition to call an existing Lambda function
+*   Understand the architecture of the solutions
+*   Deploy the solution in your account using a CloudFormation template
+*   Dive deep into several key components of the solution such as the API definitions and the Lambda functions which make the calls to Rekognition
+*   Build and test your own API definition to call an existing Lambda function
 
 
 ### Lab Steps
