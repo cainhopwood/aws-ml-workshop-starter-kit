@@ -13,6 +13,7 @@ You should now be looking at a live video of yourself within the Virtual Proctor
 
 2. 	On the right side of your screen you should now see details of any relevant content detected in the scene
 {{< figure src="/images/virtual-proctor/vp_demo/start_screen.png" class="img-left" >}}
+
 > Note: The “Person Recognition” field shows a warning as we have not yet uploaded any face images and names.
 
 3.  Hold up some objects of interest that our virtual proctor is watching for
@@ -31,6 +32,7 @@ Our examinee is not alone. Alert the proctor!
 6.	Let’s move on to registering our face with the Virtual Proctor. Imagine in this step we are loading the photo from the examinee’s photo ID.
 
 Find a photo of yourself, or use the Virtual Proctor display and your favourite screen capture tool to capture a photo and save it.
+
 > Note: I am a Mac user, so I take screen captures by holding down [Command]+[Control]+[Shift]+[4] together and then selecting the screen region to capture.
 
 Click on the button `Add a new user`
