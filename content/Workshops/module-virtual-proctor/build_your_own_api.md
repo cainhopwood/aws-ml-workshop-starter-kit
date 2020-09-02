@@ -5,8 +5,12 @@ weight =5
 +++
 
 ## Build and test our own API
-> Note: Testing the API you build here requires that you have the Postman app on your machine. 
+> Note: The instructions on this page walk through testing the API you build here using the Postman app on your machine. 
 > You can download this app from here: https://www.postman.com/downloads/
+
+> If you are comfortable using another API testing tool such as curl, feel free to do so
+
+In this section we will create our own API (but this time without authentication) to interact with one of the Lambda functions. By not adding authentication, we will easily be able to test our API using the Postman tool
 
 ### Build an API
 So that we gain the experience, let's set up a method of our own within the existing API definition.
@@ -59,6 +63,7 @@ So that we gain the experience, let's set up a method of our own within the exis
 1.	Make sure you have an image saved on your laptop/PC that has a picture of you holding a mobile phone (or other item of interest)
 
 2.	Use a tool to Base64 encode your image. Here is one such tool on the internet: https://base64.guru/converter/encode/image
+
 > Note: If you use this tool; select Output Format “Plain text -- just the Base64 value”)
 
 > Select your local file; encode; and copy the Base64 output to your clipboard
@@ -70,6 +75,7 @@ So that we gain the experience, let's set up a method of our own within the exis
 {{< highlight yaml >}}
 { “image” : “<paste your Base64 value here>” }
 {{< / highlight >}}
+
 > Note: Replace the text `<paste your Base64 value here>` with your Base64 encoded image text
 
 5.	Click `Send`
