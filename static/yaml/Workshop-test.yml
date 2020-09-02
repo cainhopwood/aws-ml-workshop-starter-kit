@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 
 Description: >
-    "Elastic Search Domain with VPC Option"
+    "Elastic Search Domain with VPC Option, and security when in public mode"
 
 Mappings:
   Send:
