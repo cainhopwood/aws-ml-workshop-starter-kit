@@ -17,6 +17,9 @@ phases:
   build:
     commands:
       - hugo -v
+      - echo "S3 Upload Beginning"
+      - aws s3 sync public/ s3://$DEPLOY_S3_BUCKET/ --region ap-southeast-2 --delete --acl public-read
+      - echo "S3 Upload Complete"      
 artifacts:
   files:
     - '**/*'
