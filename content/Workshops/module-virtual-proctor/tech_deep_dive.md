@@ -62,7 +62,8 @@ Approximately three-quarters of the way through the template you can find the re
             Ref: ResourcePrefix
       - RekognitionDetectOnlyPolicy: {}
 {{< / highlight >}}
-Notice that both of the Lambda functions download their code from the same CodeUri which is hosted in an AWS Solutions Builder bucket. Importantly, each function has a different entry point (Handler) to the same code. We will look at this in more detail later.
+Notice that both of the Lambda functions download their code from the same CodeUri which is hosted in an AWS Solutions Builder bucket. The reason for this is that CloudFormation requires the Lambda code to be in an S3 bucket so that it can be accessed during the deployment.
+It is also important to notice that each function has a different entry point (Handler) to the same code. We will look at this in more detail later.
 
 #### Accessing the Lambda code
 To have a closer look at this Lambda code, we can either create some credentials and use the AWS CLI to download this code package, or we can just look at the source code in the GitHub repository.
@@ -75,14 +76,40 @@ On your local computer, use the AWS CLI to download the software package from th
 eg. to download the software package in the `ap-southeast-2` region, you would use the following commands:
 
 {{< highlight bash >}}
-aws s3 cp s3://solution-builders-ap-southeast-2/amazon-rekognition-virtual-proctor/v0.9/fd120cdc4339f4680e29c3ae3144d6fe .
+aws s3 cp s3://solution-builders-ap-southeast-2/amazon-rekognition-virtual-proctor/v0.9/fd120cdc4339f4680e29c3ae3144d6fe lambdacode.zip
 
-unzip fd120cdc4339f4680e29c3ae3144d6fe
+unzip lambdacode.zip
 {{< / highlight >}}
 
 Now you can open `index.js` in your favourite code editor.
 
-##### Option 2 (view the source code in the GitHub repository)
+##### Option 2 (download using wget or curl)
+> Pre-requisite: wget or curl installed on your local computer
+
+{{< highlight bash >}}
+curl https://solution-builders-ap-southeast-2.s3.ap-southeast-2.amazonaws.com/amazon-rekognition-virtual-proctor/v0.9/fd120cdc4339f4680e29c3ae3144d6fe --output lambdacode.zip
+{{< / highlight >}}
+
+or
+{{< highlight bash >}}
+wget https://solution-builders-ap-southeast-2.s3.ap-southeast-2.amazonaws.com/amazon-rekognition-virtual-proctor/v0.9/fd120cdc4339f4680e29c3ae3144d6fe -O lambdacode.zip
+{{< / highlight >}}
+
+Then unzip the package:
+{{< highlight bash >}}
+unzip lambdacode.zip
+{{< / highlight >}}
+
+##### Option 3 (download using browser)
+Navigate to the following link in your browser and save the downloaded file
+https://solution-builders-ap-southeast-2.s3.ap-southeast-2.amazonaws.com/amazon-rekognition-virtual-proctor/v0.9/fd120cdc4339f4680e29c3ae3144d6fe
+
+Navigate to the download directory on your local computer
+{{< highlight bash >}}
+unzip lambdacode.zip
+{{< / highlight >}}
+
+##### Option 4 (view the source code in the GitHub repository)
 Enter the following URL in a new browser tab:
 
 https://github.com/aws-samples/amazon-rekognition-virtual-proctor/blob/master/src/functions/proctor/index.js
@@ -90,7 +117,7 @@ https://github.com/aws-samples/amazon-rekognition-virtual-proctor/blob/master/sr
 You will now be looking at the Lambda code we want to understand
 
 #### Understanding the Lambda code
-Note: All Lambda code discussed in this workshop is written in the node.js language and is executed inside the Node.js 12.x runtime. You may use a different language and runtime environment for your own project. 
+Note: All Lambda code discussed in this workshop is written in the javascript language and is executed inside the Node.js 12.x runtime. You may use a different language and runtime environment for your own project. 
 
 > Note: The full list of available runtimes can be found at the following link: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
 
@@ -103,7 +130,7 @@ exports.indexHandler = async (event) => {
 {{< / highlight >}}
 
 
-You don’t need to be an expert at node.js at this point, rather just read the function to get an idea of the following key concepts:
+The key concepts to understand from this code are:
 
 1.	`ExternalImageId` is a unique identifier that will be used to index the face into the Rekognition collectionand to reference the name associated with the face in the DynamoDB table.
 2.	`indexFaces` is a function definition that calls the Rekognition `indexFaces` method to index the face into the collection with the unique identifier.
@@ -117,7 +144,7 @@ Find the function in the Lambda code that starts with the line:
 exports.processHandler = async (event) => {
 {{< / highlight >}}
 
-You don’t need to be an expert at node.js at this point, rather just read the function to get an idea of the following key concepts:
+The key concepts to understand from this code are:
 
 1.	`imageBytes` is a binary buffer which holds the scene image.
 2.	Four function calls are made to perform the various image examination activities.`processHandler` waits for all four function calls to return before joining (flattening) the results and returning them.
@@ -207,7 +234,7 @@ Our API uses Lambda Proxy integration which essentially just passes the full HTT
 ### Summary
 We've looked at the Lambda functions which drive the API calls to Amazon Rekognition; and we've also looked at the API Gateway definitions which expose external REST APIs that our website can call
 
-Now move on to defining our own API (this time without an authenticator) that we can call using the Postan tool (or any other API test tool)
+Now move on to defining our own API (this time without an authenticator) that we can call using the Postman tool (or another API test tool such as curl)
 
 Click [here](../build_your_own_api/) to get started!
 
