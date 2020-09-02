@@ -9,7 +9,9 @@ weight =5
 From an architectural perspective, the key aspect to understand about this solution is that we have Lambda functions driving the interaction with Amazon Rekognition.These Lambda functions are exposed to the internet behind APIs powered by Amazon API Gateway.
 
 This architecture allows the website running in the user’s browser to make calls to the API.
-> Note: API security is provided using Amazon Cognito; however, the details of this are beyond the scope of this workshop.
+
+> Note: API security is provided using Amazon Cognito; however, the details of this are beyond the scope of this workshop. 
+> For those who would like more information on this topic, here is a link to the relevant documentation: https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-integrate-with-cognito.html
 
 ### Lambda Functions
 Where does CloudFormation download the Lambda function code from?
@@ -17,6 +19,7 @@ Where does CloudFormation download the Lambda function code from?
 For those familiar with CloudFormation, you can look at the template by opening the “Template” tab in the CloudFormation console.
 {{< figure src="/images/virtual-proctor/tech_deep_dive/cloudformation_template.png" class="img-left" >}}
 Approximately three-quarters of the way through the template you can find the resource definitions for two Lambda functions:
+
 -  IndexFaceFunction
 -  ProcessImageFunction
 
@@ -84,8 +87,11 @@ Enter the following URL in a new browser tab:
 
 https://github.com/aws-samples/amazon-rekognition-virtual-proctor/blob/master/src/functions/proctor/index.js
 
+You will now be looking at the Lambda code we want to understand
+
 #### Understanding the Lambda code
 Note: All Lambda code discussed in this workshop is written in the node.js language and is executed inside the Node.js 12.x runtime. You may use a different language and runtime environment for your own project. 
+
 > Note: The full list of available runtimes can be found at the following link: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
 
 ##### indexHandler Entry point
@@ -98,6 +104,7 @@ exports.indexHandler = async (event) => {
 
 
 You don’t need to be an expert at node.js at this point, rather just read the function to get an idea of the following key concepts:
+
 1.	`ExternalImageId` is a unique identifier that will be used to index the face into the Rekognition collectionand to reference the name associated with the face in the DynamoDB table.
 2.	`indexFaces` is a function definition that calls the Rekognition `indexFaces` method to index the face into the collection with the unique identifier.
 3.	`persistMetadata` is a function definition that writes an item to the DynamoDB table. The item has three attributes: `CollectionId`, `ExternalImageId` and `FullName`
@@ -111,6 +118,7 @@ exports.processHandler = async (event) => {
 {{< / highlight >}}
 
 You don’t need to be an expert at node.js at this point, rather just read the function to get an idea of the following key concepts:
+
 1.	`imageBytes` is a binary buffer which holds the scene image.
 2.	Four function calls are made to perform the various image examination activities.`processHandler` waits for all four function calls to return before joining (flattening) the results and returning them.
 3.	`fetchLabels`: find the function in the Lambda code that starts with the line:
