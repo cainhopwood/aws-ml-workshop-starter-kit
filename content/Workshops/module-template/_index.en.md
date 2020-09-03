@@ -20,7 +20,7 @@ In steps 2 and 3 you will...
 
 {{< rawhtml >}}
 <video width="696" height="392" controls>
-  <source src="https://d1tqhetmq9f85b.cloudfront.net/downloads/apacsecweek-lab4.mp4" type="video/mp4">
+  <source src="https://d3ezjgxqne0l2q.cloudfront.net/video/cain-test.mp4" type="video/mp4">
   Your browser doesn't support video.
 </video>
 {{< /rawhtml >}}
