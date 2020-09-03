@@ -15,12 +15,7 @@ The workshops and other hands-on content we will discuss are focused on **Artifi
 
 ## How to get started?
 
-{{< rawhtml >}}
-<video width="696" height="392" controls>
-  <source src="https://d1tqhetmq9f85b.cloudfront.net/downloads/intro.mp4" type="video/mp4">
-  Your browser doesn't support video.
-</video>
-{{< /rawhtml >}}
+{{< video "cain-test.mp4" >}}
 
 ## Agenda
  

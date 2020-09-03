@@ -1,0 +1,6 @@
+{{ $videoName := .Get 0 }}
+<video width="696" height="392" controls>
+    <source src="{{.Site.Params.videoBaseUrl}}{{$videoName}}" type="video/mp4">
+    Your browser doesn't support video.
+</video>
+  

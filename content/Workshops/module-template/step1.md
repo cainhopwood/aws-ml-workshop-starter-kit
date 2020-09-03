@@ -51,9 +51,5 @@ Next step you will .....
 {{% notice note %}} 
 *This video has no audio*{{% /notice %}}
 
-{{< rawhtml >}}
-<video width="696" height="392" controls>
-  <source src="https://d1tqhetmq9f85b.cloudfront.net/downloads/lab4.2.mp4" type="video/mp4">
-  Your browser doesn't support video.
-</video>
-{{< /rawhtml >}}
+
+{{< video "cain-test.mp4" >}}

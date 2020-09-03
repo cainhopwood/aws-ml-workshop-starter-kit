@@ -18,12 +18,7 @@ In steps 2 and 3 you will...
 
 ### Lab Overview
 
-{{< rawhtml >}}
-<video width="696" height="392" controls>
-  <source src="https://d3ezjgxqne0l2q.cloudfront.net/video/cain-test.mp4" type="video/mp4">
-  Your browser doesn't support video.
-</video>
-{{< /rawhtml >}}
+{{< video "cain-test.mp4" >}}
 
 >  **Speakers: Jenny Davies (AWS)** 
 
