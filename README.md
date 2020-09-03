@@ -29,10 +29,17 @@ Once you have the site down locally and/or running create a new workshop with th
 1. Likewise adjust the "Description" meta data. This is used in the agenda and overview pages of the site.
 1. You can also adjust the weight property, which controls what order the lab appears in menus etc. Leavign it at 30 is fine. 
 1. Replace the two introductory paragraphs.
-1. Edit the URL in the Lab Overview section to point to your pre-recorded video.
+1. Contact @cainhopw to get your video uploaded, then edit the video sortcode in the Lab Overview section to point to it.
+
+*Templates*
+If you have a Sagemaker notebook and will use the common notebook instance for your lab.
+1. talk to @cainhopw and get the github repo for the lab materials (notebooks etc) added to the Sagemaker master CF template.
+1. Ensure your lab/workshop instructions tell participants which github repo to browse to to get to your jupyter notebooks.
+
+If you have a dedicated cloudformation template for your workshop:
 1. Edit "CFTemplate" and "CFTemplateName" in the meta data. This is used both in the help instructions, and in the "links" section of the event site to generate *magic links* that deploy in a participants aws console. At this point the CFTemplate must be an S3 URL (That may change). If your workshop doesn't have a CF Template, leave that value empty and the tempaltes will adapt.
 
-The Workshop template consists of an example with an overview/scenario page and two pages with Lab Steps. You can add/remove steps as required, just be sure to adjust the "weight" property in the metadata section on each page to reflect it's order so that menus etc show the steps in the desired order.
+The Workshop template consists of an example with an overview/scenario page a video and two pages with Lab Steps. You can add/remove steps as required, just be sure to adjust the "weight" property in the metadata section on each page to reflect it's order so that menus etc show the steps in the desired order.
 
 Once you've pushed your content to the github repo you can access the live version of the site with your changes at https://d3ezjgxqne0l2q.cloudfront.net/ (bear in mind it maight take a few minutes for the site to deploy once you've pushed to git)
 
