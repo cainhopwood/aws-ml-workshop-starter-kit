@@ -31,7 +31,7 @@ This workshop will deploy a solution from the AWS Samples GitHub library and wil
 
 ### Lab Overview
 
-{{< video "cain-test.mp4" >}}
+{{< video "VP-full-720p.mov" >}}
 
 >  **Speakers: Jenny Davies (AWS)** 
 
