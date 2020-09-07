@@ -31,7 +31,7 @@ This workshop will deploy a solution from the AWS Samples GitHub library and wil
 
 ### Lab Overview
 
-{{< video "VP-full-720p.mov" >}}
+{{< video "VP-full-720p-redact.mov" >}}
 
 >  **Speakers: Jenny Davies (AWS)** 
 
