@@ -11,8 +11,8 @@ If you are using your own AWS account then you can skip this page and go straigh
 
 
 #### Open [AWS Event Engine](https://dashboard.eventengine.run/)
-  ![](/images/2019-10-23-17-03-16.png)
-#### Enter the 12-digit hash (provided through GotoWebinar) and click proceed.
+  ![](/images/EventEngine-hash.PNG)
+#### Enter the 12-digit event hash (provided through the slack channel) and click proceed.
 ![](/images/2019-10-25-16-25-15.png)
 #### Once successfully logged in, click on **AWS Console** to log into the console
 ![](/images/2019-10-25-16-25-47.png)
