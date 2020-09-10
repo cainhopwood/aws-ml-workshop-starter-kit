@@ -1,14 +1,15 @@
 # Base Portal For AWS ML Workshops
 
-This project is the framework for an AWS AI/ML Workshop portal. It can be cloned and populated with content it can be used to create a temporary website for an online workshop with event engine, help etc
+This project is the framework for an AWS AI/ML Workshop portal. It can be cloned and populated with content it can be used to create a temporary website for an online workshop with event engine, help etc.
 
-## Development
+Currently this repo is being used for an upcoming AI/ML workshop, but it can easily be made generic for other topics, and in fact already has some work done in that area already.
 
-We'll remove this section once the Portal is in a clean, stable, ready to be cloned state
+## Instructions for AI/ML Worksop Contributors
 
-## Instructions for Contributors
+### Setup Site To Run Locally
 
-### Setup site locally
+Strictly speaking, as all you should need to do is edit markdown and copy images into the repo, it's possible to just push updates to the repo and use the public site to check your workshop. But, if you take that approach you'll have to live with a delay after each push as the site is deployed to check your changes. Running locally is fairly easy for Mac, Windows and Linux usign the followign instructions.
+  
 Install hugo as per https://gohugo.io/getting-started/installing/
 
 in a local directory clone this repo and run hugo to confirm you have the site working locally
@@ -26,13 +27,19 @@ Once you have the site down locally and/or running create a new workshop with th
 1. Copy the Content Folder "Workshops/module-template" to "Workshops/module-XXXX" Where XXXX is the name of your workshop.
 1. Copy/Create an Images Folder "static/images/module-XXXX" 
 1. Edit "Workshops/module-XXXX/_index.en.md" In the top of this file you'll see a metadata section delimited by "+++" adjust the "title" property to reflect your workshop name.
-1. Likewise adjust the "Description" meta data. This is used in the agenda and overview pages of the site.
+1. Likewise adjust the "Description", "Difficulty", and "Time" meta data. This is used in the agenda and overview pages of the site.
 1. You can also adjust the weight property, which controls what order the lab appears in menus etc. Leavign it at 30 is fine. 
-1. Replace the two introductory paragraphs.
+1. Replace the two introductory paragraphs,a nd add any other text you feel is useful.
 1. Contact @cainhopw to get your video uploaded, then edit the video sortcode in the Lab Overview section to point to it.
+1. Also contact Cain to get your github login added to the repo so you can push your changes. 
+
+*Note: Please only make changes in your workshop markdown files, or images directory. 
+
 
 *Templates*
-If you have a Sagemaker notebook and will use the common notebook instance for your lab.
+
+If you have a Sagemaker notebook based workshop, and will use the common notebook instance for your lab.
+
 1. talk to @cainhopw and get the github repo for the lab materials (notebooks etc) added to the Sagemaker master CF template.
 1. Ensure your lab/workshop instructions tell participants which github repo to browse to to get to your jupyter notebooks.
 
@@ -46,14 +53,22 @@ Once you've pushed your content to the github repo you can access the live versi
 
 ### Create A New On Demand Talk
 
+Each on demand presentation consists of a video and a single page hosting that video. To create a new one following the following steps.
+
+1. Upload your video to Workdocs and let @cainhopw know the location for pulling into the site.
+1. Copy the folder security_fundementals in /OnDemandTracks along with the _index.en.md file therein.
+1. Adjust the meta data "Title", "Description" etc in the _index.en.md file
+1. Adjust the video short link to match the name of the file you uploaded.
 
 ### TODOs
 
 ToDos are in Quip. 
 
-## Instructions for new workshop deployment
+## Instructions Duplicating AI/ML Workshop For Other Topics
 
-This github repo is a framework you can customise to your workshop topic and populate with labs, videos and content. Once that's coen you can use the cloud formation template to deploy the site.
+*INCOMPLETE* 
+
+This github repo is a framework you can customise to your workshop topic and populate with labs, videos and content. Once that's done you can use the cloud formation template to deploy the site.
 
 General Steps to developing a new workshop:
 
