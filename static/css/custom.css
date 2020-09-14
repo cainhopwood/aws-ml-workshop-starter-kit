@@ -11,3 +11,11 @@
 #body figure.img-raw > a > img[style] {
     display: inline !important;
 }
+
+#sidebar p.copyright {
+    color: var(--MENU-SECTIONS-LINK-color) !important;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: .15px;
+    line-height: 150% !important;
+}
