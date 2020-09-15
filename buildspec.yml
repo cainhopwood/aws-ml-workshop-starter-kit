@@ -13,10 +13,11 @@ phases:
     commands:
       - echo In pre_build phase..
       - echo Current directory is $CODEBUILD_SRC_DIR
+      - ./pre-build.sh
       - ls -la
   build:
     commands:
-      - hugo -v
+      - ./buildhugo.sh
       - echo "S3 Upload Beginning"
       - aws s3 sync public/ s3://$DEPLOY_S3_BUCKET/ --region ap-southeast-2 --delete --exclude  "video/*"
       - echo "S3 Upload Complete"      

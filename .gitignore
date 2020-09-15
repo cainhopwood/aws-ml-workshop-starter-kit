@@ -9,3 +9,4 @@ cover.out
 hugo.exe
 hugo.linux
 hugo.darwin
+buildhugo.sh

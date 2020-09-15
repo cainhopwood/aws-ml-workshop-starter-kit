@@ -44,7 +44,10 @@ If you have a Sagemaker notebook based workshop, and will use the common noteboo
 1. Ensure your lab/workshop instructions tell participants which github repo to browse to to get to your jupyter notebooks.
 
 If you have a dedicated cloudformation template for your workshop:
-1. Edit "CFTemplate" and "CFTemplateName" in the meta data. This is used both in the help instructions, and in the "links" section of the event site to generate *magic links* that deploy in a participants aws console. At this point the CFTemplate must be an S3 URL (That may change). If your workshop doesn't have a CF Template, leave that value empty and the tempaltes will adapt.
+1. Add your CF template to the static/yaml directory. (do *not* create a subdirectory). The build pipeline will pick up this file and create a pre signed S3 URL with a 7 day expiry. 
+1. Edit "CFTemplate" and "CFTemplateName" in the meta data of your _index_en.md. Make sure the CFTemplate matches your file exactly. This is used both in the help instructions, and in the "links" section of the event site to generate *magic links* that deploy in a participants aws console using the presigned URLs that the build system will deploy for you.
+1. If you want to use your own S3 url, that is OK, it needs to be public. Set the CFTemplate to a http URL pointing at an S3 bucket and the build sytsem will generate an appropriate magic link.
+1. Test your links once a build is completed, there's no validation that names match up.
 
 The Workshop template consists of an example with an overview/scenario page a video and two pages with Lab Steps. You can add/remove steps as required, just be sure to adjust the "weight" property in the metadata section on each page to reflect it's order so that menus etc show the steps in the desired order.
 

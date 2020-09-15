@@ -9,7 +9,11 @@
             {{ $parentParams := .Params }}
             <p> Params: {{ .Params.title }}</p>
             {{ $scratch.Set "parentTitle" .Params.title }}
-            {{ $scratch.Set "CFTemplate" .Params.CFTemplate }}
+            {{if hasPrefix .Params.CFTemplate "http" }}
+                {{ $scratch.Set "CFTemplate" .Params.CFTemplate }}
+            {{ else }}
+                {{ $scratch.Set "CFTemplate" (getenv ( replace ( replace .Params.CFTemplate "-" "_") "." "_")) }}
+            {{ end }}
             {{ $scratch.Set "CFTemplateName" .Params.CFTemplateName }}
         {{ end }}
     {{ end }}
