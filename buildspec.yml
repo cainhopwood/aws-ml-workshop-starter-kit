@@ -13,9 +13,9 @@ phases:
     commands:
       - echo In pre_build phase..
       - echo Current directory is $CODEBUILD_SRC_DIR
-      - chmod ugo+x ./prebuild.sh
-      - ./pre-build.sh
       - ls -la
+      - chmod ugo+x ./pre-build.sh
+      - ./pre-build.sh
   build:
     commands:
       - chmod ugo+x ./buildhugo.sh
