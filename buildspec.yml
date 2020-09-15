@@ -15,7 +15,7 @@ phases:
       - echo Current directory is $CODEBUILD_SRC_DIR
       - ls -la
       - chmod ugo+x ./pre-build.sh
-      - ./pre-build.sh
+      - ./pre-build.sh s3://$DEPLOY_S3_BUCKET/yaml
   build:
     commands:
       - chmod ugo+x ./buildhugo.sh

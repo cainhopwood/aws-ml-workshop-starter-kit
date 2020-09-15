@@ -14,6 +14,7 @@ cd static/yaml
 for f in *
 do
     nodash=${f//-/_}
+    echo "aws s3 presign $1/$f --expires-in 604800"
     psurl=`aws s3 presign $1/$f --expires-in 604800`
     echo "export ${nodash//./_}=\"$psurl\"" >> ../../buildhugo.sh
 done
