@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: IAM Policies, and SageMaker Notebook with Lifecycle configuration for the Semantic Segmentation on Satellite imagery workshop. The template will also clone the codebase into the Notebook before you get started.
+Description: IAM Policies, and SageMaker Notebook with Lifecycle configuration for the Semantic Segmentation on Satellite imagery workshop and others in the AIML Workshop series. The template will also clone all the workshop codebases into the Notebook before you get started.
 
 Metadata:
   AWS::CloudFormation::Interface:
@@ -10,7 +10,7 @@ Metadata:
 Parameters: 
   NotebookName:
     Type: String
-    Default: DeepLearningSatelliteImage
+    Default: AIMLWorkshopInstance
     Description: Enter the name of the SageMaker Notebook instance. Default is DeepLearningSatelliteImage.
 
 Resources: 
@@ -105,6 +105,8 @@ Resources:
               # nohup aws s3 cp s3://spacenet-dataset/spacenet/SN6_buildings/tarballs/SN6_buildings_AOI_11_Rotterdam_train.tar.gz SageMaker/data/ &
               # nohup tar -C SageMaker/data/ -xzf SageMaker/data/SN6_buildings_AOI_11_Rotterdam_train.tar.gz &
               # nohup rm SageMaker/data/SN6_buildings_AOI_11_Rotterdam_train.tar.gz &
+              # Download additional notebook git repos
+              git clone https://github.com/mikames/data-and-notebooks SageMaker/fraud-workshop 
               EOF
 
   # SageMaker notebook
