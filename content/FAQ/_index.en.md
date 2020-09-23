@@ -15,15 +15,26 @@ weight = 11000
 
 #### How to request your hash for EventEngine and open the AWS Console?
 
-1) Request hash code by asking a question in GotoWebinar. Expand the Questions pane within GotoWebinar and request a hash.
-![](/images/faq1.png)
-2) Open [EventEngine](https://dashboard.eventengine.run)
-![](/images/2019-10-23-17-03-16.png)
-3) Enter hash
-![](/images/2019-10-25-16-25-15.png)
-4) Open AWS Console
-![](/images/2019-10-25-16-25-47.png)
-5) Now you can begin the labs!
+1) Open [AWS Event Engine](https://dashboard.eventengine.run/)
+  ![](/images/EventEngine-hash.PNG)
+
+2) Enter the 12-digit event hash (provided directly to you when you registered on the slack channel) and click "Accept Terms and Login".
+![](/images/EventEngine-Accept.png)
+
+3) Choose "Continue with Login with Amazon"
+![](/images/EventEngine-3.PNG)
+
+4) To provision an account just for you, we need an email. Sign in with your personal Amazon account, or create a new one.
+![](/images/EventEngine-4.PNG)
+
+5) Once you've completed the login, and approved API Access, you'll see your team dashboard. From here you can change your team name and access your lab AWS account. It's a good idea to keep this page open throughout the event.
+6) Press "AWS Console" to access the details for your temporary lab account.
+![](/images/EventEngine-5.PNG)
+
+7) Press "Open AWS Console"
+![](/images/EventEngine-6.PNG)
+
+7) Now you can begin the labs!
 
 
 
