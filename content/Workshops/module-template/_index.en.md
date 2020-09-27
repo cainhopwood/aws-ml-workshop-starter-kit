@@ -20,7 +20,7 @@ In steps 2 and 3 you will...
 
 {{< video "cain-test.mp4" >}}
 
->  **Speakers: Jenny Davies (AWS)** 
+>  **Speakers: Cain Hopwood (AWS)** 
 
 >  *Video Notes (if any)*
 
