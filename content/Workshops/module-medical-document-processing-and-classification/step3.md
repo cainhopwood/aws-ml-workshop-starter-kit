@@ -21,8 +21,14 @@ The value on the solution might be found in helping a doctor to find the optimal
 
 Theoretically some regularities found by the algorithm may help medical researchers to find the idea of treating some deseases, based on their unobvious interconnections with some symptoms.
 
-![](/images/module-template/ScreenShot1.png)
+## Getting Started
 
+To get started, open the `healthcare-workshop` folder and open the notebook `3.Model_building_training_and_deployment.ipynb`
+
+
+![](/images/module-medical-document-processing-and-classification/step3-1.png )
+
+Follow the instructions in the notebook to get started.
 
 ## Summary
 You have completed Step 3 and have 

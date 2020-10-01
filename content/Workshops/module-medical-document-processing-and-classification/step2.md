@@ -13,7 +13,14 @@ weight =8
 
 In the previous step, we learnt how to extract medical information from a single PDF medical report using Textract and Comprehend Medical. In this step, we will be preparing our dataset for the classification machine learning model that we will be building. We will use the same pre-processing methodology from the previous step to process a batch of medical reports. But to minimise processing time and cost for this lab, we will skipping the Textract step and focusing on be processing a batch of medical reports in textual format using Comprehend Medical. We will then use the output from Comprehend Medical as our dataset to train our machine learning model.
 
-![](/images/module-template/ScreenShot1.png)
+## Getting Started
+
+To get started, open the `healthcare-workshop` folder and open the notebook `2.Batch_Data_Processing.ipynb`
+
+
+![](/images/module-medical-document-processing-and-classification/step2-1.png )
+
+Follow the instructions in the notebook to get started.
 
 
 ## Summary
