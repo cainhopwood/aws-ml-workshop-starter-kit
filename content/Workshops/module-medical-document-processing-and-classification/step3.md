@@ -11,9 +11,9 @@ weight =10
 
 ## Overview
 
-In the previous step, we prepared our dataset by extracting medical records that had a medical speciality of *`Surgery`* and *`Consultation`*. In this module, we will be using this dataset to create a classification model that will look at the transcription and categorize them into the following two categories - undergoing *`Consultation`* only or refer to a specialist for *`Sugery`*.
+In the previous step, we have prepared our dataset after sampling and extracting medical records with medical speciality of *`Surgery`* or *`Consultation`*. The processed dataset under local folder “data/” (shown below).  In this module, we will be using this dataset to create a classification model that will look at the transcription and categorize them into the following two categories - undergoing *`Consultation`* only or refer to a specialist for *`Sugery`*.
 
-The goal of this experiment is to do a **Next step Prediction** which aims at predicting the speciality needed for a patient with certain diseases. In practice, the model could be used to analyze a medical transcription in real-time and provide a recommended referals to respective specialist. 
+The goal of this lab is to do a **Next step Prediction** which aims at predicting the speciality needed for a patient with certain diseases. In practice, the model could be used to analyze a medical transcription in real-time and provide a recommended referals to respective specialist. 
 
 The input is the EMR as a raw text file with doctor's notes about the patient, including his/her age, compaints described in free way, patient's history and so on. It is unstructured - different sections of oen patient anamnesis may abscent in another's.
 
