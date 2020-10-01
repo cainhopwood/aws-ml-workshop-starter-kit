@@ -1,8 +1,8 @@
 +++
-title = "Lab 2: Create a medical document processing pipeline with Amazon Textract, Comprehend Medical and a classification model with SageMaker."
+title = "Lab 2: Create a medical document processing pipeline with Amazon Textract, Comprehend Medical and a classification model with SageMaker"
 description = "This workshop will guide you through to 1) Build a medical document processing pipeline with Amazon Textract and Comprehend Medical 2) Build a machine learning classification model in Amazon SageMaker using output of the medical document processing system."
 date = 2019-11-18T08:23:04+11:00
-weight = 20
+weight = 35
 chapter = false
 difficulty = "Intermediate / Advanced"
 CFTemplate = "Workshop-test.yml"
