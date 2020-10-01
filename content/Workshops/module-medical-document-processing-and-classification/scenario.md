@@ -22,5 +22,3 @@ Once you have implemented your data pipeline, you will learn how to use SagaMake
 
 The diagram above is an architectural overview of the services that you will be using for this workshop.
 
-
-{{< setupsagemaker >}}

@@ -6,7 +6,7 @@ weight =10
 
 
 ## Prerequisites
-- You must complete Step 1 of this lab first
+- You must complete Step 2 of this lab first
 
 
 ## Overview
