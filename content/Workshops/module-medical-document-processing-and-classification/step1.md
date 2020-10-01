@@ -7,45 +7,28 @@ weight =6
 
 ## Overview
 
-In this phase, you will learn how to build a data processing pipeline that will electronic medical reports (EMR) in PDF format to extract relevant medical information by using the following AWS services:
+In this step, you will learn how to build a data processing pipeline that will electronic medical reports (EMR) in PDF format to extract relevant medical information by using the following AWS services:
 
 - [Textract](https://aws.amazon.com/textract/): To extract text from the PDF medical report
 - [Comprehend Medical](https://aws.amazon.com/comprehend/medical/): To extract relevant medical information from the output of textract
 
-## Some markup examples
+## Getting Started
 
-Here is a screen shot
+To get started, open the `healthcare-workshop` folder and open the notebook `1.Data_Processing.ipynb`
 
-![](/images/module-template/ScreenShot1.png )
 
-Left aligned screenshot using figure shortcode and a class in the site CSS. This also allows other things like titles to be specified, but width and height will be overriden by Hugo
+![](/images/module-medical-document-processing-and-classification/step1-1.png )
 
-{{< figure src="/images/module-template/ScreenShot1.png" class="img-left" >}}
-
-Using figure shortcode To add a title to the image
-
-{{< figure src="/images/module-template/ScreenShot1.png" title="Title of the Image" >}}
-
-This is an example of a table 
-
-| Key | Meaning of Value |
-|-----------|---------|
-|AValue| the meaning of the value |
-
-Here is a list of steps including a link and code block
-- Go to [console link](https://console.aws.amazon.com/).
-- Check your region to make sure the console is operating in the ap-southeast-2 region.
-- Click **This Button**.
-- Display the current directory using this command:
-```
-ls
-```
+Follow the instructions in the notebook to get started.
 
 
 ## Summary
-You have completed Step 2 and have learned.....
-
-Next step you will .....
+You have completed Step 1 and have learned how to:
+1. Use Amazon textract to extract textual data from a PDF record.
+2. Use Amazon Comprehend Medical to extract medical data from textual data.
+3. Build a data pipeline that will process a electronic medical record and extract medical data by integrating the Amazon Textract and Comprehend Medical.
+ 
+In the next step you will learn how to process a batch of medical records to create a dataset for the classification machine learning model.
 
 ---
 
