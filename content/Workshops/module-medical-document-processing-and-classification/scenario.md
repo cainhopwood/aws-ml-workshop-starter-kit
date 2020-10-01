@@ -18,7 +18,7 @@ Once you have implemented your data pipeline, you will learn how to use SagaMake
 2. Train a classification machine learning (ML) model
 3. Improve the ML model using SageMaker Hyperparameter Optimization
 4. Deploy your ML model
-5. Run inference
+5. Run inference on your deployed model
 
 The diagram above is an architectural overview of the services that you will be using for this workshop.
 
