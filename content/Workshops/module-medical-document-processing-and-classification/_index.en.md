@@ -26,7 +26,7 @@ The availability of large amount of clinical data is opening up lots of new oppo
 By the end of this workshop, you are expected to pick up the following skills:
 1)	To digitalize documents using Amazon Textract;
 2)	To extract medical terms from doctor’s notes using Amazon Sagemaker Comprehend;
-3)  To visualize, clean and organize dataset for model training
+3)  To visualize, clean and organize dataset for model training;
 4)	To build, train and deploy a model artifact using Amazon SageMaker notebook.
 
 

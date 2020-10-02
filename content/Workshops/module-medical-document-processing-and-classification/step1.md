@@ -7,9 +7,9 @@ weight =6
 
 ## Overview
 
-In this step, you will learn how to build a data processing pipeline that will electronic medical reports (EMR) in PDF format to extract relevant medical information by using the following AWS services:
+In this step, you will learn how to build a data processing pipeline with electronic health reports (EHR) in PDF format to extract key medical information by using the following AWS services:
 
-- [Textract](https://aws.amazon.com/textract/): To extract text from the PDF medical report
+- [Textract](https://aws.amazon.com/textract/): To extract text from medical report in PDF format
 - [Comprehend Medical](https://aws.amazon.com/comprehend/medical/): To extract relevant medical information from the output of textract
 
 ## Getting Started
@@ -27,7 +27,9 @@ You have completed Step 1 and have learned how to:
 1. Use Amazon textract to extract textual data from a PDF record.
 2. Use Amazon Comprehend Medical to extract medical data from textual data.
 3. Build a data pipeline that will process a electronic medical record and extract medical data by integrating the Amazon Textract and Comprehend Medical.
- 
+
+
+
 In the next step you will learn how to process a batch of medical records to create a dataset for the classification machine learning model.
 
 ---

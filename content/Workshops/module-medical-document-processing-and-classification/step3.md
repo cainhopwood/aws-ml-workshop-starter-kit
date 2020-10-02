@@ -30,19 +30,21 @@ To get started, open the `healthcare-workshop` folder and open the notebook `3.M
 
 Follow the instructions in the notebook to get started.
 
-## Summary
-You have completed Step 3 and have 
-
-1. Learned how to train a classification machine learning model with Sagemaker using dataset that you've prepared from medical records.
-2. Learned how to optimize your model accuracy with Sagemaker's HyperParameter Optimization
-3. Learned how to deploy a machine learning model and run inference
 
 ---
-
-### *Stuck? Watch this*
+## *Stuck? Watch this*
 
 {{% notice note %}} 
 *This video has no audio*{{% /notice %}}
 
 
 {{< video "cain-test.mp4" >}}
+
+
+## Summary
+You have completed Step 3 and have 
+
+1. Learned how to train a classification machine learning model with Sagemaker using dataset that you've prepared from medical records.
+2. Learned how to optimize your model accuracy with Sagemaker's HyperParameter Optimization (HPO)
+3. Learned how to deploy a machine learning model and run inference
+
