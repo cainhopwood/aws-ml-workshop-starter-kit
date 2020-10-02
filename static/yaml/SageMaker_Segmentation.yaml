@@ -108,6 +108,7 @@ Resources:
               # Download additional notebook git repos
               git clone https://github.com/mikames/data-and-notebooks SageMaker/fraud-workshop 
               git clone https://github.com/dalacan/aws-ml-healthcare-workshop.git SageMaker/healthcare-workshop
+              git clone https://github.com/tash-f/ml-satellite-imagery.git "SageMaker/Satellite Segmentation"
               EOF
 
   # SageMaker notebook

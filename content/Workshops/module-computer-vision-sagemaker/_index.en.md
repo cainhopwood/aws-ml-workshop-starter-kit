@@ -36,7 +36,7 @@ The SN6 dataset is 39.0 GB. For the purpose of this workshop and keeping trainin
 
 ### Lab Overview
 
-{{< video "cain-test.mp4" >}}
+{{< video "SemanticSegmentation_Tash_002.mp4" >}}
 
 >  **Lab overview** 
 
