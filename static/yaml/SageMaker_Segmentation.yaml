@@ -106,8 +106,9 @@ Resources:
               # nohup tar -C SageMaker/data/ -xzf SageMaker/data/SN6_buildings_AOI_11_Rotterdam_train.tar.gz &
               # nohup rm SageMaker/data/SN6_buildings_AOI_11_Rotterdam_train.tar.gz &
               # Download additional notebook git repos
-              git clone https://github.com/mikames/data-and-notebooks SageMaker/fraud-workshop 
+              git clone https://github.com/tom5610/amazon-fraud-detector-workshop.git SageMaker/fraud-workshop 
               git clone https://github.com/dalacan/aws-ml-healthcare-workshop.git SageMaker/healthcare-workshop
+              git clone https://github.com/tash-f/ml-satellite-imagery.git "SageMaker/Satellite Segmentation"
               EOF
 
   # SageMaker notebook
