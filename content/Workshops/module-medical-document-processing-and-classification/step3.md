@@ -40,6 +40,11 @@ Follow the instructions in the notebook to get started.
 
 {{< video "cain-test.mp4" >}}
 
+## Recources 
+1. [documentations of XGBoost Hyperparameters](https://docs.aws.amazon.com/sagemaker/latest/dg/xgboost_hyperparameters.html)
+2. [documentations of Update endpoint in SageMaker](https://sagemaker.readthedocs.io/en/stable/api/inference/predictors.html#sagemaker.predictor.Predictor.update_endpoint)
+3. [Andrew's course on HyperParameter Optimization](https://www.coursera.org/learn/deep-neural-network)
+
 
 ## Summary
 You have completed Step 3 and have 
