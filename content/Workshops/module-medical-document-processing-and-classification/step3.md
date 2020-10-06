@@ -42,12 +42,20 @@ Follow the instructions in the notebook to get started.
 
 ## Recources 
 1. [documentations of XGBoost Hyperparameters](https://docs.aws.amazon.com/sagemaker/latest/dg/xgboost_hyperparameters.html)
-2. [documentations of Update endpoint in SageMaker](https://sagemaker.readthedocs.io/en/stable/api/inference/predictors.html#sagemaker.predictor.Predictor.update_endpoint)
+2. [documentations of Updating
+ endpoint in SageMaker](https://sagemaker.readthedocs.io/en/stable/api/inference/predictors.html#sagemaker.predictor.Predictor.update_endpoint)
 3. [Andrew's course on HyperParameter Optimization](https://www.coursera.org/learn/deep-neural-network)
 
 
+## Technical Recap
+1. Organize the Dataset for model training 
+2. Choose the right algorithm
+3. Set up the Hyperparameters 
+4. Train and build the Model
+5. Deploy the Model
+
 ## Summary
-You have completed Step 3 and have 
+You have completed Step 3 of this lab and have 
 
 1. Learned how to train a classification machine learning model with Sagemaker using dataset that you've prepared from medical records.
 2. Learned how to optimize your model accuracy with Sagemaker's HyperParameter Optimization (HPO)

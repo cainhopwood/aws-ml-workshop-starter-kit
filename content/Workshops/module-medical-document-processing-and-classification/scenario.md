@@ -4,7 +4,7 @@ date = 2019-11-18T17:11:28+11:00
 weight =5
 +++
 
-## Workshop architecture
+## Solution Architecture
 
 The diagram above is an architectural overview of the AWS services that you will be using for this workshop.
 

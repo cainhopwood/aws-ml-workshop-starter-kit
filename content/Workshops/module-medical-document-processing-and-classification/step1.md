@@ -21,6 +21,8 @@ To get started, open the `healthcare-workshop` folder and open the notebook `1.D
 
 Follow the instructions in the notebook to get started.
 
+## Technical dive deep
+
 
 ## Summary
 You have completed Step 1 and have learned how to:
@@ -28,6 +30,12 @@ You have completed Step 1 and have learned how to:
 2. Use Amazon Comprehend Medical to extract medical data from textual data.
 3. Build a data pipeline that will process a electronic medical record and extract medical data by integrating the Amazon Textract and Comprehend Medical.
 
+## Technical Recap
+
+1. Load the dataset
+2. Explore and visualize it 
+3. Data cleaning 
+4. Feature Engineering  
 
 
 In the next step you will learn how to process a batch of medical records to create a dataset for the classification machine learning model.

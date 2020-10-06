@@ -1,8 +1,8 @@
 +++
-title = "Lab 42: Dialing In the Right Outcomes with ML + Business Rules in Amazon Fraud Detector"
+title = "Lab 3: Dialing In the Right Outcomes with ML + Business Rules in Amazon Fraud Detector"
 description = "This workshop consists of watching a video to guide you in the process of 1) creating and deplying a detector API using sample data to train a machine learning model and business rules with Amazon Fraud Detector 2) calling the detector API with test data to evaluating the results and 3) seeing how adjusting the business rule thresholds can change the test results to suit the desired outcomes of the customer."
 date = 2020-09-23T00:00:00+00:00
-weight = 20
+weight = 38
 chapter = false
 difficulty = "Intermediate / Advanced"
 CFTemplate = "Workshop-test.yml"

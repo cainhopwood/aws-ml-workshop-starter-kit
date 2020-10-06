@@ -23,6 +23,13 @@ To get started, open the `healthcare-workshop` folder and open the notebook `2.B
 Follow the instructions in the notebook to get started.
 
 
+## Technical Recap
+
+1. Load the dataset
+2. Explore and visualize it 
+3. Data cleaning 
+4. Feature Engineering  
+
 ## Summary
 You have completed Step 2 and have learned how to:
 
