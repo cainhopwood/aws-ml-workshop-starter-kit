@@ -109,6 +109,7 @@ Resources:
               git clone https://github.com/tom5610/amazon-fraud-detector-workshop.git SageMaker/fraud-workshop 
               git clone https://github.com/dalacan/aws-ml-healthcare-workshop.git SageMaker/healthcare-workshop
               git clone https://github.com/tash-f/ml-satellite-imagery.git "SageMaker/Satellite Segmentation"
+              git clone https://github.com/glyfnet/timeseries_blog.git "SageMaker/Forecasting"
               EOF
 
   # SageMaker notebook
