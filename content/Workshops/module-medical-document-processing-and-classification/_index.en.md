@@ -33,7 +33,7 @@ By the end of this workshop, you are expected to pick up the following skills:
 
 ## Lab Overview
 
-{{< video "cain-test.mp4" >}}
+{{< video "Healthcare-v3.mov" >}}
 
 >  **Speakers: Yuan Shi (AWS)** 
 

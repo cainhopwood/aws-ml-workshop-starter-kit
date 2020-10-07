@@ -19,6 +19,10 @@ To get started, open the `healthcare-workshop` folder and open the notebook `1.D
 
 ![](/images/module-medical-document-processing-and-classification/step1-1.png )
 
+
+Choose the Kernal to be "conda_python3" as shown below 
+![](/images/module-medical-document-processing-and-classification/step1-2.png )
+
 Follow the instructions in the notebook to get started.
 
 ## Technical dive deep
@@ -32,10 +36,14 @@ You have completed Step 1 and have learned how to:
 
 ## Technical Recap
 
-1. Load the dataset
-2. Explore and visualize it 
-3. Data cleaning 
-4. Feature Engineering  
+##### 1. use Textract to process the dataset with asynchronous API
+
+![](/images/module-medical-document-processing-and-classification/step1-3.png )
+![](/images/module-medical-document-processing-and-classification/step1-4.png )
+
+##### 2. Use Comprehend Medical to extract medical terms with *detect_entities_v2* API
+![](/images/module-medical-document-processing-and-classification/step1-5.png )
+
 
 
 In the next step you will learn how to process a batch of medical records to create a dataset for the classification machine learning model.

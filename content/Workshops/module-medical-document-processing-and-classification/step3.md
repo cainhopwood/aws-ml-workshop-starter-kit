@@ -34,25 +34,23 @@ Follow the instructions in the notebook to get started.
 ---
 ## *Stuck? Watch this*
 
-{{% notice note %}} 
-*This video has no audio*{{% /notice %}}
 
 
-{{< video "cain-test.mp4" >}}
+{{< video "challenge-2.mov" >}}
 
 ## Recources 
 1. [documentations of XGBoost Hyperparameters](https://docs.aws.amazon.com/sagemaker/latest/dg/xgboost_hyperparameters.html)
 2. [documentations of Updating
  endpoint in SageMaker](https://sagemaker.readthedocs.io/en/stable/api/inference/predictors.html#sagemaker.predictor.Predictor.update_endpoint)
-3. [Andrew's course on HyperParameter Optimization](https://www.coursera.org/learn/deep-neural-network)
+3. [Andrew Ng's course on HyperParameter Optimization](https://www.coursera.org/learn/deep-neural-network)
 
 
 ## Technical Recap
-1. Organize the Dataset for model training 
-2. Choose the right algorithm
-3. Set up the Hyperparameters 
-4. Train and build the Model
-5. Deploy the Model
+ 1. Organize the Dataset for model training 
+ 2. Choose the right algorithm
+ 3. Set up the Hyperparameters 
+ 4. Train and build the Model
+ 5. Deploy the Model
 
 ## Summary
 You have completed Step 3 of this lab and have 
