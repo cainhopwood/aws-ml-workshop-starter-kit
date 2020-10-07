@@ -25,10 +25,20 @@ Follow the instructions in the notebook to get started.
 
 ## Technical Recap
 
-1. Load the dataset
-2. Explore and visualize it 
-3. Data cleaning 
-4. Feature Engineering  
+##### 1. Load the dataset
+![](/images/module-medical-document-processing-and-classification/step2-2.png )
+
+##### 2. Data cleaning 
+![](/images/module-medical-document-processing-and-classification/step2-3.png )
+
+##### 3. Explore and visualize it 
+
+![](/images/module-medical-document-processing-and-classification/step2-4.png )
+
+##### 4. Feature Engineering  
+![](/images/module-medical-document-processing-and-classification/step2-5.png )
+
+##### 5. Save the dataset in *csv* format
 
 ## Summary
 You have completed Step 2 and have learned how to:
@@ -47,4 +57,4 @@ In the next step you will learn how to train and deploy a classification machine
 *This video has no audio*{{% /notice %}}
 
 
-{{< video "cain-test.mp4" >}}
+{{< video "challenge-1.mov" >}}
