@@ -1,5 +1,5 @@
 +++
-title = "AWS AI/ML Virtual Event"
+title = "AWS Public Sector AI/ML Virtual Loft"
 weight = 1
 chapter = false
 

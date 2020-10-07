@@ -6,7 +6,7 @@ chapter = true
 +++
 
 
-Please complete the survey to help the AWS team to iterate and make this workshop even better.
+Please complete the survey to help the AWS team to iterate and make this event even better.
 
-[AWS Cloud Security Virtual Event Survey](https://bit.ly/AWSSecurityEvent)
+[**{{< param description >}}**](https://bit.ly/AWSSecurityEvent)
 ![Survey](/images/survey.png)

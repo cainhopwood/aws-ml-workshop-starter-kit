@@ -3,7 +3,7 @@
 languageCode = "en-US"
 defaultContentLanguage = "en"
 
-title = "AWS AI/ML Virtual Event"
+title = "AWS Public Sector AI/ML Virtual Loft"
 theme = "learn"
 metaDataFormat = "yaml"
 defaultContentLanguageInSubdir= true
@@ -18,7 +18,7 @@ baseURL = "http://localhost:1313/"
   ordersectionsby = "weight"
   baseURL = "http://localhost:1313/"
   videoBaseUrl = "https://d3ezjgxqne0l2q.cloudfront.net/video/"
-  description = "AWS AI/ML Virtual Event"
+  description = "AWS Public Sector AI/ML Virtual Loft"
   topic = "Artificial Intelligence and Machine Learning"
   servicelist = "Amazon Sagemaker, Amazon Rekognition, Amazon Comprehend and Amazon Polly"
   cfregion = "ap-southeast-2"
@@ -44,7 +44,7 @@ hrefTargetBlank = true
 
 [Languages]
 [Languages.en]
-title = "AWS AI/ML Virtual Event"
+title = "AWS Public Sector AI/ML Virtual Loft"
 weight = 1
 languageName = "English"
 
