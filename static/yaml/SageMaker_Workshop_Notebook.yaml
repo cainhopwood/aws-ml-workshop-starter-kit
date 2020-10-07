@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: IAM Policies, and SageMaker Notebook with Lifecycle configuration for the Semantic Segmentation on Satellite imagery workshop and others in the AIML Workshop series. The template will also clone all the workshop codebases into the Notebook before you get started.
+Description: IAM Policies, and SageMaker Notebook with Lifecycle configuration for the AI/ML APJ workshop. The template will also clone all the workshop codebases into the Notebook before you get started.
 
 Metadata:
   AWS::CloudFormation::Interface:
@@ -11,7 +11,7 @@ Parameters:
   NotebookName:
     Type: String
     Default: AIMLWorkshopInstance
-    Description: Enter the name of the SageMaker Notebook instance. Default is DeepLearningSatelliteImage.
+    Description: Enter the name of the SageMaker Notebook instance. Default is AIWorkshop.
 
 Resources: 
 # SageMaker Execution Role
@@ -31,6 +31,22 @@ Resources:
         - "arn:aws:iam::aws:policy/AmazonSageMakerFullAccess"
         - "arn:aws:iam::aws:policy/AmazonS3FullAccess"
         - "arn:aws:iam::aws:policy/IAMFullAccess"
+        - "arn:aws:iam::aws:policy/AmazonFraudDetectorFullAccessPolicy"
+
+  FraudDetectorDataAccessRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: Allow
+            Principal:
+              Service: frauddetector.amazonaws.com
+            Action: sts:AssumeRole
+      Path: "/"
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/AmazonS3FullAccess"
 
   GDALInstanceLifecycleConfig:
     Type: "AWS::SageMaker::NotebookInstanceLifecycleConfig"
@@ -109,7 +125,7 @@ Resources:
               git clone https://github.com/tom5610/amazon-fraud-detector-workshop.git SageMaker/fraud-workshop 
               git clone https://github.com/dalacan/aws-ml-healthcare-workshop.git SageMaker/healthcare-workshop
               git clone https://github.com/tash-f/ml-satellite-imagery.git "SageMaker/Satellite Segmentation"
-              git clone https://github.com/glyfnet/timeseries_blog.git "SageMaker/Forecasting"
+              git clone https://github.com/glyfnet/timeseries_blog.git SageMaker/forecasting-workshop
               EOF
 
   # SageMaker notebook
