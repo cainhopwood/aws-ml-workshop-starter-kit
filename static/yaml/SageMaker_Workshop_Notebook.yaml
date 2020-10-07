@@ -143,3 +143,5 @@ Outputs:
     Value: !Ref NotebookInstance
   NotebookInstanceLifecycleConfigId:
     Value: !Ref GDALInstanceLifecycleConfig
+  FraudDetectorDataAccessRole:
+    Value: !GetAtt "FraudDetectorDataAccessRole.Arn"
