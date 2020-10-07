@@ -32,6 +32,9 @@ Resources:
         - "arn:aws:iam::aws:policy/AmazonS3FullAccess"
         - "arn:aws:iam::aws:policy/IAMFullAccess"
         - "arn:aws:iam::aws:policy/AmazonFraudDetectorFullAccessPolicy"
+        - "arn:aws:iam::aws:policy/AmazonTextractFullAccess"
+        - "arn:aws:iam::aws:policy/ComprehendFullAccess"
+        - "arn:aws:iam::aws:policy/ComprehendMedicalFullAccess"
 
   FraudDetectorDataAccessRole:
     Type: "AWS::IAM::Role"
