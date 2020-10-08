@@ -9,7 +9,7 @@
             {{ $parentParams := .Params }}
             <p> Params: {{ .Params.title }}</p>
             {{ $scratch.Set "parentTitle" "Sagemaker Notebooks" }}
-            {{ $scratch.Set "CFTemplate" (getenv ( replace ( replace "SageMaker_WorkShop_Notebook.yaml" "-" "_") "." "_")) }}
+            {{ $scratch.Set "CFTemplate" (getenv ( replace ( replace "SageMaker_Workshop_Notebook.yaml" "-" "_") "." "_")) }}
             {{ $scratch.Set "CFTemplateName" "SagemakerNotebooks" }}
         {{ end }}
     {{ end }}
