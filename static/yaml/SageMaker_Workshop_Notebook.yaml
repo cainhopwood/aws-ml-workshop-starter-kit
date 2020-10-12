@@ -21,10 +21,13 @@ Resources:
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
-          -
-            Effect: Allow
+          - Effect: Allow
             Principal:
               Service: sagemaker.amazonaws.com
+            Action: sts:AssumeRole
+          - Effect: Allow
+            Principal:
+              Service: frauddetector.amazonaws.com
             Action: sts:AssumeRole
       Path: "/"
       ManagedPolicyArns:
@@ -100,21 +103,6 @@ Resources:
                 - states:*
               Resource:
                 - "*"
-
-  FraudDetectorDataAccessRole:
-    Type: "AWS::IAM::Role"
-    Properties:
-      AssumeRolePolicyDocument:
-        Version: "2012-10-17"
-        Statement:
-          -
-            Effect: Allow
-            Principal:
-              Service: frauddetector.amazonaws.com
-            Action: sts:AssumeRole
-      Path: "/"
-      ManagedPolicyArns:
-        - "arn:aws:iam::aws:policy/AmazonS3FullAccess"
 
   GDALInstanceLifecycleConfig:
     Type: "AWS::SageMaker::NotebookInstanceLifecycleConfig"
@@ -211,5 +199,3 @@ Outputs:
     Value: !Ref NotebookInstance
   NotebookInstanceLifecycleConfigId:
     Value: !Ref GDALInstanceLifecycleConfig
-  FraudDetectorDataAccessRole:
-    Value: !GetAtt "FraudDetectorDataAccessRole.Arn"
