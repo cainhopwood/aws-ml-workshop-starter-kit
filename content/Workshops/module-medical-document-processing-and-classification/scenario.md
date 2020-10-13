@@ -10,6 +10,8 @@ The diagram above is an architectural overview of the AWS services that you will
 
 ![](/images/module-medical-document-processing-and-classification/architecture-v2.png)
 
+
+
 For this workshop, you will learn how to build a data pipeline that will:
 1. Upload the electronic medcial record to S3
 2. Extract textual data from PDF records using Amazon Textract
