@@ -46,12 +46,17 @@ Follow the instructions in the notebook to get started.
 
 
 ## Technical Recap
- 1. Organize the Dataset for model training 
+ 1. Organize the Dataset for model training
+ ![](/images/module-medical-document-processing-and-classification/step3-2.png )
+ ![](/images/module-medical-document-processing-and-classification/step3-3.png )
  2. Choose the right algorithm
+ ![](/images/module-medical-document-processing-and-classification/step3-4.png )
  3. Set up the Hyperparameters 
+ ![](/images/module-medical-document-processing-and-classification/step3-5.png )
  4. Train and build the Model
+ ![](/images/module-medical-document-processing-and-classification/step3-6.png )
  5. Deploy the Model
-
+![](/images/module-medical-document-processing-and-classification/step3-7.png )
 ## Summary
 You have completed Step 3 of this lab and have 
 

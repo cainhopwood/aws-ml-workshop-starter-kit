@@ -15,7 +15,7 @@ The diagram above is an architectural overview of the AWS services that you will
 For this workshop, you will learn how to build a data pipeline that will:
 1. Upload the electronic medcial record to S3
 2. Extract textual data from PDF records using Amazon Textract
-3. Extract medical data using Amazon Comprehend Medical
+3. Extract medical information from text using Amazon Comprehend Medical
 4. Prepare a dataset using the meddical data which will be used to train our machine learning model
 
 Once you have implemented your data pipeline, you will learn how to use SagaMaker to:
