@@ -49,6 +49,8 @@ The scope of this workshop is to:
 * Understand how to use Amazon SageMaker built in algorithms, specifically for semantic segmentation
 * Going further: Use the full dataset and setup an hyperparameter job to find the best model
 
+{{< setupsagemaker >}}
+
 ### Lab Steps
 {{% children depth="2" %}}
 

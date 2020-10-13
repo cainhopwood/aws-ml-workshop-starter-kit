@@ -21,10 +21,13 @@ Resources:
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
-          -
-            Effect: Allow
+          - Effect: Allow
             Principal:
               Service: sagemaker.amazonaws.com
+            Action: sts:AssumeRole
+          - Effect: Allow
+            Principal:
+              Service: frauddetector.amazonaws.com
             Action: sts:AssumeRole
       Path: "/"
       ManagedPolicyArns:
@@ -35,21 +38,71 @@ Resources:
         - "arn:aws:iam::aws:policy/AmazonTextractFullAccess"
         - "arn:aws:iam::aws:policy/ComprehendFullAccess"
         - "arn:aws:iam::aws:policy/ComprehendMedicalFullAccess"
-
-  FraudDetectorDataAccessRole:
-    Type: "AWS::IAM::Role"
-    Properties:
-      AssumeRolePolicyDocument:
-        Version: "2012-10-17"
-        Statement:
-          -
-            Effect: Allow
-            Principal:
-              Service: frauddetector.amazonaws.com
-            Action: sts:AssumeRole
-      Path: "/"
-      ManagedPolicyArns:
-        - "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+      Policies:
+        - PolicyName: service-access-for-labs
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            - Sid: AthenaAccess
+              Effect: Allow
+              Action:
+                - athena:*
+                - glue:CreateDatabase
+                - glue:DeleteDatabase
+                - glue:GetDatabase
+                - glue:GetDatabases
+                - glue:UpdateDatabase
+                - glue:CreateTable
+                - glue:DeleteTable
+                - glue:BatchDeleteTable
+                - glue:UpdateTable
+                - glue:GetTable
+                - glue:GetTables
+                - glue:BatchCreatePartition
+                - glue:CreatePartition
+                - glue:DeletePartition
+                - glue:BatchDeletePartition
+                - glue:UpdatePartition
+                - glue:GetPartition
+                - glue:GetPartitions
+                - glue:BatchGetPartition
+              Resource:
+                - "*"
+            - Sid: cloudwatchAccess
+              Effect: Allow
+              Action:
+                - cloudwatch:PutMetricAlarm
+                - cloudwatch:DescribeAlarms
+                - cloudwatch:DeleteAlarms
+              Resource:
+                - "*"
+            - Sid: ECRAccess
+              Effect: Allow
+              Action:
+                - ecr:GetAuthorizationToken
+                - ecr:BatchCheckLayerAvailability
+                - ecr:GetDownloadUrlForLayer
+                - ecr:GetRepositoryPolicy
+                - ecr:DescribeRepositories
+                - ecr:ListImages
+                - ecr:DescribeImages
+                - ecr:BatchGetImage
+                - ecr:GetLifecyclePolicy
+                - ecr:GetLifecyclePolicyPreview
+                - ecr:ListTagsForResource
+                - ecr:DescribeImageScanFindings
+                - ecr:InitiateLayerUpload
+                - ecr:UploadLayerPart
+                - ecr:CompleteLayerUpload
+                - ecr:PutImage
+              Resource: 
+                - "*"
+            - Sid: StepFunctionsAccess
+              Effect: Allow
+              Action:
+                - states:*
+              Resource:
+                - "*"
 
   GDALInstanceLifecycleConfig:
     Type: "AWS::SageMaker::NotebookInstanceLifecycleConfig"
@@ -146,5 +199,3 @@ Outputs:
     Value: !Ref NotebookInstance
   NotebookInstanceLifecycleConfigId:
     Value: !Ref GDALInstanceLifecycleConfig
-  FraudDetectorDataAccessRole:
-    Value: !GetAtt "FraudDetectorDataAccessRole.Arn"
