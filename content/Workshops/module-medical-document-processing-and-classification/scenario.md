@@ -23,4 +23,6 @@ Once you have implemented your data pipeline, you will learn how to use SagaMake
 4. Deploy your ML model
 5. Run inference on your deployed model
 
+{{< setupsagemaker >}}
+
 
