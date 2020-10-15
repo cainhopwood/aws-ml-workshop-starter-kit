@@ -57,6 +57,8 @@ The scope of this workshop is to:
 
 {{< setupinfo >}}
 
+>  **MUST: Please create a separated AWS CloudFormation (CFN) Stack for experiment with the above steps. (The other labs' CFN stack won't support forecasting lab.** 
+
 ### Lab Steps
 {{% children depth="2" %}}
 
