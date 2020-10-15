@@ -61,7 +61,7 @@ Each on demand presentation consists of a video and a single page hosting that v
 1. Upload your video to Workdocs and let @cainhopw know the location for pulling into the site.
 1. Copy the folder security_fundementals in /OnDemandTracks along with the _index.en.md file therein.
 1. Adjust the meta data "Title", "Description" etc in the _index.en.md file
-1. Adjust the video short link to match the name of the file you uploaded.
+1. Adjust the video short link to match the name of the file you uploaded. 
 
 ### TODOs
 
