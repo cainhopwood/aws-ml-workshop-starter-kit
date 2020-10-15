@@ -55,7 +55,7 @@ The scope of this workshop is to:
 * Understand how to use Step Function Data Science SDK to orchestration ML Pipeline
 * Going further: Use the full dataset and setup an hyperparameter job to find the best model
 
-{{< setupsagemaker >}}
+{{< setupinfo >}}
 
 ### Lab Steps
 {{% children depth="2" %}}
