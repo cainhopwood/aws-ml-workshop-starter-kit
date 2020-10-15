@@ -11,7 +11,6 @@ In this workshop, we provide a video to explain how Amazon Fraud Detector servic
 
 For [Jupyter notebook](https://github.com/tom5610/amazon-fraud-detector-workshop/blob/master/account_registration_fraud_detector.ipynb) detail:
 
-* We will use a prepared sythetic data set as training data - [project_1_newaccounts_100k.csv](https://github.com/tom5610/amazon-fraud-detector-workshop/blob/master/project_1_newaccounts_100k.csv) and a subset of the validation data - [project_1_newaccounts_5k.csv](https://github.com/tom5610/amazon-fraud-detector-workshop/blob/master/project_1_newaccounts_5k.csv), e.g. first 100 records for demo purpose.
 * Experiment process:
   * Prepare and map data-sets to Amazon Fraud Detector.
   * Train Models, Author Rules and Deploy Detectors using the Fraud Detector Console.
@@ -26,6 +25,6 @@ For [Jupyter notebook](https://github.com/tom5610/amazon-fraud-detector-workshop
 ![](/images/module-fraud-detector/fraud_detector_jupyter_notebook.png)
 > Open the notebook
 
-2. Ensure using 'conda_python3' kernel.
+2. Please use 'conda_python3' kernel, which is the default one.
 
 You can now follow the instructions in the notebook to keep going!
