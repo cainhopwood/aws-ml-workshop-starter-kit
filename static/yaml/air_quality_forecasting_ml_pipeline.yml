@@ -1,0 +1,601 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+
+Description: CFN template for spinning up environment for air quality forecasting pipeline workshop.
+
+Metadata: 
+  AWS::CloudFormation::Interface: 
+    ParameterGroups: 
+      - 
+        Label: 
+          default: "Notebook Configuration"
+        Parameters: 
+          - NotebookName
+          - NotebookInstanceType
+          - VolumeSize
+
+Parameters:
+
+  NotebookName:
+    Type: String
+    Default: forecasting-workshop
+    Description: Enter the name of the SageMaker notebook instance.
+
+  GitHubUser:
+    Default: glyfnet
+    Type: String
+    Description: Your GitHub username 
+
+  GitHubRepo:
+    Default: timeseries_blog
+    Type: String
+    Description: Name of the GitHub repository
+
+  GitHubBranch:
+    Default: ml-pipeline
+    Type: String
+    Description: Name of the branch the code is located
+
+  GitHubToken: 
+    Default: ""
+    NoEcho: true
+    Type: String
+    Description: GitHub OAuthToken with access to Repo. Go to https://github.com/settings/tokens for reference
+
+  ModelName:
+    Default: aqf
+    Type: String
+    Description: Model name
+
+  VolumeSize:
+    Type: Number
+    Default: 20
+    MinValue: 5
+    MaxValue: 16384
+    ConstraintDescription: Must be an integer between 5 (GB) and 16384 (16 TB).
+    Description: Enter the size of the EBS volume in GB.
+
+  NotebookInstanceType:
+    Type: String
+    Default: ml.t3.large
+    Description: Enter the SageMaker notebook instance type. 
+
+  RequireModelTraining:
+    Type: String
+    Default: false
+    Description: Define whether the pipeline does model training by default.
+    AllowedValues: [true, false]
+
+  RequireHPO:
+    Type: String
+    Default: false
+    Description: Define whether the pipeline does Hyperparameters Optimization by default.
+    AllowedValues: [true, false]
+
+
+Conditions:
+  GitHubTokenEmpty: !Equals [!Ref GitHubToken, ""]
+
+Resources:
+  # SageMaker Execution Role
+  SageMakerRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: sagemaker.amazonaws.com
+            Action: sts:AssumeRole
+          - Effect: Allow 
+            Principal:
+              Service: codebuild.amazonaws.com
+            Action: sts:AssumeRole
+          - Effect: Allow 
+            Principal:
+              Service: states.amazonaws.com
+            Action: sts:AssumeRole
+          - Effect: Allow 
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Path: "/"
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/AmazonSageMakerFullAccess"
+        - "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+        - "arn:aws:iam::aws:policy/AmazonAthenaFullAccess"
+        - "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser"
+        - "arn:aws:iam::aws:policy/AWSStepFunctionsFullAccess"
+      Policies:
+        - PolicyName: CodeBuildAccessPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            - Sid: EventAccess
+              Effect: Allow
+              Action:
+                - ssm:GetParameter
+                - ssm:GetParameters
+              Resource:
+                - arn:aws:ssm:*:*:parameter/CodeBuild/*
+                - arn:aws:ssm:*:*:parameter/ml_pipeline/*
+
+  PipelineRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      RoleName: !Sub mlops-${ModelName}-pipeline-role
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service: "codepipeline.amazonaws.com"
+            Action: "sts:AssumeRole"
+      Path: "/"
+      Policies:
+        - PolicyName: "mlops-pipeline"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Sid: CloudFormation
+                Effect: Allow
+                Action:
+                  - cloudformation:*
+                  - lambda:AddPermission
+                  - lambda:CreateFunction
+                  - lambda:DeleteFunction
+                  - lambda:InvokeFunction
+                Resource: "*"
+              - Sid: CodeBuild
+                Effect: Allow
+                Action:
+                  - codebuild:BatchGetBuilds
+                  - codebuild:StartBuild
+                Resource: "*"
+              - Sid: AllowPassRoleCloudFormation
+                Effect: Allow
+                Action:
+                  - iam:PassRole
+                Resource: !GetAtt MLOpsRole.Arn
+
+  MLOpsRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      RoleName: !Sub mlops-${ModelName}-deploy-role
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service:
+                - "sagemaker.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+          - Effect: "Allow"
+            Principal:
+              Service:
+                - "cloudformation.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+      Path: "/"
+      Policies:
+        - PolicyName: "mlops-deploy"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Sid: CloudFormation
+                Effect: Allow
+                Action:
+                  - cloudformation:*
+                  - iam:AttachRolePolicy
+                  - iam:CreateRole
+                  - iam:CreatePolicy
+                  - iam:GetRole
+                  - iam:GetRolePolicy
+                  - iam:DeleteRole
+                  - iam:DetachRolePolicy
+                  - iam:PutRolePolicy
+                  - iam:PassRole
+                  - iam:DeleteRolePolicy
+                  - iam:CreateServiceLinkedRole
+                  - lambda:InvokeFunction
+                Resource: "*"
+              - Sid: SageMakerDeployment
+                Effect: Allow
+                Action:
+                  - sagemaker:CreateEndpoint
+                  - sagemaker:CreateEndpointConfig
+                  - sagemaker:CreateModel
+                  - sagemaker:DeleteEndpoint
+                  - sagemaker:DeleteEndpointConfig
+                  - sagemaker:DeleteModel
+                  - sagemaker:DescribeEndpoint
+                  - sagemaker:DescribeEndpointConfig
+                  - sagemaker:DescribeModel
+                  - sagemaker:UpdateEndpointWeightsAndCapacities
+                  - kms:CreateGrant
+                Resource: "*"
+              - Sid: ApiDeployment
+                Effect: Allow
+                Action:
+                  - apigateway:*
+                  - application-autoscaling:DeregisterScalableTarget
+                  - application-autoscaling:DeleteScalingPolicy
+                  - application-autoscaling:DescribeScalingPolicies
+                  - application-autoscaling:PutScalingPolicy
+                  - application-autoscaling:DescribeScalingPolicies
+                  - application-autoscaling:RegisterScalableTarget
+                  - application-autoscaling:DescribeScalableTargets
+                  - cloudwatch:DeleteAlarms
+                  - cloudwatch:DescribeAlarms
+                  - cloudwatch:PutMetricAlarm
+                  - codedeploy:*
+                  - lambda:AddPermission
+                  - lambda:CreateAlias
+                  - lambda:CreateFunction
+                  - lambda:DeleteAlias
+                  - lambda:DeleteFunction
+                  - lambda:GetFunction
+                  - lambda:GetAlias
+                  - lambda:ListTags
+                  - lambda:ListVersionsByFunction
+                  - lambda:PublishVersion
+                  - lambda:RemovePermission
+                  - lambda:UpdateFunctionCode
+                  - lambda:UpdateFunctionConfiguration
+                  - sns:CreateTopic
+                  - sns:DeleteTopic
+                  - sns:GetTopicAttributes
+                  - sns:ListTopics
+                Resource: "*"
+              - Sid: AllowPassRoleSageMaker
+                Effect: Allow
+                Action:
+                  - iam:PassRole
+                Resource: "*"
+                Condition:
+                  StringEquals:
+                    iam:PassedToService: sagemaker.amazonaws.com
+
+  S3Policy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: !Sub mlops-${ModelName}-s3-policy
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: S3Resources
+            Effect: Allow
+            Action:
+              - s3:CreateBucket
+              - s3:GetBucket*
+              - s3:GetObject*
+              - s3:ListBucket
+              - s3:PutObject
+            Resource:
+              - !Sub arn:aws:s3:::${ArtifactBucket}/*
+              - !Sub arn:aws:s3:::${ArtifactBucket}
+              - !Sub arn:aws:s3:::sagemaker-${AWS::Region}-${AWS::AccountId}/*
+              - !Sub arn:aws:s3:::sagemaker-${AWS::Region}-${AWS::AccountId}
+          - Sid: AllowLogs
+            Effect: Allow
+            Action:
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Resource: "*"
+      Roles:
+        - !Ref SageMakerRole
+        - !Ref PipelineRole
+        - !Ref MLOpsRole
+
+  StepFunctionsWorkflowExecutionRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: Allow
+            Principal:
+              Service: states.amazonaws.com
+            Action: sts:AssumeRole
+      Path: "/"
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/service-role/AWSLambdaRole"
+        - "arn:aws:iam::aws:policy/CloudWatchEventsFullAccess"
+      Policies:
+        - PolicyName: StepFunctionsWorkflowExecutionPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            - Sid: EventAccess
+              Effect: Allow
+              Action:
+                - events:PutTargets
+                - events:DescribeRule
+                - events:PutRule
+              Resource:
+                - arn:aws:events:*:*:rule/StepFunctionsGetEventsForSageMakerTrainingJobsRule
+                - arn:aws:events:*:*:rule/StepFunctionsGetEventsForSageMakerTransformJobsRule
+                - arn:aws:events:*:*:rule/StepFunctionsGetEventsForSageMakerTuningJobsRule
+                - arn:aws:events:*:*:rule/StepFunctionsGetEventsForECSTaskRule
+                - arn:aws:events:*:*:rule/StepFunctionsGetEventsForBatchJobsRule
+            - Sid: PassRole
+              Effect: Allow
+              Action: iam:PassRole
+              Resource:
+                - !GetAtt "SageMakerRole.Arn"
+              Condition:
+                StringEquals:
+                  iam:PassedToService: sagemaker.amazonaws.com
+            - Sid: GeneralAccess
+              Effect: Allow
+              Action:
+                - batch:DescribeJobs
+                - batch:SubmitJob
+                - batch:TerminateJob
+                - dynamodb:DeleteItem
+                - dynamodb:GetItem
+                - dynamodb:PutItem
+                - dynamodb:UpdateItem
+                - ecs:DescribeTasks
+                - ecs:RunTask
+                - ecs:StopTask
+                - glue:BatchStopJobRun
+                - glue:GetJobRun
+                - glue:GetJobRuns
+                - glue:StartJobRun
+                - lambda:InvokeFunction
+                - sagemaker:CreateEndpoint
+                - sagemaker:CreateEndpointConfig
+                - sagemaker:CreateHyperParameterTuningJob
+                - sagemaker:CreateModel
+                - sagemaker:CreateProcessingJob
+                - sagemaker:CreateTrainingJob
+                - sagemaker:CreateTransformJob
+                - sagemaker:DeleteEndpoint
+                - sagemaker:DeleteEndpointConfig
+                - sagemaker:DescribeHyperParameterTuningJob
+                - sagemaker:DescribeProcessingJob
+                - sagemaker:DescribeTrainingJob
+                - sagemaker:DescribeTransformJob
+                - sagemaker:ListProcessingJobs
+                - sagemaker:ListTags
+                - sagemaker:StopHyperParameterTuningJob
+                - sagemaker:StopProcessingJob
+                - sagemaker:StopTrainingJob
+                - sagemaker:StopTransformJob
+                - sagemaker:UpdateEndpoint
+                - sns:Publish
+                - sqs:SendMessage
+              Resource: "*"
+
+  CodeCommitPolicy:
+    Type: AWS::IAM::Policy
+    Condition: GitHubTokenEmpty
+    Properties:
+      PolicyName: !Sub mlops-${ModelName}-codecommit-policy
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: AlowCodeCommit
+            Effect: Allow
+            Action:
+              - codecommit:*
+            Resource: !GetAtt CodeCommitRepository.Arn
+      Roles:
+        - !Ref SageMakerRole
+        - !Ref PipelineRole
+
+  # SageMaker lifecycle
+  NotebookLifecycle:
+    Type: "AWS::SageMaker::NotebookInstanceLifecycleConfig"
+    Properties: 
+      NotebookInstanceLifecycleConfigName: !Sub ${ModelName}-lifecycle-config
+      OnCreate:
+        - Content:
+            Fn::If:
+              - GitHubTokenEmpty
+              - Fn::Base64:
+                  Fn::Sub: |
+                    #!/bin/bash
+                    # Clone the public github repo, and push it to a local codecommit branch
+                    export HOME=/root/
+                    echo "Configuring github for AWS credentials"
+                    git config --global credential.helper '!aws codecommit credential-helper $@'
+                    git config --global credential.UseHttpPath true
+                    cp /root/.gitconfig /home/ec2-user/ && chown ec2-user:ec2-user /home/ec2-user/.gitconfig
+                    echo "Clone the public repo and push it to codecommit repo"
+                    git clone -b ${GitHubBranch} "https://github.com/${GitHubUser}/${GitHubRepo}.git" /tmp/${GitHubRepo}
+                    cd /tmp/${GitHubRepo}
+                    git remote add codecommit ${CodeCommitRepository.CloneUrlHttp}
+                    git push --set-upstream codecommit ${GitHubBranch}
+              - Ref: AWS::NoValue
+      OnStart:
+        - Content:
+            Fn::Base64:
+              Fn::Sub: |
+                #!/bin/bash
+                touch /etc/profile.d/jupyter-env.sh
+                echo "export ARTIFACT_BUCKET=${ArtifactBucket}" >> /etc/profile.d/jupyter-env.sh
+                echo "export PIPELINE_NAME=${ModelName}" >> /etc/profile.d/jupyter-env.sh
+                echo "export MODEL_NAME=${ModelName}" >> /etc/profile.d/jupyter-env.sh
+
+  # SageMaker notebook
+  NotebookInstance:
+    Type: "AWS::SageMaker::NotebookInstance"
+    Properties:
+      InstanceType: !Ref NotebookInstanceType
+      NotebookInstanceName: !Ref NotebookName
+      RoleArn: !GetAtt SageMakerRole.Arn
+      VolumeSizeInGB: !Ref VolumeSize
+      DefaultCodeRepository: !GetAtt SageMakerCodeRepository.CodeRepositoryName
+      LifecycleConfigName: !GetAtt NotebookLifecycle.NotebookInstanceLifecycleConfigName
+ 
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Delete
+    Properties:
+      BucketName: !Sub 'openaq-forecasting-${AWS::AccountId}-${AWS::Region}'
+      
+  AirQualityForecastingECRRepository:
+    Type: AWS::ECR::Repository
+    Properties: 
+      RepositoryName: "air-quality-forecasting-preprocessing"
+
+  GitHubSecret:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description: !Sub GitHub Secret for ${GitHubRepo}
+      SecretString: !Sub '{"username":"${GitHubUser}", "password":"${GitHubToken}"}'
+  
+  CodeCommitRepository:
+    Type: AWS::CodeCommit::Repository
+    Condition: GitHubTokenEmpty
+    Properties:
+      RepositoryName: !Ref GitHubRepo
+      RepositoryDescription: !Sub SageMaker safe deployment pipeline for ${ModelName}
+
+  SageMakerCodeRepository:
+    Type: AWS::SageMaker::CodeRepository 
+    Properties:
+      CodeRepositoryName: !Join [ "-",  !Split [ "_" , !Ref GitHubRepo ] ]
+      GitConfig:
+        RepositoryUrl:
+          Fn::If:
+            - GitHubTokenEmpty
+            - !GetAtt CodeCommitRepository.CloneUrlHttp
+            - !Sub https://github.com/${GitHubUser}/${GitHubRepo}.git
+        Branch: !Ref GitHubBranch
+        SecretArn:
+          Fn::If:
+            - GitHubTokenEmpty
+            - !Ref "AWS::NoValue"
+            - !Ref GitHubSecret
+
+  BuildProject:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name: !Sub ${ModelName}-build
+      Description: Builds the assets required for executing the rest of pipeline
+      ServiceRole: !GetAtt SageMakerRole.Arn
+      Artifacts:
+        Type: CODEPIPELINE 
+      Environment:
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/amazonlinux2-x86_64-standard:3.0
+        PrivilegedMode: true
+      Source:
+        Type: CODEPIPELINE
+        BuildSpec: 1_Forecasting_Air_Pollution_with_Amazon_SageMaker_and_DeepAR/pipeline/buildspec.yml
+      TimeoutInMinutes: 30
+
+  DeployPipeline:
+    Type: "AWS::CodePipeline::Pipeline"
+    Properties:
+      Name: !Sub ${ModelName}
+      RoleArn: !GetAtt PipelineRole.Arn
+      ArtifactStore:
+        Type: S3
+        Location: !Ref ArtifactBucket
+      Stages:
+        - Name: Source
+          Actions:
+            - Fn::If:
+              - GitHubTokenEmpty
+              - Name: GitSource
+                ActionTypeId:
+                  Category: Source
+                  Owner: AWS
+                  Version: "1"
+                  Provider: CodeCommit
+                Configuration:
+                  RepositoryName: !Ref GitHubRepo
+                  BranchName: !Ref GitHubBranch
+                OutputArtifacts:
+                  - Name: ModelSourceOutput
+              - Name: GitSource
+                ActionTypeId:
+                  Category: Source
+                  Owner: ThirdParty
+                  Version: "1"
+                  Provider: GitHub
+                OutputArtifacts:
+                  - Name: ModelSourceOutput
+                Configuration:
+                  Owner: !Ref GitHubUser
+                  Repo: !Ref GitHubRepo
+                  Branch: !Ref GitHubBranch
+                  OAuthToken: !Ref GitHubToken
+        - Name: Build
+          Actions:
+            - Name: SetupMLPipeline
+              InputArtifacts:
+                - Name: ModelSourceOutput
+              OutputArtifacts:
+                - Name: BuildOutput
+              ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Version: "1"
+                Provider: CodeBuild
+              Configuration:
+                ProjectName: !Ref BuildProject
+                PrimarySource: ModelSourceOutput
+              RunOrder: 1
+              
+  ArtifactBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub mlops-${ModelName}-artifact-${AWS::Region}-${AWS::AccountId}
+      AccessControl: Private
+      VersioningConfiguration:
+        Status: Enabled
+
+  ProcessingContainerRepoNameParameter:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: /ml_pipeline/preprocessing_container_repo_name
+      Type: String
+      Value: air-quality-forecasting-preprocessing
+
+  WorkflowExecutionRoleParameter:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: /ml_pipeline/workflow_execution_role
+      Type: String
+      Value: !GetAtt "StepFunctionsWorkflowExecutionRole.Arn"
+
+  WorkflowNameParameter:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: /ml_pipeline/workflow_name
+      Type: String
+      Value: !Sub auto-${ModelName}-ml-pipeline
+
+  RequireHPOParameter:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: /ml_pipeline/require_hpo
+      Type: String
+      Value: !Ref RequireHPO
+
+  RequireModelTrainingParameter:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: /ml_pipeline/require_model_training
+      Type: String
+      Value: !Ref RequireModelTraining
+
+Outputs:        
+  AirQualityForecastingECRRepositoryName:
+    Value: !Ref "AirQualityForecastingECRRepository"
+  S3Bucket:
+    Value: !Ref "S3Bucket"
+  SageMakerRole:
+    Value: !GetAtt "SageMakerRole.Arn"
+  StepFunctionsWorkflowExecutionRole:
+    Value: !GetAtt "StepFunctionsWorkflowExecutionRole.Arn"

@@ -1,5 +1,5 @@
 +++
-title = "2. Step 1"
+title = "Instructions"
 date = 2019-11-18T17:11:28+11:00
 weight =6
 +++
@@ -7,49 +7,24 @@ weight =6
 
 ## Overview
 
-In this phase...
+In this workshop, we provide a video to explain how Amazon Fraud Detector service work, especially, how to to tune business rules + ML model to meet your business needs. In addition, we also provide a [Jupyter notebook](https://github.com/tom5610/amazon-fraud-detector-workshop/blob/master/account_registration_fraud_detector.ipynb) to guide you experiment the process.
 
-## Some markup examples
+For [Jupyter notebook](https://github.com/tom5610/amazon-fraud-detector-workshop/blob/master/account_registration_fraud_detector.ipynb) detail:
 
-Here is a screen shot
+* Experiment process:
+  * Prepare and map data-sets to Amazon Fraud Detector.
+  * Train Models, Author Rules and Deploy Detectors using the Fraud Detector Console.
+  * Interpret model performance metrics. (***this is covered in the video)
+  * Define strategies to get the most out of Fraud Detector Models & Rules
+  * Call the Detector’s GetEventPrediction method from a Python Jupyter Notebook  
 
-![](/images/module-template/ScreenShot1.png )
+### 1. Running the notebook
 
-Left aligned screenshot using figure shortcode and a class in the site CSS. This also allows other things like titles to be specified, but width and height will be overriden by Hugo
+1. Open the 'fraud-workshop' folder and double click on the account_registration_fraud_detector.ipynb notebook.
 
-{{< figure src="/images/module-template/ScreenShot1.png" class="img-left" >}}
+![](/images/module-fraud-detector/fraud_detector_jupyter_notebook.png)
+> Open the notebook
 
-Using figure shortcode To add a title to the image
+2. Please use 'conda_python3' kernel, which is the default one.
 
-{{< figure src="/images/module-template/ScreenShot1.png" title="Title of the Image" >}}
-
-This is an example of a table 
-
-| Key | Meaning of Value |
-|-----------|---------|
-|AValue| the meaning of the value |
-
-Here is a list of steps including a link and code block
-- Go to [console link](https://console.aws.amazon.com/).
-- Check your region to make sure the console is operating in the ap-southeast-2 region.
-- Click **This Button**.
-- Display the current directory using this command:
-```
-ls
-```
-
-
-## Summary
-You have completed Step 2 and have learned.....
-
-Next step you will .....
-
----
-
-### *Stuck? Watch this*
-
-{{% notice note %}} 
-*This video has no audio*{{% /notice %}}
-
-
-{{< video "cain-test.mp4" >}}
+You can now follow the instructions in the notebook to keep going!
