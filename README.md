@@ -71,7 +71,7 @@ ToDos are in Quip.
 
 *INCOMPLETE* 
 
-This github repo is a framework you can customise to your workshop topic and populate with labs, videos and content. Once that's done you can use the cloud formation template to deploy the site.
+This github repo is a framework you can customise to your workshop topic and populate with labs, videos and content. Once that's done you can use the cloud formation template to deploy the site. 
 
 General Steps to developing a new workshop:
 
