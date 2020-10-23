@@ -39,7 +39,7 @@ The scope of this workshop is to:
 * Understand how to create fraud detection for new account registration
 * Understand how to tune business rules to meet your business requirement.
 
-{{< setupsagemaker >}}
+{{< sagemakereventengine >}}
 
 ### Lab Steps
 {{% children depth="2" %}}

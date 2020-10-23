@@ -23,4 +23,4 @@ If you are using your own AWS account then you can skip this page and go straigh
 ![](/images/EventEngine-5.PNG)
 #### Press "Open AWS Console"
 ![](/images/EventEngine-6.PNG)
-#### If you see the AWS Console home page Congratulations! your account is ready. You can now progress to the labs. Each lab will have instructions for deploying resources used in the lab (usually a CloudFormation template or Sagemaker notebook). 
+#### If you see the AWS Console home page Congratulations! your account is ready. You can now progress to the labs. Each lab will have instructions for accessing the resources used in the lab (usually a link to a Sagemaker notebook). 

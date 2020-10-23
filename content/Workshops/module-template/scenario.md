@@ -8,5 +8,5 @@ weight =5
 ![](/images/module-template/sec-arch.png)
 This environment consists of ...
 
-{{< setupsagemaker >}}
+{{< sagemakereventengine >}}
 
