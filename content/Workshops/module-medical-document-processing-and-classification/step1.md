@@ -56,4 +56,4 @@ In the next step you will learn how to process a batch of medical records to cre
 *This video has no audio*{{% /notice %}}
 
 
-{{< video "cain-test.mp4" >}}
+{{< video "step1-troubleshooting.mov" >}}

@@ -33,11 +33,9 @@ By the end of this workshop, you are expected to pick up the following skills:
 
 ## Lab Overview
 
-{{< video "Healthcare-v3.mov" >}}
+{{< video "Yuan'introduction recording.mp4" >}}
 
->  **Speakers: Yuan Shi (AWS)** 
-
->  *Video Notes (if any)*
+>  **Speaker: Yuan Shi (AWS)** 
 
 
 ## Lab Steps

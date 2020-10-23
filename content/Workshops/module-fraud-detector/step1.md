@@ -7,7 +7,7 @@ weight =6
 
 ## Overview
 
-In this workshop, we provide a video to explain how Amazon Fraud Detector service work, especially, how to to tune business rules + ML model to meet your business needs. In addition, we also provide a [Jupyter notebook](https://github.com/tom5610/amazon-fraud-detector-workshop/blob/master/account_registration_fraud_detector.ipynb) to guide you experiment the process.
+In this workshop, we provide a video to explain how the Amazon Fraud Detector service works, especially how to tune business rules + ML models to meet your business needs. In addition, we also provide a [Jupyter notebook](https://github.com/tom5610/amazon-fraud-detector-workshop/blob/master/account_registration_fraud_detector.ipynb) to guide you through the experimental process.
 
 For [Jupyter notebook](https://github.com/tom5610/amazon-fraud-detector-workshop/blob/master/account_registration_fraud_detector.ipynb) detail:
 
