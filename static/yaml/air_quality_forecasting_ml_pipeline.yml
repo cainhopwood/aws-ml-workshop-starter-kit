@@ -90,6 +90,14 @@ Resources:
             Action: sts:AssumeRole
           - Effect: Allow 
             Principal:
+              Service: forecast.amazonaws.com
+            Action: sts:AssumeRole
+          - Effect: Allow 
+            Principal:
+              Service: events.amazonaws.com
+            Action: sts:AssumeRole
+          - Effect: Allow 
+            Principal:
               Service: codebuild.amazonaws.com
             Action: sts:AssumeRole
           - Effect: Allow 
@@ -107,6 +115,10 @@ Resources:
         - "arn:aws:iam::aws:policy/AmazonAthenaFullAccess"
         - "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser"
         - "arn:aws:iam::aws:policy/AWSStepFunctionsFullAccess"
+        - "arn:aws:iam::aws:policy/IAMFullAccess"
+        - "arn:aws:iam::aws:policy/AmazonForecastFullAccess"
+        - "arn:aws:iam::aws:policy/AWSCloudTrailFullAccess"
+        - "arn:aws:iam::aws:policy/AWSLambdaFullAccess"
       Policies:
         - PolicyName: CodeBuildAccessPolicy
           PolicyDocument:
@@ -120,6 +132,30 @@ Resources:
               Resource:
                 - arn:aws:ssm:*:*:parameter/CodeBuild/*
                 - arn:aws:ssm:*:*:parameter/ml_pipeline/*
+        - PolicyName: CloudWatchEventFullAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            - Sid: CloudWatchEventsFullAccess
+              Effect: Allow
+              Action: events:*
+              Resource: "*"
+            - Sid: IAMPassRoleForCloudWatchEvents
+              Effect: Allow
+              Action: iam:PassRole
+              Resource: arn:aws:iam::*:role/AWS_Events_Invoke_Targets
+        - PolicyName: KinesisFullAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            - Sid: KinesisFullAccess
+              Effect: Allow
+              Action: kinesis:*
+              Resource: "*"
+            - Sid: KinesisAnalyticFullAccess
+              Effect: Allow
+              Action: kinesisanalytics:*
+              Resource: "*"
 
   PipelineRole:
     Type: "AWS::IAM::Role"
