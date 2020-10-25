@@ -1,7 +1,7 @@
 ---
 AWSTemplateFormatVersion: '2010-09-09'
 
-Description: CFN template for spinning up environment for air quality forecasting pipeline workshop.
+Description: IAM Policies, SageMaker Notebook with Lifecycle configuration and ML pipeline of air quality forecasting for the AI/ML APJ workshop. The template will also clone all the workshop codebases into the Notebook before you get started.
 
 Metadata: 
   AWS::CloudFormation::Interface: 
@@ -18,7 +18,7 @@ Parameters:
 
   NotebookName:
     Type: String
-    Default: forecasting-workshop
+    Default: AIMLWorkshopInstance
     Description: Enter the name of the SageMaker notebook instance.
 
   GitHubUser:
@@ -49,7 +49,7 @@ Parameters:
 
   VolumeSize:
     Type: Number
-    Default: 20
+    Default: 500
     MinValue: 5
     MaxValue: 16384
     ConstraintDescription: Must be an integer between 5 (GB) and 16384 (16 TB).
@@ -86,39 +86,27 @@ Resources:
         Statement:
           - Effect: Allow
             Principal:
-              Service: sagemaker.amazonaws.com
-            Action: sts:AssumeRole
-          - Effect: Allow 
-            Principal:
-              Service: forecast.amazonaws.com
-            Action: sts:AssumeRole
-          - Effect: Allow 
-            Principal:
-              Service: events.amazonaws.com
-            Action: sts:AssumeRole
-          - Effect: Allow 
-            Principal:
-              Service: codebuild.amazonaws.com
-            Action: sts:AssumeRole
-          - Effect: Allow 
-            Principal:
-              Service: states.amazonaws.com
-            Action: sts:AssumeRole
-          - Effect: Allow 
-            Principal:
-              Service: lambda.amazonaws.com
+              Service: 
+                - sagemaker.amazonaws.com
+                - frauddetector.amazonaws.com
+                - forecast.amazonaws.com
+                - events.amazonaws.com
+                - codebuild.amazonaws.com
+                - states.amazonaws.com
+                - lambda.amazonaws.com
             Action: sts:AssumeRole
       Path: "/"
       ManagedPolicyArns:
         - "arn:aws:iam::aws:policy/AmazonSageMakerFullAccess"
         - "arn:aws:iam::aws:policy/AmazonS3FullAccess"
-        - "arn:aws:iam::aws:policy/AmazonAthenaFullAccess"
-        - "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser"
-        - "arn:aws:iam::aws:policy/AWSStepFunctionsFullAccess"
         - "arn:aws:iam::aws:policy/IAMFullAccess"
         - "arn:aws:iam::aws:policy/AmazonForecastFullAccess"
         - "arn:aws:iam::aws:policy/AWSCloudTrailFullAccess"
         - "arn:aws:iam::aws:policy/AWSLambdaFullAccess"
+        - "arn:aws:iam::aws:policy/AmazonFraudDetectorFullAccessPolicy"
+        - "arn:aws:iam::aws:policy/AmazonTextractFullAccess"
+        - "arn:aws:iam::aws:policy/ComprehendFullAccess"
+        - "arn:aws:iam::aws:policy/ComprehendMedicalFullAccess"
       Policies:
         - PolicyName: CodeBuildAccessPolicy
           PolicyDocument:
@@ -156,6 +144,78 @@ Resources:
               Effect: Allow
               Action: kinesisanalytics:*
               Resource: "*"
+        - PolicyName: CFNFullAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            - Sid: CFNFullAccess
+              Effect: Allow
+              Action: cloudformation:*
+              Resource: "*"
+        - PolicyName: athana-sf-access
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            - Sid: AthenaAccess
+              Effect: Allow
+              Action:
+                - athena:*
+                - glue:CreateDatabase
+                - glue:DeleteDatabase
+                - glue:GetDatabase
+                - glue:GetDatabases
+                - glue:UpdateDatabase
+                - glue:CreateTable
+                - glue:DeleteTable
+                - glue:BatchDeleteTable
+                - glue:UpdateTable
+                - glue:GetTable
+                - glue:GetTables
+                - glue:BatchCreatePartition
+                - glue:CreatePartition
+                - glue:DeletePartition
+                - glue:BatchDeletePartition
+                - glue:UpdatePartition
+                - glue:GetPartition
+                - glue:GetPartitions
+                - glue:BatchGetPartition
+              Resource:
+                - "*"
+            - Sid: cloudwatchAccess
+              Effect: Allow
+              Action:
+                - cloudwatch:PutMetricAlarm
+                - cloudwatch:DescribeAlarms
+                - cloudwatch:DeleteAlarms
+              Resource:
+                - "*"
+            - Sid: ECRAccess
+              Effect: Allow
+              Action:
+                - ecr:GetAuthorizationToken
+                - ecr:BatchCheckLayerAvailability
+                - ecr:GetDownloadUrlForLayer
+                - ecr:GetRepositoryPolicy
+                - ecr:DescribeRepositories
+                - ecr:ListImages
+                - ecr:DescribeImages
+                - ecr:BatchGetImage
+                - ecr:GetLifecyclePolicy
+                - ecr:GetLifecyclePolicyPreview
+                - ecr:ListTagsForResource
+                - ecr:DescribeImageScanFindings
+                - ecr:InitiateLayerUpload
+                - ecr:UploadLayerPart
+                - ecr:CompleteLayerUpload
+                - ecr:PutImage
+              Resource: 
+                - "*"
+            - Sid: StepFunctionsAccess
+              Effect: Allow
+              Action:
+                - states:*
+              Resource:
+                - "*"        
 
   PipelineRole:
     Type: "AWS::IAM::Role"
@@ -432,23 +492,59 @@ Resources:
       NotebookInstanceLifecycleConfigName: !Sub ${ModelName}-lifecycle-config
       OnCreate:
         - Content:
-            Fn::If:
-              - GitHubTokenEmpty
-              - Fn::Base64:
-                  Fn::Sub: |
-                    #!/bin/bash
-                    # Clone the public github repo, and push it to a local codecommit branch
-                    export HOME=/root/
-                    echo "Configuring github for AWS credentials"
-                    git config --global credential.helper '!aws codecommit credential-helper $@'
-                    git config --global credential.UseHttpPath true
-                    cp /root/.gitconfig /home/ec2-user/ && chown ec2-user:ec2-user /home/ec2-user/.gitconfig
-                    echo "Clone the public repo and push it to codecommit repo"
-                    git clone -b ${GitHubBranch} "https://github.com/${GitHubUser}/${GitHubRepo}.git" /tmp/${GitHubRepo}
-                    cd /tmp/${GitHubRepo}
-                    git remote add codecommit ${CodeCommitRepository.CloneUrlHttp}
-                    git push --set-upstream codecommit ${GitHubBranch}
-              - Ref: AWS::NoValue
+            Fn::Base64:
+              Fn::Sub: |
+                #!/bin/bash
+
+                set -e
+
+                # OVERVIEW
+                # This script installs a custom, persistent installation of conda on the Notebook Instance's EBS volume, and ensures
+                # that these custom environments are available as kernels in Jupyter.
+                # 
+                # The on-create script downloads and installs a custom conda installation to the EBS volume via Miniconda. Any relevant
+                # packages can be installed here.
+                #   1. ipykernel is installed to ensure that the custom environment can be used as a Jupyter kernel   
+                #   2. Ensure the Notebook Instance has internet connectivity to download the Miniconda installer
+
+
+                sudo -u ec2-user -i <<'EOF'
+                unset SUDO_UID
+                # Install a separate conda installation via Miniconda
+                WORKING_DIR=/home/ec2-user/SageMaker/custom-miniconda
+                mkdir -p "$WORKING_DIR"
+                wget https://repo.anaconda.com/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -O "$WORKING_DIR/miniconda.sh"
+                bash "$WORKING_DIR/miniconda.sh" -b -u -p "$WORKING_DIR/miniconda" 
+                rm -rf "$WORKING_DIR/miniconda.sh"
+
+                # Create a custom conda environment
+                source "$WORKING_DIR/miniconda/bin/activate"
+                KERNEL_NAME="gdal_python36"
+                PYTHON="3.6"
+                conda create --yes --name "$KERNEL_NAME" python="$PYTHON"
+                conda activate "$KERNEL_NAME"
+                pip install --quiet ipykernel
+                
+                # Download additional notebook git repos
+                git clone https://github.com/tom5610/amazon-fraud-detector-workshop.git SageMaker/fraud-workshop 
+                git clone https://github.com/dalacan/aws-ml-healthcare-workshop.git SageMaker/healthcare-workshop
+                git clone https://github.com/tash-f/ml-satellite-imagery.git "SageMaker/Satellite Segmentation"
+                EOF
+
+                if [ -z "${GitHubToken}" ]
+                then
+                  # Clone the public github repo, and push it to a local codecommit branch
+                  export HOME=/root/
+                  echo "Configuring github for AWS credentials"
+                  git config --global credential.helper '!aws codecommit credential-helper $@'
+                  git config --global credential.UseHttpPath true
+                  cp /root/.gitconfig /home/ec2-user/ && chown ec2-user:ec2-user /home/ec2-user/.gitconfig
+                  echo "Clone the public repo and push it to codecommit repo"
+                  git clone -b ${GitHubBranch} "https://github.com/${GitHubUser}/${GitHubRepo}.git" /tmp/${GitHubRepo}
+                  cd /tmp/${GitHubRepo}
+                  git remote add codecommit ${CodeCommitRepository.CloneUrlHttp}
+                  git push --set-upstream codecommit ${GitHubBranch}
+                fi
       OnStart:
         - Content:
             Fn::Base64:
@@ -459,6 +555,37 @@ Resources:
                 echo "export PIPELINE_NAME=${ModelName}" >> /etc/profile.d/jupyter-env.sh
                 echo "export MODEL_NAME=${ModelName}" >> /etc/profile.d/jupyter-env.sh
 
+                # activate kernel on jupyter notebook
+                set -e
+
+                # OVERVIEW
+                # This script installs a custom, persistent installation of conda on the Notebook Instance's EBS volume, and ensures
+                # that these custom environments are available as kernels in Jupyter.
+                # 
+                # The on-start script uses the custom conda environment created in the on-create script and uses the ipykernel package
+                # to add that as a kernel in Jupyter.
+                #
+                # For another example, see:
+                # https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-add-external.html#nbi-isolated-environment
+  
+                sudo -u ec2-user -i <<'EOF'
+                unset SUDO_UID
+                WORKING_DIR=/home/ec2-user/SageMaker/custom-miniconda/
+                source "$WORKING_DIR/miniconda/bin/activate"
+                for env in $WORKING_DIR/miniconda/envs/*; do
+                    BASENAME=$(basename "$env")
+                    source activate "$BASENAME"
+                    # nohup conda install -c conda-forge osmnx "poppler<0.62" -y &
+                    python -m ipykernel install --user --name "$BASENAME" --display-name "Custom ($BASENAME)"
+                done
+                # Optionally, uncomment these lines to disable SageMaker-provided Conda functionality.
+                # echo "c.EnvironmentKernelSpecManager.use_conda_directly = False" >> /home/ec2-user/.jupyter/jupyter_notebook_config.py
+                # rm /home/ec2-user/.condarc
+                EOF
+  
+                echo "Restarting the Jupyter server.."
+                restart jupyter-server
+  
   # SageMaker notebook
   NotebookInstance:
     Type: "AWS::SageMaker::NotebookInstance"
@@ -635,3 +762,7 @@ Outputs:
     Value: !GetAtt "SageMakerRole.Arn"
   StepFunctionsWorkflowExecutionRole:
     Value: !GetAtt "StepFunctionsWorkflowExecutionRole.Arn"
+  NotebookInstanceId:
+    Value: !Ref NotebookInstance
+  NotebookInstanceLifecycleConfigId:
+    Value: !Ref NotebookLifecycle    

@@ -1,43 +1,28 @@
 +++
-title = "Lab 5: Forecasting Air Quality with Amazon SageMaker and DeepAR"
-description = "In this workshop, we are going to build an air quality forecasting application using Amazon SageMaker and the DeepAR algorithm. We will walk through how to define the problem, engineer the features, and train, evaluate and deploy the machine learning model."
+title = "Lab 5: Timeseries Data Forecasting Workshops"
+description = "In the workshops, we are going to experiment how to use SageMaker built-in algorithm, Amazon Forecast service and Gluton Timeseries package to do forecasting prediction."
 date = 2020-10-15T00:00:00+11:00
 weight = 50
 chapter = false
 difficulty = "Intermediate / Advanced"
-CFTemplate = "air_quality_forecasting_ml_pipeline.yml"
-CFTemplateName = "AirQualityForecastingLab"
+CFTemplate = "Workshop-test.yml"
+CFTemplateName = "TimeseriesDataForecasting"
 time = "2hrs"
 inlists = true
 +++
 
-Recent bush fire events in Australia is just one reminder of the importance of breathable air. According to the World Health Organization, air pollution is the 4th largest risk factor to human health worldwide, and 90% of the world breathes unhealthy air. Having realiable projections of air quality can help individuals as well as organizations to take steps to mitigate the health affects caused by dangerous air quality levels. For more information on Open AQ's efforts to solve this global issue, visit [Open AQ](https://openaq.org/).
+In this collection of labs, we will explore how to solve various time-series forecasting problems. Time series analysis applies mathematical techniques to quantities that are ordered by time, in order to find insights about the past as well as the future. Historically, weather forecasting is one of the first time series analysis problem undertaken by humans. Predicting demand for future sales and services, forecasting utilization of compute resources and projecting call volume in call centres are all good examples of other common time series problems. With these four labs we will walk through solving different time series problems using a variety of techniques and AWS services. 
 
-In this workshop, we will build an air quality forecasting model with Amazon SageMaker built-in algorithm.
+## What is time series analysis?
+Time series analysis applies mathematical techniques to quantities that are ordered by time, in order to find insights about the past as well as the future. Historically, weather forecasting is one of the first time series analysis problem undertaken by humans. An early as Neolithic times, civilizations used calendars as a means to predict seasonal patterns for agriculture. Time series problems exist in almost every domain. Predicting demand for future sales and services, forecasting utilization of compute resources and projecting call volume in call centres are all good examples of time series problems.
 
-![Sydney Harbour during hazardous air quality conditions](/images/module-forecasting/syd_harb_air.jpg)
+Many of the methodologies used for time series analysis have been around for a long time. Long before deep learning techniques where even invented, algorithms like ARIMA have been in use since the 1950's. For many problems, these well-developed techniques are still the best way to solve time series problems. The recent exponential growth in data and compute power has spawned the development of machine learning techniques based on neural networks that work well with larger and more complex data sets. One example of this type of data is air quality measurements, which are composed of millions of measurements from hundreds of locations. The DeepAR algorithm developed by Amazon research scientists to do time series forecasting on large data sets of related time series, makes training a forecasting model with this complex data possible.
 
-> Sydney Harbour during hazardous air quality conditions
+> **Definitions** Univariate means a single value type. Multivariate means multiple value types. For example, a time series of temperature and humidity is multivariate, whereas a time series of temperature alone is univariate. Many time series algorithms only work with univariate date. Some algorithms work with multivariate data, but only predicts values for a single target value type. The other time series is called the related time series or the "exogenous" time series. The DeepAR algorithm that we will use in this example works with multivariate data, but we will only use univariate air quality data. To improve the quality of the predictive model, we could also use an exogenous time series, such as wind or temperature, but this out of scope for this project.
 
-In this workshop, we will demonstrate how to define ML problem, time series data feature engineering and forecasting model tunning, training and evaluation. A forecasting model will be built with [Amazon SageMaker built-in algorithm DeepAR](https://docs.aws.amazon.com/sagemaker/latest/dg/deepar.html). Below is the architecture diagram:
 
-![Forecasting Architecture](/images/module-forecasting/air_quality_forecasting_architecture.png)
-
-For training data, we will be use [OpenAQ](https://registry.opendata.aws/openaq/) data from [Registry of Open Data on AWS](https://registry.opendata.aws), and we will train a model with Sydney's pm10 data. If you want to play with model training for your city, you may consider editing sql query in the notebook.
-
-We are using below process for feature engineering. The purpose is to prepare good features for model training. 
-
-![Feature Engineering](/images/module-forecasting/feature_engineering.png)
-
-We also demonstrate how to do [DeepAR Hyperparameters Optimization and Model Training](https://docs.aws.amazon.com/sagemaker/latest/dg/deepar.html). But, due to the actual model tuning and training are very time consuming and expensive, we prepare an existing model artifact so that you can experiement inference. Talking about inference, the [first lab](https://github.com/glyfnet/timeseries_blog/blob/master/1_Forecasting_Air_Pollution_with_Amazon_SageMaker_and_DeepAR/01_train_and_evaluate_air_quality_deepar_model.ipynb) will be deployed with Endpoint hosting service and in the pipeline demo, we have batch transform for batch inference.
-
-Last but not least, we have create ML pipeline for air quality forecasting with [Step Functions Data Science SDK v2.0.0rc1](https://aws-step-functions-data-science-sdk.readthedocs.io/en/v2.0.0rc1/). We prepare two way to experiment pipeline creation.
-1. [Use Jupyter Notebook to manually create ML Pipeline](https://github.com/glyfnet/timeseries_blog/blob/master/1_Forecasting_Air_Pollution_with_Amazon_SageMaker_and_DeepAR/02_manual_ml_pipeline_creation_for_air_quality_forecasting.ipynb)
-2. [Automate ML Pipeline creation with AWS Development Tool and Step Functions](https://github.com/glyfnet/timeseries_blog/blob/master/1_Forecasting_Air_Pollution_with_Amazon_SageMaker_and_DeepAR/air_quality_forecasting_ml_pipeline.yml)
-
-Below is the demo ML Pipeline:
-
-![ML Pipeline](/images/module-forecasting/air_quality_forecasting_ml_pipeline.png)
+## Time series labs
+This time series workshop is broken into four independent labs that explore applying time series algorithms to a variety of different data sets to solve different use cases.  Each lab will introduce more topics and use cases, so pick the ones of interest to you. Each individual lab also has multiple parts, so you can pick what is more relevant to your role or upcoming project.  It's recommended you start with the first introductory lab on air quality prediction, and then explore other time-series labs to broaden your knowledge.
 
 ### Lab Overview
 
@@ -49,18 +34,15 @@ Below is the demo ML Pipeline:
 
 The scope of this workshop is to:
 
-* Understand how to use data from the Open Data Registry in Amazon SageMaker
-* Understand feature engineering for time series data for DeepAR model training
-* Understand how to use Amazon SageMaker built in algorithms, specifically for DeepAR
+* Understand how to do air quality forecasting with Amazon SageMaker built-in algorithm DeepAR
 * Understand how to use Step Function Data Science SDK to orchestration ML Pipeline
-* Going further: Use the full dataset and setup an hyperparameter job to find the best model
+* Understand how to use GluonTS package and multi-model deployment
+* Understand how to use Amazon Forecast with Step Functions for timeseries data forecasting.
 
-{{< setupinfo >}}
+{{< sagemakereventengine >}}
 
->  **MUST: Please create a separated AWS CloudFormation (CFN) Stack for experiment with the above steps. (The other labs' CFN stack won't support forecasting lab.** 
-
-### Lab Steps
+### Timeseries Forecasting Labs
 {{% children depth="2" %}}
 
+Click [Lab 1 - Forecast air quality with Amazon SageMaker and DeepAR](./lab1/) to get started!
 
-Click [here](./step1/) to get started!
