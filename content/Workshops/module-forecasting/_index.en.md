@@ -7,7 +7,7 @@ chapter = false
 difficulty = "Intermediate / Advanced"
 CFTemplate = "Workshop-test.yml"
 CFTemplateName = "TimeseriesDataForecasting"
-time = "2hrs"
+time = "5hrs"
 inlists = true
 +++
 
