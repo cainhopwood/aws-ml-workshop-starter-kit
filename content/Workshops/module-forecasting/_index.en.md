@@ -44,5 +44,5 @@ The scope of this workshop is to:
 ### Timeseries Forecasting Labs
 {{% children depth="2" %}}
 
-Click [Lab 1 - Forecast air quality with Amazon SageMaker and DeepAR](./lab1/) to get started!
+Click [Lab 1.1 - Forecast air quality with Amazon SageMaker and DeepAR](./lab1/) to get started!
 

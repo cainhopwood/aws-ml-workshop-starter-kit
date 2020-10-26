@@ -1,5 +1,5 @@
 +++
-title = "Lab 1 - Forecast air quality with Amazon SageMaker and DeepAR"
+title = "Lab 1.1 - Forecast air quality with Amazon SageMaker and DeepAR"
 date = 2019-11-18T17:11:28+11:00
 weight = 10
 +++
