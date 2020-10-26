@@ -8,7 +8,7 @@ difficulty = "Intermediate / Advanced"
 CFTemplate = "apj_aiml_loft_workshop.yml"
 CFTemplateName = "SagemakerNotebooks"
 time = "1hr"
-inlists = true
+inlists = false
 +++
 
 This lab guides you through (insert some useful words here).... 
