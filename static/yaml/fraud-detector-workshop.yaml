@@ -1,0 +1,67 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: IAM Policies, and SageMaker Notebook with Lifecycle configuration for the Semantic Segmentation on Satellite imagery workshop and others in the AIML Workshop series. The template will also clone all the workshop codebases into the Notebook before you get started.
+
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterLabels:
+      NotebookName:
+        default: Notebook Name
+
+Parameters: 
+  NotebookName:
+    Type: String
+    Default: FraudWorkshopInstance
+    Description: Enter the name of the SageMaker Notebook instance. Default is FraudWorkshopInstance.
+
+Resources: 
+# SageMaker Execution Role
+  SageMakerIamRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: sagemaker.amazonaws.com
+            Action: sts:AssumeRole
+          - Effect: Allow
+            Principal:
+              Service: frauddetector.amazonaws.com
+            Action: sts:AssumeRole
+      Path: "/"
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/AmazonSageMakerFullAccess"
+        - "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+        - "arn:aws:iam::aws:policy/AmazonFraudDetectorFullAccessPolicy"
+
+  InstanceLifecycleConfig:
+    Type: "AWS::SageMaker::NotebookInstanceLifecycleConfig"
+    Properties:
+      OnCreate: 
+        - Content: 
+            Fn::Base64: |
+              #!/bin/bash
+              set -e
+
+              sudo -u ec2-user -i <<'EOF'
+              unset SUDO_UID
+              # download workshop repo
+              git clone https://github.com/tom5610/amazon-fraud-detector-workshop.git SageMaker/fraud-workshop 
+              EOF
+
+  # SageMaker notebook
+  NotebookInstance:
+    Type: "AWS::SageMaker::NotebookInstance"
+    Properties:
+      InstanceType: "ml.t3.medium"
+      NotebookInstanceName: !Ref NotebookName
+      RoleArn: !GetAtt SageMakerIamRole.Arn
+      LifecycleConfigName: !GetAtt InstanceLifecycleConfig.NotebookInstanceLifecycleConfigName
+      VolumeSizeInGB: 20 
+
+Outputs:
+  NotebookInstanceId:
+    Value: !Ref NotebookInstance
+  NotebookInstanceLifecycleConfigId:
+    Value: !Ref InstanceLifecycleConfig

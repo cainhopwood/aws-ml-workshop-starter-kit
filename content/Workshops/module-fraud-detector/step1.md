@@ -26,5 +26,6 @@ For [Jupyter notebook](https://github.com/tom5610/amazon-fraud-detector-workshop
 > Open the notebook
 
 2. Please use 'conda_python3' kernel, which is the default one.
+3. Run through all the notebook cells to ensure delete resources at the end so that resources won't cost you more after the workshop.
 
 You can now follow the instructions in the notebook to keep going!
