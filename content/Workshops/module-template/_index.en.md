@@ -9,6 +9,7 @@ CFTemplate = "apj_aiml_loft_workshop.yml"
 CFTemplateName = "SagemakerNotebooks"
 time = "1hr"
 inlists = false
+hidden = true
 +++
 
 This lab guides you through (insert some useful words here).... 
