@@ -5,8 +5,8 @@ date = 2019-11-18T08:23:04+11:00
 weight = 20
 chapter = false
 difficulty = "Intermediate / Advanced"
-CFTemplate = "Workshop-test.yml"
-CFTemplateName = "elasticsearch-cluster"
+CFTemplate = "apj_aiml_loft_workshop.yml"
+CFTemplateName = "SagemakerNotebooks"
 time = "1hr"
 inlists = true
 +++

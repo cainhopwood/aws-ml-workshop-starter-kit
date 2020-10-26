@@ -5,8 +5,8 @@ date = 2020-10-15T00:00:00+11:00
 weight = 50
 chapter = false
 difficulty = "Intermediate / Advanced"
-CFTemplate = "Workshop-test.yml"
-CFTemplateName = "TimeseriesDataForecasting"
+CFTemplate = "apj_aiml_loft_workshop.yml"
+CFTemplateName = "SagemakerNotebooks"
 time = "5hrs"
 inlists = true
 +++
