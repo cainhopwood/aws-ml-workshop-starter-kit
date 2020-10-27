@@ -1,6 +1,6 @@
 +++
 title = "Lab 5: End to End Timeseries Forecasting"
-description = "In this collection of labs, we will explore how to solve various time-series forecasting problems. Each lab will explore the use cases, algorithms, data science techniques and AWS services that can be used to solve time series problems. We will show how to predicting air quality with neural networks, forecast electricity consumption with GluonTS, make sales projections with Amazon Forecast and detect anomalies with SageMaker and Kinesis Data Analytics. "
+description = "In this collection of labs, we will explore how to solve various time-series forecasting problems. Each lab will explore the use cases, algorithms, data science techniques and AWS services that can be used to solve time series problems. We will show how to predict air quality with neural networks, forecast electricity consumption with GluonTS, make sales projections with Amazon Forecast and detect anomalies with SageMaker and Kinesis Data Analytics. "
 date = 2020-10-15T00:00:00+11:00
 weight = 50
 chapter = false

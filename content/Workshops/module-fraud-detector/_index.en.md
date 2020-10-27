@@ -7,7 +7,7 @@ chapter = false
 difficulty = "Intermediate / Advanced"
 CFTemplate = "apj_aiml_loft_workshop.yml"
 CFTemplateName = "SagemakerNotebooks"
-time = "Approximately 1.5 hr (not counting 30-45 min time for training a model)"
+time = "2 hours (including 45 minute model training time)"
 inlists = true
 +++
 
