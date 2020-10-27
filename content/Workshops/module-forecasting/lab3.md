@@ -1,5 +1,5 @@
 +++
-title = "Lab 1.3 - Automate sales projections with Amazon Forecast"
+title = "Lab 5.3 - Automate sales projections with Amazon Forecast"
 date = 2019-11-18T17:11:28+11:00
 weight = 30
 +++

@@ -1,5 +1,5 @@
 +++
-title = "Lab 1.4 - Anomaly detection from click-stream data using SageMaker RCF and DeepAR"
+title = "Lab 5.4 - Anomaly detection from click-stream data using SageMaker RCF and DeepAR"
 date = 2019-11-18T17:11:28+11:00
 weight = 40
 +++

@@ -1,6 +1,6 @@
 +++
-title = "Lab 5: Timeseries Data Forecasting Workshops"
-description = "In the workshops, we are going to experiment how to use SageMaker built-in algorithm, Amazon Forecast service and Gluton Timeseries package to do forecasting prediction."
+title = "Lab 5: End to End Timeseries Forecasting"
+description = "In this collection of labs, we will explore how to solve various time-series forecasting problems. Each lab will explore the use cases, algorithms, data science techniques and AWS services that can be used to solve time series problems. We will show how to predicting air quality with neural networks, forecast electricity consumption with GluonTS, make sales projections with Amazon Forecast and detect anomalies with SageMaker and Kinesis Data Analytics. "
 date = 2020-10-15T00:00:00+11:00
 weight = 50
 chapter = false
@@ -44,5 +44,5 @@ The scope of this workshop is to:
 ### Timeseries Forecasting Labs
 {{% children depth="2" %}}
 
-Click [Lab 1.1 - Forecast air quality with Amazon SageMaker and DeepAR](./lab1/) to get started!
+Click [Lab 5.1 - Forecast air quality with Amazon SageMaker and DeepAR](./lab1/) to get started!
 

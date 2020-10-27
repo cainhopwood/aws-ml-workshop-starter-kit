@@ -6,7 +6,7 @@ weight = 4
 
 ## On-Demand Tracks 
 
-Watch the following great talks about AWS cloud security, presented by a mix of AWS customers and AWS experts.
+Watch the following great talks about machine leanring on AWS, presented by a mix of AWS experts.
 
 {{< wstable "OnDemandTracks" >}}
 
