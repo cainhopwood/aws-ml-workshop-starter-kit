@@ -8,5 +8,5 @@ chapter = true
 
 Please complete the survey to help the AWS team to iterate and make this event even better.
 
-[**{{< param description >}}**](https://bit.ly/AWSSecurityEvent)
+[**{{< param description >}}**](https://amazonmr.au1.qualtrics.com/jfe/form/SV_01970xz6ibWt64d)
 ![Survey](/images/survey.png)
