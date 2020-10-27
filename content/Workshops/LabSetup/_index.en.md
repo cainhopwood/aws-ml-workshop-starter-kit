@@ -1,8 +1,14 @@
 +++
 title = "Lab Setup"
+description = "Use this page to setup your EventEngine account so you have a temporary AWS account in which to run the labs."
 date = 2019-11-18T08:26:11+11:00
 weight = 11
 chapter = false
+inlists = true
+hidden = false
+difficulty = "Easy"
+time = "10 mins"
+
 +++
 
 {{% notice note %}}

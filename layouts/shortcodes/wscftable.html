@@ -25,25 +25,27 @@
 {{ define "cf-table-row" }}
 {{ $currentNode := .currentnode }}
     {{with .page}}
-        {{ if .Params.CFTemplate  }}
-            <tr>
-                {{safeHTML .Params.head}}
-                <td>{{.Params.title}}</td>
-                <td> <a href="https://console.aws.amazon.com/cloudformation/home?region={{.Site.Params.cfregion}}#/stacks/new?stackName={{.Params.CFTemplateName}}&templateURL={{getenv ( replace ( replace .Params.CFTemplate "-" "_") "." "_")}}" class="highlight"><img src="/images/deploy-to-aws.png" alt="deploy to aws" style="width: auto; height: auto;"/></a> </td>
-                <td>{{.Site.Params.cfregiondisplay}}</td>
-            </tr>
-            <tr>
-                {{safeHTML .Params.head}}
-                <td></td>
-                <td> <a href="https://console.aws.amazon.com/cloudformation/home?region=ap-southeast-1#/stacks/new?stackName={{.Params.CFTemplateName}}&templateURL={{getenv ( replace ( replace .Params.CFTemplate "-" "_") "." "_")}}" class="highlight"><img src="/images/deploy-to-aws.png" alt="deploy to aws" style="width: auto; height: auto;"/></a> </td>
-                <td>AP Southeast 1 (Singapore)</td>
+        {{if eq .Params.inlists true}} 
+            {{ if .Params.CFTemplate  }}
+                <tr>
+                    {{safeHTML .Params.head}}
+                    <td>{{.Params.title}}</td>
+                    <td> <a href="https://console.aws.amazon.com/cloudformation/home?region={{.Site.Params.cfregion}}#/stacks/new?stackName={{.Params.CFTemplateName}}&templateURL={{getenv ( replace ( replace .Params.CFTemplate "-" "_") "." "_")}}" class="highlight"><img src="/images/deploy-to-aws.png" alt="deploy to aws" style="width: auto; height: auto;"/></a> </td>
+                    <td>{{.Site.Params.cfregiondisplay}}</td>
                 </tr>
-            <tr>
-                {{safeHTML .Params.head}}
-                <td></td>
-                <td> <a href="https://console.aws.amazon.com/cloudformation/home?region=ap-south-1#/stacks/new?stackName={{.Params.CFTemplateName}}&templateURL={{getenv ( replace ( replace .Params.CFTemplate "-" "_") "." "_")}}" class="highlight"><img src="/images/deploy-to-aws.png" alt="deploy to aws" style="width: auto; height: auto;"/></a> </td>
-                <td>AP South 1 (Mumbai)</td>
-            </tr>
+                <tr>
+                    {{safeHTML .Params.head}}
+                    <td></td>
+                    <td> <a href="https://console.aws.amazon.com/cloudformation/home?region=ap-southeast-1#/stacks/new?stackName={{.Params.CFTemplateName}}&templateURL={{getenv ( replace ( replace .Params.CFTemplate "-" "_") "." "_")}}" class="highlight"><img src="/images/deploy-to-aws.png" alt="deploy to aws" style="width: auto; height: auto;"/></a> </td>
+                    <td>AP Southeast 1 (Singapore)</td>
+                    </tr>
+                <tr>
+                    {{safeHTML .Params.head}}
+                    <td></td>
+                    <td> <a href="https://console.aws.amazon.com/cloudformation/home?region=ap-south-1#/stacks/new?stackName={{.Params.CFTemplateName}}&templateURL={{getenv ( replace ( replace .Params.CFTemplate "-" "_") "." "_")}}" class="highlight"><img src="/images/deploy-to-aws.png" alt="deploy to aws" style="width: auto; height: auto;"/></a> </td>
+                    <td>AP South 1 (Mumbai)</td>
+                </tr>
             {{ end }}
+        {{ end }}
     {{ end }}
 {{ end }}
