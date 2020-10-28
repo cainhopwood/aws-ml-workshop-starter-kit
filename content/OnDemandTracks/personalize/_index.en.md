@@ -1,6 +1,6 @@
 +++
-title = "Unlabelled data and the rise of reinforcement learning"
-description = "Reinforcement learning (RL) has captured headlines with exceptional feats in the game industry, and we have also seen some amazing RL applications in robotics. It can also be applied whenever you have a problem that requires constant decisions in an uncertain environment. In this session, you learn the types of problems that RL is suitable for, hear about how you can tap into the power of RL using AWS services, and learn some of the best practices and pitfalls of using RL."
+title = "Supercharged customer experience with AWS Amplify, Amazon Pinpoint, and Amazon Personalize"
+description = "In this session, we explore how to leverage data effectively when building engaging web applications like an ecommerce website. We explore how we can easily instrument and send real-time analytics to the backend through the use of AWS Amplify and how we can understand our customers and their personalised preferences with Amazon Pinpoint. Finally, we look at how to integrate Amazon Personalize to provide a real-time recommendation engine."
 chapter = false
 difficulty = "300"
 time = "40 minutes"
@@ -8,8 +8,8 @@ inlists = true
 hidden = false
 +++
 
-Reinforcement learning (RL) has captured headlines with exceptional feats in the game industry, and we have also seen some amazing RL applications in robotics. It can also be applied whenever you have a problem that requires constant decisions in an uncertain environment. In this session, you learn the types of problems that RL is suitable for, hear about how you can tap into the power of RL using AWS services, and learn some of the best practices and pitfalls of using RL.
+In this session, we explore how to leverage data effectively when building engaging web applications like an ecommerce website. We explore how we can easily instrument and send real-time analytics to the backend through the use of AWS Amplify and how we can understand our customers and their personalised preferences with Amazon Pinpoint. Finally, we look at how to integrate Amazon Personalize to provide a real-time recommendation engine.
 
-[![AWS Summit Online - Unlabelled data and the rise of reinforcement learning](./rl.jpg)](https://anz-resources.awscloud.com/aws-summit-online-2020-interact/unlabelled-data-and-the-rise-of-reinforcement-learning-3)
+{{< vidyard "//play.vidyard.com/PvGYzptNstdQ68ahDHF8z1.html?" >}}
 
-> **Speakers: Ben Thurgood, Senior Manager, Solutions Architect, Amazon Web Services** 
+> **Speakers: Stefan Buchman, Solutions Architect, Amazon Web Service** 

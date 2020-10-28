@@ -1,6 +1,6 @@
 +++
-title = "Fraud detection: Using ML to identify and manage fraudulent activities"
-description = "Amazon Fraud Detector is a fully managed service that you can use to identify potentially fraudulent online activities, such as online payment fraud and fake accounts. The service uses ML and 20 years of fraud detection expertise to automatically identify potentially fraudulent activity and enable you to catch more fraud faster. In this session, learn how to use Amazon Fraud Detector to create a fraud detection model with just a few clicks and no prior ML experience. Learn how to implement a customised fraud detection solution for online activities using ML, identify use cases, and implement changes to protect your company and customers."
+title = "The effortless development of custom computer vision models"
+description = "Do you want to use computer vision in your projects, but find the idea of training a custom neural network model daunting? Have you used pre-trained computer vision models, but find that these models don’t cover every aspect of your use case? With Amazon Rekognition Custom Labels, you can easily customise existing computer vision models without needing an expert data scientist. Come learn how to prepare your dataset, customise Amazon Rekognition models with your data, and deploy these models in an application. We also discuss the difference between training computer vision models using Amazon Rekognition Custom Labels and doing so using Amazon SageMaker."
 chapter = false
 difficulty = "300"
 time = "45 minutes"
@@ -8,9 +8,8 @@ inlists = true
 hidden = false
 +++
 
-Amazon Fraud Detector is a fully managed service that you can use to identify potentially fraudulent online activities, such as online payment fraud and fake accounts. The service uses ML and 20 years of fraud detection expertise to automatically identify potentially fraudulent activity and enable you to catch more fraud faster. In this session, learn how to use Amazon Fraud Detector to create a fraud detection model with just a few clicks and no prior ML experience. Learn how to implement a customised fraud detection solution for online activities using ML, identify use cases, and implement changes to protect your company and customers.
+Do you want to use computer vision in your projects, but find the idea of training a custom neural network model daunting? Have you used pre-trained computer vision models, but find that these models don’t cover every aspect of your use case? With Amazon Rekognition Custom Labels, you can easily customise existing computer vision models without needing an expert data scientist. Come learn how to prepare your dataset, customise Amazon Rekognition models with your data, and deploy these models in an application. We also discuss the difference between training computer vision models using Amazon Rekognition Custom Labels and doing so using Amazon SageMaker.
 
-
-[![AWS Summit Online - Fraud detection: Using ML to identify and manage fraudulent activities](./fraud.jpg)](https://anz-resources.awscloud.com/aws-summit-online-2020-interact/fraud-detection-using-ml-to-identify-and-manage-fraudulent-activities-3)
+{{< vidyard "//play.vidyard.com/sXmaSeoV9o4qovEDsHQGoa.html?" >}}
 
 >  **Speakers: Sara van de Moosdijk, ML Partner Solutions Architect, Amazon Web Services** 

@@ -1,6 +1,6 @@
 +++
-title = "Supercharged customer experience with AWS Amplify, Amazon Pinpoint, and Amazon Personalize"
-description = "In this session, we explore how to leverage data effectively when building engaging web applications like an ecommerce website. We explore how we can easily instrument and send real-time analytics to the backend through the use of AWS Amplify and how we can understand our customers and their personalised preferences with Amazon Pinpoint. Finally, we look at how to integrate Amazon Personalize to provide a real-time recommendation engine."
+title = "DevOps for data science: Operationalising machine learning"
+description = "Organisations are recognising the importance of cross-functional expertise and efficient tooling when bringing AI-driven products to market. In this session, learn how to build an end-to-end pipeline for continuous delivery of ML models. Also learn how to automate MLOps with Amazon SageMaker and serverless workflows to build, deploy, and monitor models at scale to maximise the business value to your organisation."
 chapter = false
 difficulty = "300"
 time = "45 minutes"
@@ -8,8 +8,8 @@ inlists = true
 hidden = false
 +++
 
-In this session, we explore how to leverage data effectively when building engaging web applications like an ecommerce website. We explore how we can easily instrument and send real-time analytics to the backend through the use of AWS Amplify and how we can understand our customers and their personalised preferences with Amazon Pinpoint. Finally, we look at how to integrate Amazon Personalize to provide a real-time recommendation engine.
+Organisations are recognising the importance of cross-functional expertise and efficient tooling when bringing AI-driven products to market. In this session, learn how to build an end-to-end pipeline for continuous delivery of ML models. Also learn how to automate MLOps with Amazon SageMaker and serverless workflows to build, deploy, and monitor models at scale to maximise the business value to your organisation.
 
-<iframe class="vidyard_iframe" src="//play.vidyard.com/PvGYzptNstdQ68ahDHF8z1.html?" width="640" height="360" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen></iframe>
+{{< vidyard "//play.vidyard.com/Z2zrqtiszTSgamghywhDzN.html?" >}}
 
-> **Speakers: Stefan Buchman, Solutions Architect, Amazon Web Service** 
+> **Speakers: Julian Bright, AI Specialist Solutions Architect, Amazon Web Services** 
