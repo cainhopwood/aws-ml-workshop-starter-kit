@@ -26,7 +26,7 @@ This time series workshop is broken into four independent labs that explore appl
 
 ### Lab Overview
 
-{{< video "apac_pm10_july1_8.mov" >}}
+{{< video "Time Series Workshop.mp4" >}}
 
 >  **Air Quality Forecasting Lab overview** 
 
