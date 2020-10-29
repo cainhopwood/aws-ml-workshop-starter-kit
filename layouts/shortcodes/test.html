@@ -1,0 +1,8 @@
+{{ $scratch := newScratch }}
+{{ $names := split .Site.Params.NameList "," }}
+{{ $scratch.Set "ix"  0 }}
+{{ range split .Site.Params.AZlist "," }}
+    <p>AZ: {{ . }}</p>
+    <p>Desc: {{ index $names ($scratch.Get "ix") }} </p>
+    {{ $scratch.Set "ix"  (add ($scratch.Get "ix") 1) }}
+{{ end }}

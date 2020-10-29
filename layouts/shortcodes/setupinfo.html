@@ -20,6 +20,10 @@
 {{ end }}
 <h2 id="environment-setup">Environment Setup </h2>
 
+{{ range split "az11,az2,az3" "," }}
+    <p>{{ . }}</p>
+{{ end }}
+
 <div class="expand">
     <div class="expand-label" style="cursor: pointer;"
         onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">

@@ -82,3 +82,7 @@ General Steps to developing a new workshop:
 1. Get contributors to add to your clone using the instructions below.
 1. Deploy.
 
+## Instruction for creating a production workshop with public access
+
+1. Use Isengard to create a "Production" account.
+    - Note You'll need a Service Account, choose an appropriate CTI (WWPS Speciality Sales/Traning/Other)
