@@ -1,10 +1,8 @@
 +++
-title = "Lab 1.1 - Forecast air quality with Amazon SageMaker and DeepAR"
+title = "Forecast air quality with Amazon SageMaker and DeepAR"
 date = 2019-11-18T17:11:28+11:00
 weight = 10
 +++
-
-## Overview
 
 ![](/images/module-forecasting/syd_harb_air.jpg)
 
@@ -23,7 +21,7 @@ In many applications, however, you have many similar time series across a set of
 
 Step Functions Data Science SDK v2.0.0rc1 is used to create ML pipeline for air quality forecasting. 
 
-#### Design
+### Design
 
 * With default CFN parameter values setup during CFN stack creation, [GitHub Repo - timeseries_blog](https://github.com/glyfnet/timeseries_blog) will be mirrored to CodeCommit repo so that user can experiment code change to trigger pipeline easily.
 * CodePipeline pipeline orchestrates the build process with CodeBuild project.
@@ -33,31 +31,10 @@ Step Functions Data Science SDK v2.0.0rc1 is used to create ML pipeline for air 
 
 ![Pipline Design](/images/module-forecasting/aqf-ml-pipeline-design.png)
 
-#### Workflow
+### Workflow
 
 ![workflow](/images/module-forecasting/air_quality_forecasting_ml_pipeline.png)
 
-### Get started
-The lab is split into two parts that can be run independently.
+### Start the lab
 
-#### Train and evaluate the air quality DeepAR model
-The first lab covers the data science process for creating and evaluating a model:
-- Defining timeseries problems
-- Querying raw data with Athena
-- Timeseries feature engineering
-- Model training, tuning and evaluation with SageMaker
-
-##### To star the lab
-
-![](/images/module-forecasting/lab1_notebook_01_train_and_evaluate_air_quality_deepar_model.png)
-
-#### Machine learning pipeline creation for air quality 
-The second lab covers creating the ML production system:
-- Architecture design
-- Feature engineering with SageMaker pipelines
-- SageMaker Batch transforms
-- Step functions integration with SageMaker
-
-##### To star the lab
-
-![](/images/module-forecasting/lab1_notebook_02_manual_ml_pipeline_creation_for_air_quality_forecasting.png)
+Click [here](./step1/) to get started!

@@ -19,8 +19,6 @@ The workshops and other hands-on content we will discuss are focused on **Artifi
 
 ## Agenda
  
-  - [Workshops](/agenda/#workshops) 
-  - [On-Demand Tracks](/agenda/#on-demand-tracks)
-
-## Test
-{{< test >}}
+  - [Handson Workshops](/agenda/#workshops) 
+  - [On-Demand Breakouts](/agenda/#on-demand-tracks)
+  - [Learning Resources](/agenda/#training)

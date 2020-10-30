@@ -1,5 +1,5 @@
 +++
-title = "Lab 2: Electronic Healthcare Record processing and classification with Amazon Textract, Comprehend Medical and SageMaker"
+title = "Electronic healthcare record processing and classification with Amazon Textract, Comprehend Medical and SageMaker"
 description = "This workshop will guide you through to 1) Build a medical document processing pipeline with Amazon Textract and Comprehend Medical 2) Build a machine learning classification model in Amazon SageMaker using output of the medical document processing system."
 date = 2019-11-18T08:23:04+11:00
 weight = 35
@@ -11,8 +11,6 @@ time = "2hr"
 inlists = true
 +++
 
-## Introduction
-
 The advent of Machine learning is undoubtfully speeding up the medical world development, such as new drug discovery and manufacturing, automating the diagnosis through computer vision, personalized treatments and improvements to organization of patients’ health records. Here is a list of ML applications in healthcare.
 ![](/images/module-medical-document-processing-and-classification/ML_in_healthcare.png )
 
@@ -21,7 +19,7 @@ The availability of large amount of clinical data is opening up lots of new oppo
 1) Build a medical document processing pipeline with Amazon Textract and Comprehend Medical;
 2) Build, train and deploy a classification machine learning model with medical data extracted from the medical document processing pipeline
 
-## Goals to achieve
+### Goals to achieve
 
 By the end of this workshop, you are expected to pick up the following skills:
 1)	To digitalize documents using Amazon Textract;
@@ -31,15 +29,15 @@ By the end of this workshop, you are expected to pick up the following skills:
 
 
 
-## Lab Overview
+### Lab Overview
 
-{{< video "Yuan'introduction recording.mp4" >}}
+{{< video "Yuan introduction recording.mp4" >}}
 
 >  **Speaker: Yuan Shi (AWS)** 
 
 
-## Lab Steps
+### Lab Steps
 {{% children depth="2" %}}
 
 
-Click [here](./scenario/) to get started!
+Click [here](./scenario/) to get started by reviewing the architecture.

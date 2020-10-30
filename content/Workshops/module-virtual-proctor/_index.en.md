@@ -1,5 +1,5 @@
 +++
-title = "Lab 1: Virtual Proctor Using Amazon Recognition"
+title = "Virtual Proctor Using Amazon Recognition"
 description = "This lab guides you through deploying a Virtual Proctor website that implements computer vision via the Amazon Recognition service. We will also take a deep look at the APIs and Lambda functions that provide the interface to Amazon Rekognition."
 date = 2019-11-18T08:23:04+11:00
 weight = 30

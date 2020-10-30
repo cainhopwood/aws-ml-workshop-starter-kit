@@ -13,7 +13,7 @@ baseURL = "http://localhost:1313/"
 # sectionPagesMenu = "main"
 # pygmentsCodeFences = true
 # pygmentsStyle = "monokai"
-
+  
 [params]
   ordersectionsby = "weight"
   baseURL = "http://localhost:1313/"
@@ -35,13 +35,8 @@ baseURL = "http://localhost:1313/"
   showVisitedLinks = true
   custom_css = ["/css/custom.css"]
   AZlist = "ap-southeast-2, ap-southeast-1, ap-south-1"
-  NameList = "Sydney, Singapore, Mumbai"
+  NameList = "AP Southeast 2 (Sydney), Asia Pacific (Singapore), Asia Pacific (Mumbai)"
   
-  [aws_regions]
-  "ap-southeast-2" = "AP Southeast 2 (Sydney)"
-  "ap-southeast-1" = "Asia Pacific (Singapore)"
-  "ap-south-1" = "Asia Pacific (Mumbai)"
-    
 [outputs]
 home = [ "HTML", "RSS", "JSON"]
 

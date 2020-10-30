@@ -1,5 +1,5 @@
 +++
-title = "Lab 3: Dialing In the Right Outcomes with ML + Business Rules in Amazon Fraud Detector"
+title = "Dialing In the Right Outcomes with ML + Business Rules in Amazon Fraud Detector"
 description = "This workshop consists of watching a video and a Jupyter notebook to guide you in the process of 1) creating and deplying a detector API using sample data to train a machine learning model and business rules with Amazon Fraud Detector 2) calling the detector API with test data to evaluating the results and 3) seeing how adjusting the business rule thresholds can change the test results to suit the desired outcomes of the customer."
 date = 2020-09-23T00:00:00+00:00
 weight = 38
@@ -27,10 +27,6 @@ In the workshop, with watching a video and experimenting a [Jupyter notebook](ht
 
 >  **Speakers: Mike Ames, Manager, Research Science for Amazon Fraud Detector; Mike Frost - GTM Specialist, Applied AI for Amazon Fraud Detector** 
 
-### Lab Model Training Data
-
-We will use a prepared sythetic data set as training data - [project_1_newaccounts_100k.csv](https://github.com/tom5610/amazon-fraud-detector-workshop/blob/master/project_1_newaccounts_100k.csv) and a subset of the validation data - [project_1_newaccounts_5k.csv](https://github.com/tom5610/amazon-fraud-detector-workshop/blob/master/project_1_newaccounts_5k.csv), e.g. first 100 records for demo purpose.
-
 ### Workshop scope
 
 The scope of this workshop is to:
@@ -39,23 +35,6 @@ The scope of this workshop is to:
 * Understand how to create fraud detection for new account registration
 * Understand how to tune business rules to meet your business requirement.
 
-{{< sagemakereventengine >}}
-
-### Estimated Cost of Running the Workshop
-
-If the workshop is being done on a new AWS account or an account without using Amazon SageMaker & Amazon Fraud Detector before, the two month free tier offering should be able to cover the cost. For more detail about free tier / free trial: [Amazon SageMaker](https://aws.amazon.com/sagemaker/pricing/) & [Amazon Fraud Detector](https://aws.amazon.com/fraud-detector/pricing/). Otherwise, you may need to pay fees with on-demand usage and below is the estimation.
-
-* Estimated Cost: ***$31.5USD*** = 0.39 \* 1 + 0.06 \* 1.5 + 0.03 \* 1000 + 0.0739 * 1.5 with assumptions:
-  * The workshop takes approx. 1.5 hours.
-  * 25MB data file is stored in S3 bucket tempoarily (with which the cost can be ignored).
-  * Only one model version is created with train data set - [project_1_newaccounts_100k.csv](./project_1_newaccounts_100k.csv), which takes approx. 1hr. And the model hosting time is approx. 1 hours.
-  * Approx 1,000 times of fraud predictions will be invoked.
-  * 1 hours usage of t3.medium of Amazon SageMake Notebook instance in Sydney Region ($0.0739 USD per hour)
-
-### Lab Steps
-{{% children depth="2" %}}
+### Start the lab
 
 Click [here](./step1/) to get started!
-
-### Lab Jupyter Notebook
-[Jupyter notebook](https://github.com/tom5610/amazon-fraud-detector-workshop/blob/master/account_registration_fraud_detector.ipynb) covers concepts and ideas introduced in the video. And the related GitHub project [Amazon Fraud Detector Workshop](https://github.com/tom5610/amazon-fraud-detector-workshop) - is based on [Mike Ames GitHub Project](https://github.com/mikames/data-and-notebooks).

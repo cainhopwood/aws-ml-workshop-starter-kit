@@ -1,0 +1,96 @@
+{{ $currentNode := .Page }}
+{{ $currentDir := .Page.Dir }}
+{{ $scratch := newScratch }}
+{{ $scratch.Set "parentTitle" "Workshop" }}
+{{ range where .Site.Pages.ByWeight "Section" "==" "Workshops" }}
+    {{if and ( eq .File.LogicalName "_index.en.md") ( eq .File.Dir $currentDir)}}
+        {{ with .Site.GetPage .File.Path }}
+            {{ $parentParams := .Params }}
+            {{ $scratch.Set "parentTitle" "Sagemaker Notebooks" }}
+            {{ $scratch.Set "CFTemplate" (getenv ( replace ( replace "SageMaker_Workshop_Notebook.yaml" "-" "_") "." "_")) }}
+            {{ $scratch.Set "CFTemplateName" "SagemakerNotebooks" }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+{{ $scratch := newScratch }}
+{{ $names := split .Site.Params.NameList "," }}
+{{ $scratch.Set "ix"  0 }}
+
+<div class="expand">
+    <div class="expand-label" style="cursor: pointer;"
+        onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+        <i style="font-size:x-small;" class="fas fa-chevron-right"></i>
+        <span>
+            Click here to use your personal AWS account. 
+        </span>
+    </div>
+    <div class="expand-content" style="display: none;">
+        <h4 id="deploy-the-cfn-template-for-sagemaker">Deploy the CloudFormation template for the workshops into your own account.</h4>
+        <p>In order to complete these workshops, you’ll need a valid, usable <a
+                href="https://aws.amazon.com/getting-started/" class="highlight">AWS Account</a>. Use a personal account
+            or create a new AWS account to ensure you have the necessary access and that you do not accidentally modify
+            corporate resources. Do <strong>not</strong> use an AWS account from the company you work for. <strong>We
+                strongly recommend that you use a non-production AWS account for this workshop such as a training,
+                sandbox or personal account. If multiple participants are sharing a single account you should use unique
+                names for the stack set and resources created in the console.</strong></p>
+        <p><strong>Create an admin user</strong></p>
+        <p>If you don’t already have an AWS IAM user with admin permissions, please use the following instructions to
+            create one:</p>
+        <ol>
+            <li>Browse to the <a href="https://console.aws.amazon.com/iam/" class="highlight">AWS IAM</a> console.</li>
+            <li>Click <strong>Users</strong> on the left navigation and then click <strong>Add User</strong>.</li>
+            <li>Enter a <strong>User Name</strong>, check the checkbox for <strong>AWS Management Console</strong>
+                access, enter a <strong>Custom Password,</strong> and click <strong>Next:Permissions</strong>.</li>
+            <li>Click <strong>Attach existing policies directly</strong>, click the checkbox next to the
+                <strong>AdministratorAccess</strong>, and click <strong>Next:review</strong>.</li>
+            <li>Click <strong>Create User</strong></li>
+            <li>Click <strong>Dashboard</strong> on the left navigation and use the <strong>IAM users sign-in
+                    link</strong> to login as the admin user you just created.”</li>
+        </ol>
+        <p>If this is your first workshop using Sagemaker you will first need to setup the Sagemaker workshop environment. Launch the CloudFormation stack below in the
+            <strong>ap-southeast-2</strong> AWS region using the “Deploy to AWS” links below. This will automatically
+            take you to the console to run the template. </p>
+        <p><em>Skip steps 1-4 below if this is <strong>not</strong> your first Sagemaker workshop as you only need to setup the environment once.</em></p> 
+        <table>
+            <thead>
+                <tr>
+                    <th>Lab</th>
+                    <th>Region</th>
+                    <th>Template</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                {{ range split .Site.Params.AZlist "," }}
+                <tr>
+                    <td>{{ $scratch.Get "parentTitle" }}</td>
+                    <td>{{ index $names ($scratch.Get "ix") }}</td>
+                    <td> 
+                        <a href="https://console.aws.amazon.com/cloudformation/home?region={{ . }}#/stacks/new?stackName={{$scratch.Get "CFTemplateName"}}&templateURL={{$scratch.Get "CFTemplate"}}" target="_blank">
+                            <img src="/images/deploy-to-aws.png" alt="deploy to aws" style="width: auto; height: auto;"/>
+                        </a>
+                    </td>
+                {{ end }}  
+                </tr>
+            </tbody>
+        </table>
+        <ol>
+            <li>
+                <p>Click <strong>Next</strong> on the Specify Template section.</p>
+            </li>
+            <li>
+                <p>Click <strong>Next</strong> on the Specify stack details section</p>
+            </li>
+            <li>
+                <p>Click <strong>Next</strong> on the Configure stack options section.</p>
+            </li>
+            <li>
+                <p>Finally, acknowledge that the template will create IAM roles under Capabilities and click
+                    <strong>Create</strong>.</p>
+            </li>
+        </ol>
+        <p>This will bring you back to the CloudFormation console. You can refresh the page to see the stack starting to
+            create. Before moving on, make sure the stack is in a <strong>CREATE_COMPLETE</strong> status.</p>
+    </div>
+</div>

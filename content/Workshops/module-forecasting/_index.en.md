@@ -1,5 +1,5 @@
 +++
-title = "Lab 5: End to End Timeseries Forecasting"
+title = "End to End Timeseries Forecasting"
 description = "In this collection of labs, we will explore how to solve various time-series forecasting problems. Each lab will explore the use cases, algorithms, data science techniques and AWS services that can be used to solve time series problems. We will show how to predict air quality with neural networks, forecast electricity consumption with GluonTS, make sales projections with Amazon Forecast and detect anomalies with SageMaker and Kinesis Data Analytics. "
 date = 2020-10-15T00:00:00+11:00
 weight = 50
@@ -47,8 +47,4 @@ The scope of this workshop is to:
 * Understand how to use Amazon Forecast with Step Functions for timeseries data forecasting.
 
 ### Timeseries Forecasting Labs
-{{% children depth="2" %}}
-
-Read more about the first lab [Forecast air quality with Amazon SageMaker and DeepAR](./lab1/). 
-
-{{< setupsagemaker eventaccount privateaccount >}}
+{{% children depth="1" %}}

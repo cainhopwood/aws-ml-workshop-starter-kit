@@ -1,5 +1,5 @@
 +++
-title = "Lab 4: Earth monitoring with satellite images and Amazon SageMaker"
+title = "Earth monitoring with satellite images and Amazon SageMaker"
 description = "In this workshop we will build a computer vision processing pipeline for satellite images and use Amazon SageMaker to build a segmentation model."
 date = 2019-11-18T08:23:04+11:00
 weight = 40
@@ -38,7 +38,7 @@ The SN6 dataset is 39.0 GB. For the purpose of this workshop and keeping trainin
 
 {{< video "SemanticSegmentation_Tash_002.mp4" >}}
 
->  **Lab overview** 
+>  **Natacha Fort, Senior AI/ML Solutions Architect, AWS Public Sector Australia and New Zealand** 
 
 
 ### Workshop scope
@@ -49,10 +49,7 @@ The scope of this workshop is to:
 * Understand how to use Amazon SageMaker built in algorithms, specifically for semantic segmentation
 * Going further: Use the full dataset and setup an hyperparameter job to find the best model
 
-{{< sagemakereventengine >}}
 
-### Lab Steps
-{{% children depth="2" %}}
-
+### Start the lab
 
 Click [here](./step1/) to get started!

@@ -12,9 +12,7 @@
         {{ end }}
     {{ end }}
 {{ end }}
-<h3 id="environment-setup">Sagemaker Environment Setup </h3>
 
-{{ with .Get "eventaccount"}}
 <div class="expand">
     <div class="expand-label" style="cursor: pointer;"
         onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
@@ -24,135 +22,29 @@
         </span>
     </div>
     <div class="expand-content" style="display: none;">
-    #### Open [AWS Event Engine](https://dashboard.eventengine.run/)
-    ![](/images/EventEngine-hash.PNG)
-    #### Enter the 12-digit event hash (provided directly to you when you registered on the slack channel) and click "Accept Terms and Login".
-    ![](/images/EventEngine-Accept.png)
-    #### Choose "Continue with Login with Amazon"
-    ![](/images/EventEngine-3.PNG)
-    #### To provision an account just for you, we need an email. Sign in with your personal Amazon account, or create a new one.
-    ![](/images/EventEngine-4.PNG)
-    #### Once you've completed the login, and approved API Access, you'll see your team dashboard. From here you can change your team name and access your lab AWS account. It's a good idea to keep this page open throughout the event.
-    #### Press "AWS Console" to access the details for your temporary lab account.
-    ![](/images/EventEngine-5.PNG)
-    #### Press "Open AWS Console"
-    ![](/images/EventEngine-6.PNG)
-    #### If you see the AWS Console home page Congratulations! your account is ready to begin the labs. 
-    </div>
-</div>
-{{ end }}
-
-{{ with .Get "privateaccount"}}
-<div class="expand">
-    <div class="expand-label" style="cursor: pointer;"
-        onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
-        <i style="font-size:x-small;" class="fas fa-chevron-right"></i>
-        <span>
-            Click here if you need to use your own private AWS account.
-        </span>
-    </div>
-    <div class="expand-content" style="display: none;">
-        <h4 id="deploy-the-cfn-template-for-sagemaker">Deploy the CloudFormation template for the workshops into your own account.</h4>
-        <p>In order to complete these workshops, you’ll need a valid, usable <a
-                href="https://aws.amazon.com/getting-started/" class="highlight">AWS Account</a>. Use a personal account
-            or create a new AWS account to ensure you have the necessary access and that you do not accidentally modify
-            corporate resources. Do <strong>not</strong> use an AWS account from the company you work for. <strong>We
-                strongly recommend that you use a non-production AWS account for this workshop such as a training,
-                sandbox or personal account. If multiple participants are sharing a single account you should use unique
-                names for the stack set and resources created in the console.</strong></p>
-        <p><strong>Create an admin user</strong></p>
-        <p>If you don’t already have an AWS IAM user with admin permissions, please use the following instructions to
-            create one:</p>
-        <ol>
-            <li>Browse to the <a href="https://console.aws.amazon.com/iam/" class="highlight">AWS IAM</a> console.</li>
-            <li>Click <strong>Users</strong> on the left navigation and then click <strong>Add User</strong>.</li>
-            <li>Enter a <strong>User Name</strong>, check the checkbox for <strong>AWS Management Console</strong>
-                access, enter a <strong>Custom Password,</strong> and click <strong>Next:Permissions</strong>.</li>
-            <li>Click <strong>Attach existing policies directly</strong>, click the checkbox next to the
-                <strong>AdministratorAccess</strong>, and click <strong>Next:review</strong>.</li>
-            <li>Click <strong>Create User</strong></li>
-            <li>Click <strong>Dashboard</strong> on the left navigation and use the <strong>IAM users sign-in
-                    link</strong> to login as the admin user you just created.”</li>
-        </ol>
-        <p>If this is your first workshop using Sagemaker you will first need to setup the Sagemaker workshop environment. Launch the CloudFormation stack below in the
-            <strong>ap-southeast-2</strong> AWS region using the “Deploy to AWS” links below. This will automatically
-            take you to the console to run the template. </p>
-        <p><em>Skip steps 1-4 below if this is <strong>not</strong> your first Sagemaker workshop as you only need to setup the environment once.</em></p> 
-        <table>
-            <thead>
-                <tr>
-                    <th>Lab</th>
-                    <th>Region</th>
-                    <th>Template</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                {{ range $key, $value := .Site.Params.aws_regions }}
-                <tr>
-                    <td> {{ $scratch.Get "parentTitle" }}</td>
-                    <td>{{ $.Param value }}</td>
-                    <td> 
-                        <a href="https://console.aws.amazon.com/cloudformation/home?region={{ $.Param key }}#/stacks/new?stackName={{$scratch.Get "CFTemplateName"}}&templateURL={{$scratch.Get "CFTemplate"}}" class="highlight">
-                            <img src="/images/open-notebook.png" alt="open notebook" style="width: auto; height: auto;"/>
-                        </a>|
-                    </td>
-                {{ end }}  
-                </tr>
-            </tbody>
-        </table>
-        <ol>
-            <li>
-                <p>Click <strong>Next</strong> on the Specify Template section.</p>
-            </li>
-            <li>
-                <p>Click <strong>Next</strong> on the Specify stack details section</p>
-            </li>
-            <li>
-                <p>Click <strong>Next</strong> on the Configure stack options section.</p>
-            </li>
-            <li>
-                <p>Finally, acknowledge that the template will create IAM roles under Capabilities and click
-                    <strong>Create</strong>.</p>
-            </li>
-        </ol>
-        <p>This will bring you back to the CloudFormation console. You can refresh the page to see the stack starting to
-            create. Before moving on, make sure the stack is in a <strong>CREATE_COMPLETE</strong> status.</p>
-    </div>
-</div>
-{{ end }}
-
-<div class="expand">
-    <div class="expand-label" style="cursor: pointer;"
-        onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
-        <i style="font-size:x-small;" class="fas fa-chevron-right"></i>
-        <span>
-            Click here to begin the hands on workshops.
-        </span>
-    </div>
-    <div class="expand-content" style="display: none;">
-        <h4 id="open-notebook-instance">Open notebook instance closest to where you are located</h4>
-        <table>
-            <thead>
-                <tr>
-                    <th>Lab</th>
-                    <th>Region</th>
-                    <th>Notebook</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{ range $key, $value := .Site.Params.aws_regions }}
-                <tr>
-                    <td>{{ $scratch.Get "parentTitle" }}</td>
-                    <td>{{ $.Param value }}</td>
-                    <td> 
-                        <a href="https://aiml-loft.notebook.{{ $.Param key }}.sagemaker.aws/tree" target="_blank" class="highlight">
-                            <img src="/images/open-notebook.png" alt="open notebook" style="width: auto; height: auto;"/>
-                        </a>|
-                    </td>
-                </tr>
-                {{ end }}                    
-            </tbody>
-        </table>
+        <h4>You only need to do this once!</h4>
+        You only need to login to your provisioned AWS account once, so skip these steps if you have done them already.  
+        <h4>Open <a href="https://dashboard.eventengine.run/" target="_blank">AWS Event Engine</a></h4>
+        <img src="/images/EventEngine-hash.PNG"/>
+        
+        <h4>Enter the 12-digit event hash (provided directly to you when you registered on the slack channel) and click "Accept Terms and Login".</h4>
+        <img src="/images/EventEngine-Accept.png"/>
+        
+        <h4>Choose "Continue with Login with Amazon"</h4>
+        <img src="/images/EventEngine-3.PNG"/>    
+        
+        <h4>To provision an account just for you, we need an email. Sign in with your personal Amazon account, or create a new one.</h4>
+        <img src="/images/EventEngine-4.PNG"/>
+        
+        <h4>Once you've completed the login, and approved API Access, you'll see your team dashboard. 
+        From here you can change your team name and access your lab AWS account. It's a good idea to keep this page open throughout the event.</h4>
+        
+        <h4>Press "AWS Console" to access the details for your temporary lab account.</h4>
+        <img src="/images/EventEngine-5.PNG"/>
+        
+        <h4>Press "Open AWS Console"</h4>
+        <img src="/images/EventEngine-6.PNG"/>
+        
+        <h4>If you see the AWS Console home page your account is ready.</h4>
     </div>
 </div>
