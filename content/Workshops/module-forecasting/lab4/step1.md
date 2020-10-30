@@ -29,7 +29,7 @@ The lab is split into four parts. After completing the first lab on data analysi
 ![](/images/module-forecasting/lab4_notebooks.png)
 
 
-#### 4. Select the right kernel
+### 4. Select the right kernel
 Choose the kernal to be "conda_python3". 
 
 

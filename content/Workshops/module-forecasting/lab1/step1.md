@@ -45,7 +45,7 @@ The second lab covers creating the ML production system:
 ![](/images/module-forecasting/lab1_notebook_02_manual_ml_pipeline_creation_for_air_quality_forecasting.png)
 
 
-#### 4. Select the right kernel
+### 4. Select the right kernel
 Choose the kernal to be "conda_python3". 
 
 

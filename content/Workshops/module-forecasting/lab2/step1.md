@@ -25,24 +25,26 @@ The lab is split into two parts that should be run in order.
 
 
 ### 3. Create the notebook kernal
-Open a terminal and create kernal ***gluonts-multimodel*** for the lab with below bash commands:
+Open a terminal and create the kernal ***gluonts-multimodel*** for the lab with below bash commands:
 
 ```bash
-cd ~/SageMaker/timeseries_blog/2_Predict_electricity_demand_with_the_GluonTS_and_SageMaker_custom_containers/
+cd ~/SageMaker/forecasting-workshop/2_Predict_electricity_demand_with_the_GluonTS_and_SageMaker_custom_containers/ 
 ./build_env.sh
 ```
 > Please note that it may take up approx ***20~30mins***.
 
 
 ### 4. Work through the first notebook to create the models
-> Be sure to use the previously created 'gluonts-multimodel' kernel.
+Be sure to use the previously created 'gluonts-multimodel' kernel.
+
 ![](/images/module-forecasting/lab2_notebook_01_predict_electricity_demand_with_the_gluonts_library.png)
 
 
 ### 5. Work through the second notebook to deploy the models
-> Be sure to use the previously created 'gluonts-multimodel' kernel.
+Be sure to use the previously created 'gluonts-multimodel' kernel.
+
 ![](/images/module-forecasting/lab2_notebook_02_deploy_gluonts_forecast_models_as_multi_model_endpoints.png)
 
 
 ### 6. Cleanup
-> To ensure all resources are deleted and they wont keep incurring cost afterwards, be sure to run the clean up cells at the end.
+To ensure all resources are deleted and they wont keep incurring cost afterwards, be sure to run the clean up cells at the end.

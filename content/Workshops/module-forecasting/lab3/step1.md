@@ -56,5 +56,5 @@ Run 3_visualization.ipynb to simply visualize your prediction results.
 I hope you've found it easy to build your pipeline. The final step is to clean up the resources.
 
 
-### 5. Cleanup
+#### 5. Cleanup
 Run 4_clean.ipynb on your SageMaker notebook instance to clean up all the resources used. This concludes the workshop.

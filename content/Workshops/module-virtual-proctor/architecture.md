@@ -44,4 +44,4 @@ We've looked at the Architecture for this solution as well as walking through th
 
 Now move on to deploying this solution in the account that you are using today.
 
-Click [here](../solution_deployment/) to get started!
+Click [here](../setup/) to get started!
