@@ -1,6 +1,11 @@
 {{ $videoName := .Get 0 }}
+{{ $scratch := newScratch }}
+{{ $scratch.Set "baseurl" (getenv "VIDEO_BASE_URL") }}
+{{if (eq ($scratch.Get "baseurl") "")}}
+    {{ $scratch.Set "baseurl" $.Site.Params.videoBaseUrlLocal }}
+{{ end }}
 <video width="696" height="392" controls>
-    <source src="{{.Site.Params.videoBaseUrl}}{{$videoName}}" type="video/mp4">
+    <source src="{{ $scratch.Get "baseurl" }}{{$videoName}}" type="video/mp4">
     Your browser doesn't support video.
 </video>
   
