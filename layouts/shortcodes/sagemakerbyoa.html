@@ -2,18 +2,10 @@
 {{ $currentDir := .Page.Dir }}
 {{ $scratch := newScratch }}
 {{ $scratch.Set "parentTitle" "Workshop" }}
-{{ range where .Site.Pages.ByWeight "Section" "==" "Workshops" }}
-    {{if and ( eq .File.LogicalName "_index.en.md") ( eq .File.Dir $currentDir)}}
-        {{ with .Site.GetPage .File.Path }}
-            {{ $parentParams := .Params }}
-            {{ $scratch.Set "parentTitle" "Sagemaker Notebooks" }}
-            {{ $scratch.Set "CFTemplate" (getenv ( replace ( replace "SageMaker_Workshop_Notebook.yaml" "-" "_") "." "_")) }}
-            {{ $scratch.Set "CFTemplateName" "SagemakerNotebooks" }}
-        {{ end }}
-    {{ end }}
-{{ end }}
+{{ $scratch.Set "parentTitle" "Sagemaker Notebooks" }}
+{{ $scratch.Set "CFTemplate" (getenv ( replace ( replace "apj_aiml_loft_workshop.yml" "-" "_") "." "_")) }}
+{{ $scratch.Set "CFTemplateName" "SagemakerNotebooks" }}
 
-{{ $scratch := newScratch }}
 {{ $names := split .Site.Params.NameList "," }}
 {{ $scratch.Set "ix"  0 }}
 
@@ -67,12 +59,13 @@
                     <td>{{ $scratch.Get "parentTitle" }}</td>
                     <td>{{ index $names ($scratch.Get "ix") }}</td>
                     <td> 
-                        <a href="https://console.aws.amazon.com/cloudformation/home?region={{ . }}#/stacks/new?stackName={{$scratch.Get "CFTemplateName"}}&templateURL={{$scratch.Get "CFTemplate"}}" target="_blank">
+                        <a href="https://console.aws.amazon.com/cloudformation/home?region={{ . }}#/stacks/new?stackName={{ $scratch.Get "CFTemplateName" }}&templateURL={{ $scratch.Get "CFTemplate" }}" target="_blank">
                             <img src="/images/deploy-to-aws.png" alt="deploy to aws" style="width: auto; height: auto;"/>
                         </a>
                     </td>
-                {{ end }}  
+                    {{ $scratch.Set "ix"  (add ($scratch.Get "ix") 1) }}
                 </tr>
+                {{ end }}  
             </tbody>
         </table>
         <ol>

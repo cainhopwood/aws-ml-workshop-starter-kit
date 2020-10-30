@@ -1,18 +1,3 @@
-{{ $currentNode := .Page }}
-{{ $currentDir := .Page.Dir }}
-{{ $scratch := newScratch }}
-{{ $scratch.Set "parentTitle" "Workshop" }}
-{{ range where .Site.Pages.ByWeight "Section" "==" "Workshops" }}
-    {{if and ( eq .File.LogicalName "_index.en.md") ( eq .File.Dir $currentDir)}}
-        {{ with .Site.GetPage .File.Path }}
-            {{ $parentParams := .Params }}
-            {{ $scratch.Set "parentTitle" "Sagemaker Notebooks" }}
-            {{ $scratch.Set "CFTemplate" (getenv ( replace ( replace "SageMaker_Workshop_Notebook.yaml" "-" "_") "." "_")) }}
-            {{ $scratch.Set "CFTemplateName" "SagemakerNotebooks" }}
-        {{ end }}
-    {{ end }}
-{{ end }}
-
 <div class="expand">
     <div class="expand-label" style="cursor: pointer;"
         onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
