@@ -18,4 +18,4 @@ time = "10 mins"
 If you are using your own AWS account then you can skip this page and go straight into the labs.
 {{% /notice %}}
 
-{{< setupsagemaker .}}
+{{< setupsagemaker >}}
