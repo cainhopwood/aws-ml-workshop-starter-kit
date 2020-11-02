@@ -13,9 +13,8 @@ Over the next two days you will have access to workshops, sessions, and events t
 
 The workshops and other hands-on content we will discuss are focused on **Artificial Inteligence and Machine Learning in the Cloud** and they will guide you through prepared scenarios that represent common use cases and operational tasks you'll face in building AI/ML solutions on AWS. 
 
-## How to get started?
-
 {{< video "Virtual Loft Intro.mp4" >}}
+
 >  **Eric Greene, Lead AI/ML Solutions Architect for AWS Public Sector Asia Pacific** 
 
 ## Agenda
