@@ -16,9 +16,10 @@ The workshops and other hands-on content we will discuss are focused on **Artifi
 ## How to get started?
 
 {{< video "Virtual Loft Intro.mp4" >}}
+>  **Eric Greene, Lead AI/ML Solutions Architect for AWS Public Sector Asia Pacific** 
 
 ## Agenda
  
-  - [Handson Workshops](/agenda/#workshops) 
+  - [Hands-on Workshops](/agenda/#workshops) 
   - [On-Demand Breakouts](/agenda/#on-demand-tracks)
   - [Learning Resources](/agenda/#training)
