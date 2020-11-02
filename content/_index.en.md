@@ -15,7 +15,7 @@ The workshops and other hands-on content we will discuss are focused on **Artifi
 
 ## How to get started?
 
-{{< video "cain-test.mp4" >}}
+{{< video "Virtual Loft Intro.mp4" >}}
 
 ## Agenda
  
