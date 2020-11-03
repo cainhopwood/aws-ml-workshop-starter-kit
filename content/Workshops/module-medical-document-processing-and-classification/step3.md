@@ -27,7 +27,7 @@ deseases, based on their unobvious interconnections with some symptoms.
 
 
 ### Getting Started
-> Prerequisites: You must [complete step 5](../step3/) of this lab first.
+> Prerequisites: You must [complete the previous steps](../step3/) of this lab first.
 
 To get started, open the `healthcare-workshop` folder and open the notebook `3.Model_building_training_and_deployment.ipynb`
 
@@ -62,8 +62,8 @@ Follow the instructions in the notebook to get started.
 
 
 ### Summary
-You have completed Step 3 of this lab and have 
+Congratulations! You have completed all the steps of this lab and have:
 
-1. Learned how to train a classification machine learning model with Sagemaker using dataset that you've prepared from medical records.
-2. Learned how to optimize your model accuracy with Sagemaker's HyperParameter Optimization (HPO)
-3. Learned how to deploy a machine learning model and run inference
+1. Learned to train a classification machine learning model with Sagemaker using dataset that you've prepared from medical records.
+2. Learned to optimize your model accuracy with Sagemaker's HyperParameter Optimization (HPO)
+3. Learned to deploy a machine learning model and run inference

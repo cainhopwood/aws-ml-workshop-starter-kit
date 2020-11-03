@@ -14,7 +14,18 @@ In this step, you will learn how to build a data processing pipeline with electr
 ### Getting started
 > Prerequisites: You must [complete setup](../step0/) for this lab first.
 
-To get started, open the `healthcare-workshop` folder and open the notebook `1.Data_Processing.ipynb`
+If it is your first lab of this workshop, open `Amazon SageMaker`
+![](/images/module-medical-document-processing-and-classification/step0-0-sagemaker.png)
+
+Followed with open `SageMaker Notebook`
+![](/images/module-medical-document-processing-and-classification/step0-0-notebook.png)
+
+
+To get started, find the `healthcare-workshop` folder
+![](/images/module-medical-document-processing-and-classification/step0-0-healthcare.png)
+
+
+Open the `healthcare-workshop` folder and open the notebook `1.Data_Processing.ipynb`
 
 ![](/images/module-medical-document-processing-and-classification/step1-1.png )
 
