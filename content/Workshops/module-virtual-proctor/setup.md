@@ -7,13 +7,7 @@ Before beginning the workshop, you need to first set up your SageMaker notebook.
 
 ### 1. Login in to AWS
 {{< setupsagemaker >}}
-{{< sagemakerbyoa >}}
 
 
-### 2. Go to SageMaker
-
-{{< gotosagemaker >}}
-
-
-### 3. Next steps
+### 2. Next steps
 Click [here](../solution_deployment/) to get started!
