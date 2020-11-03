@@ -42,8 +42,6 @@ Follow the instructions in the notebook to get started.
 
 ### *Stuck? Watch this*
 
-{{% notice note %}} 
-*This video has no audio*{{% /notice %}}
 
 {{< video "challenge-1.mov" >}}
 
