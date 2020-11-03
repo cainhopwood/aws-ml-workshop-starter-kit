@@ -34,8 +34,10 @@ baseURL = "http://localhost:1313/"
   disableInlineCopyToClipBoard = true
   showVisitedLinks = true
   custom_css = ["/css/custom.css"]
-  AZlist = "ap-southeast-2, ap-southeast-1, ap-south-1"
-  NameList = "AP Southeast 2 (Sydney), Asia Pacific (Singapore), Asia Pacific (Mumbai)"
+  AZlist = "ap-southeast-2,ap-southeast-1,ap-south-1"
+  NameList = "AP Southeast 2 (Sydney),Asia Pacific (Singapore),Asia Pacific (Mumbai)"
+  AZlistFraudWorkshop = "ap-southeast-2,ap-southeast-1"
+  NameListFraudWorkshop = "AP Southeast 2 (Sydney),Asia Pacific (Singapore)"
   
 [outputs]
 home = [ "HTML", "RSS", "JSON"]

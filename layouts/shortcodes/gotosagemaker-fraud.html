@@ -1,0 +1,25 @@
+{{ $scratch := newScratch }}
+{{ $names := split .Site.Params.NameListFraudWorkshop "," }}
+{{ $scratch.Set "ix"  0 }}
+Ready to begin? Open the notebook instance closest to where you are located.
+        <table>
+            <thead>
+                <tr>
+                    <th>Region</th>
+                    <th>Notebook</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{ range split .Site.Params.AZlistFraudWorkshop "," }}
+                <tr>
+                    <td>{{ index $names ($scratch.Get "ix") }}</td>
+                    <td> 
+                        <a href="https://aiml-loft-fraud-workshop.notebook.{{ . }}.sagemaker.aws/tree" target="_blank">
+                            <img src="/images/open-notebook.png" alt="open notebook" style="width: auto; height: auto;"/>
+                        </a>
+                    </td>
+                </tr>
+                {{ $scratch.Set "ix"  (add ($scratch.Get "ix") 1) }}
+                {{ end }}                    
+            </tbody>
+        </table>

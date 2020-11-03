@@ -15,23 +15,7 @@ For [Jupyter notebook](https://github.com/tom5610/amazon-fraud-detector-workshop
   * Define strategies to get the most out of Fraud Detector Models & Rules
   * Call the Detector’s GetEventPrediction method from a Python Jupyter Notebook  
 
-##### Training data
-We will use a prepared sythetic data set as training data -
-[project_1_newaccounts_100k.csv](https://github.com/tom5610/amazon-fraud-detector-workshop/blob/master/project_1_newaccounts_100k.csv) 
-and a subset of the validation data - [project_1_newaccounts_5k.csv](https://github.com/tom5610/amazon-fraud-detector-workshop/blob/master/project_1_newaccounts_5k.csv), 
-e.g. first 100 records for demo purpose.
-
-
-## Lab steps
-
-### 1. Login in to AWS
-{{% notice note %}} 
-Due to account service limitations, Amazon Fraud detector is *not supported* by the AWS event engine. 
-If you would like to run the fraud lab, please log out of the event engine provided account, and 
-login to your AWS personal account or a sandbox AWS account. 
-{{% /notice %}}
-
-#### Estimated cost of running the workshop
+## Estimated cost of running the workshop
 If the workshop is being done on a new AWS account or an account without using Amazon 
 SageMaker & Amazon Fraud Detector before, the two month free tier offering should be able to cover the cost. 
 For more detail about free tier / free trial: [Amazon SageMaker](https://aws.amazon.com/sagemaker/pricing/) & 
@@ -44,17 +28,32 @@ Otherwise, you may need to pay fees with on-demand usage and below is the estima
   * Only one model version is created with train data set - [project_1_newaccounts_100k.csv](./project_1_newaccounts_100k.csv), which takes approx. 1hr. And the model hosting time is approx. 1 hours.
   * Approx 1,000 times of fraud predictions will be invoked.
   * 1 hours usage of t3.medium of Amazon SageMake Notebook instance in Sydney Region ($0.0739 USD per hour)
+
+## Training data
+We will use a prepared sythetic data set as training data -
+[project_1_newaccounts_100k.csv](https://github.com/tom5610/amazon-fraud-detector-workshop/blob/master/project_1_newaccounts_100k.csv) 
+and a subset of the validation data - [project_1_newaccounts_5k.csv](https://github.com/tom5610/amazon-fraud-detector-workshop/blob/master/project_1_newaccounts_5k.csv), 
+e.g. first 100 records for demo purpose.
+
+## Lab steps
+
+### 1. Bring Your Own AWS Account
+{{% notice note %}} 
+Due to account service limitations, Amazon Fraud detector is *not supported* by the AWS event engine. 
+If you would like to run the fraud lab, please log out of the event engine provided account, and 
+login to your AWS personal account or a sandbox AWS account. 
+{{% /notice %}}
   
 To setup an AWS account for the lab, follow these instructions:
-{{< sagemakerbyoa >}}
-
+{{< sagemaker-fraud-byoa >}}
 
 ### 2. Go to SageMaker
-{{< gotosagemaker >}}
+
+{{< gotosagemaker-fraud >}}
 
 
 ### 3. Open the notebook
-Open the 'fraud-workshop' folder and double click on the account_registration_fraud_detector.ipynb notebook.
+Please click 'Open Jupyter', open the 'fraud-workshop' folder and double click on the account_registration_fraud_detector.ipynb notebook.
 
 ![](/images/module-fraud-detector/fraud_detector_jupyter_notebook.png)
 

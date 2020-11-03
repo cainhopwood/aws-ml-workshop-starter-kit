@@ -10,7 +10,7 @@ Metadata:
 Parameters: 
   NotebookName:
     Type: String
-    Default: FraudWorkshopInstance
+    Default: aiml-loft-fraud-workshop
     Description: Enter the name of the SageMaker Notebook instance. Default is FraudWorkshopInstance.
 
 Resources: 
