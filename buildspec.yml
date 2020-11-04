@@ -22,7 +22,10 @@ phases:
       - ./buildhugo.sh
       - echo "S3 Upload Beginning"
       - aws s3 sync public/ s3://$DEPLOY_S3_BUCKET/ --region ap-southeast-2 --delete --exclude  "video/*"
-      - echo "S3 Upload Complete"      
+      - echo "S3 Upload Complete"
+      - aws s3api put-object-acl --bucket virtual-aiml-loft-site --key yaml/apj_aiml_loft_workshop.yml --acl public-read
+      - aws s3api put-object-acl --bucket virtual-aiml-loft-site --key yaml/fraud-detector-workshop.yaml --acl public-read
+      - echo "S3 CF Templates Made Public"
 artifacts:
   files:
     - '**/*'
