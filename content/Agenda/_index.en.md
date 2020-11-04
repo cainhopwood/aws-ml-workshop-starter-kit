@@ -5,6 +5,13 @@ toc = true
 
 +++
 
+## Get started
+
+{{< video "Virtual Loft Intro.mp4" >}}
+
+>  **Eric Greene, Lead AI/ML Solutions Architect for AWS Public Sector Asia Pacific** 
+
+
 The {{< param description >}} aims to improve your cloud {{< param topic >}} skills through a series of guided workshops, JAM scenario challenges and on-demand talks. In this portal you will find the following:
 
   - [Hands-on workshops](#workshops) 
