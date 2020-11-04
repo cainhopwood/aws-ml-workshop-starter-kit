@@ -18,7 +18,7 @@ The workshops and other hands-on content we will discuss are focused on **Artifi
 >  **Eric Greene, Lead AI/ML Solutions Architect for AWS Public Sector Asia Pacific** 
 
 ## Agenda
- 
-  - [Hands-on Workshops](/agenda/#workshops) 
-  - [On-Demand Breakouts](/agenda/#on-demand-tracks)
-  - [Learning Resources](/agenda/#training)
+  - [Overview](/agenda)
+  - [Hands-on Workshops](/workshops) 
+  - [On-Demand Breakouts](/on-demand-tracks)
+  - [Learning Resources](/training)
