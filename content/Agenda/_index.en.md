@@ -21,7 +21,7 @@ These workshops are designed to help you get familiar with {{< param topic >}} s
 
 At the start of each workshop you will be able to watch a short video that will provide you an overview and a real world example.
 
-{{ <imagelink "workshops" "images/agenda-labs.png"> }}
+{{< imagelink "workshops" "images/agenda-labs.png" >}}
 
 ## On-demand videos
 
