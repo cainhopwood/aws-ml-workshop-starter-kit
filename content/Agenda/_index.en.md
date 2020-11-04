@@ -5,8 +5,9 @@ toc = true
 
 +++
 
-The {{< param description >}} aims to improve your cloud {{< param topic >}} skills through a series of guided workshops, JAM scenario challenges and on-demand talks. In this portal you will find the following:
+The {{< param description >}} aims to improve your cloud {{< param topic >}} skills through a series of guided workshops, JAM scenario challenges and on-demand talks. 
 
+## Introduction
 {{< video "Virtual Loft Intro.mp4" >}}
 
 >  **Eric Greene, Lead AI/ML Solutions Architect for AWS Public Sector Asia Pacific** 
@@ -20,11 +21,13 @@ At the start of each workshop you will be able to watch a short video that will 
 
 {{< imagelink "/workshops/" "/images/agenda-labs.png" >}}
 
+
 ## On-demand videos
 
 Watch recent talks about AWS AI services and machine learning presented by AWS experts.
 
 {{< imagelink "/ondemandtracks/" "/images/agenda-ondemand.png" >}}
+
 
 ## Learning resources
 
