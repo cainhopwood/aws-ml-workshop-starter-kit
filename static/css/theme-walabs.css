@@ -31,10 +31,11 @@
 body {
     font-family: "AmazonEmber", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     color: var(--MAIN-TEXT-color) !important;
+    font-weight: 400;
 }
 
 #chapter h3 {
-    font-family: "AmazonEmber", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-family: "AmazonEmberBold","Helvetica Neue Bold","Helvetica Neue","Helvetica","Arial",sans-serif;
 }
 
 textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="text"]:focus, input[type="url"]:focus, input[type="color"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, select[multiple=multiple]:focus {
@@ -43,7 +44,7 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
 }
 
 h2, h3, h4, h5, h6 {
-    font-family: "AmazonEmber", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-family: "AmazonEmberBold","Helvetica Neue Bold","Helvetica Neue","Helvetica","Arial",sans-serif;
     color: var(--MAIN-TITLES-TEXT-color) !important;
 }
 
