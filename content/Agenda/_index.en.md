@@ -13,6 +13,7 @@ The {{< param description >}} aims to improve your cloud {{< param topic >}} ski
 
 >  **Eric Greene, Lead AI/ML Solutions Architect for AWS Public Sector Asia Pacific** 
 
+
  
 ## Hands-on workshops
 
@@ -20,7 +21,7 @@ These workshops are designed to help you get familiar with {{< param topic >}} s
 
 At the start of each workshop you will be able to watch a short video that will provide you an overview and a real world example.
 
-{{< wstable Workshops >}}
+{{ <imagelink "workshops" "images/agenda-labs.png"> }}
 
 ## On-demand videos
 
