@@ -458,14 +458,14 @@ h2, h3, h4, h5, h6 {
     text-rendering: optimizeLegibility;
     color: #5e5e5e;
     font-weight: 400;
-    letter-spacing: -1px;
+    letter-spacing: normal;
 }
 h1 {
     font-family: "Novacento Sans Wide", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
     text-align: center;
     text-transform: uppercase;
     color: #222;
-    font-weight: 200;
+    font-weight: 400;
 }
 blockquote {
     border-left: 10px solid #F0F2F4;
