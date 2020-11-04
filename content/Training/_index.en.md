@@ -4,7 +4,7 @@ date = 2019-11-18T08:29:21+11:00
 weight = 7000
 +++
 
-![Training](/images/icon-train.png)
+![Training](/images/agenda-train.png)
 
 Dive deep into the same machine learning (ML) curriculum used to train Amazon’s developers and data scientists. We offer 65+ ML training courses totaling 50+ hours, plus hands-on labs and documentation, originally developed for Amazon's internal use. Developers, data scientists, data platform engineers, and business decision makers can use this training to learn how to apply ML, artificial intelligence (AI), and deep learning (DL) to their businesses unlocking new insights and value. Validate your years of experience building, training, tuning, and deploying ML models using the AWS Cloud with an AWS Certification. 
 Below is a selected list of courses to get you started. Still didn't find what you need? [The full catalog has over 60 courses.](https://www.aws.training/LearningLibrary?filters=language%3A1&filters=classification%3A58&filters=classification%3A30&search=&tab=view_all)

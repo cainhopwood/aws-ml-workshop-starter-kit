@@ -33,4 +33,4 @@ Watch recent talks about AWS AI services and machine learning presented by AWS e
 
 Dive deep into the same machine learning (ML) curriculum used to train Amazon’s developers and data scientists.
 
-{{< imagelink "/training/" "/images/agenda-moreresources.png" >}}
+{{< imagelink "/training/" "/images/agenda-train.png" >}}
