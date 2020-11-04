@@ -33,7 +33,7 @@ This workshop will deploy a solution from the AWS Samples GitHub library and wil
 
 {{< video "VP-full-720p-redact.mov" >}}
 
->  **Speakers: Jenny Davies (AWS)** 
+>  **Speakers: Jenny Davies, Solutions Architect for AWS Public Sector Australia and New Zealand** 
 
 
 ### Amazon Rekognition Images

@@ -33,7 +33,7 @@ By the end of this workshop, you are expected to pick up the following skills:
 
 {{< video "Yuan introduction recording.mp4" >}}
 
->  **Speaker: Yuan Shi (AWS)** 
+>  **Speaker: Yuan Shi, Data Scientist for AWS Public Sector Asia Pacific** 
 
 
 ### Lab Steps
