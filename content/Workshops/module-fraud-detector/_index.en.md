@@ -1,6 +1,6 @@
 +++
 title = "Dialing In the Right Outcomes with ML + Business Rules in Amazon Fraud Detector"
-description = "This workshop consists of watching a video and a Jupyter notebook to guide you in the process of 1) creating and deplying a detector API using sample data to train a machine learning model and business rules with Amazon Fraud Detector 2) calling the detector API with test data to evaluating the results and 3) seeing how adjusting the business rule thresholds can change the test results to suit the desired outcomes of the customer."
+description = "Create and deploy a fraud detector API using by training a machine learning model and creating business rules with Amazon Fraud Detector. Also learn how to call the fraud detector API, evaluate results and adjust the business rule thresholds to achieve the desired detection rate."
 date = 2020-09-23T00:00:00+00:00
 weight = 38
 chapter = false
