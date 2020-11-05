@@ -60,6 +60,26 @@ Follow the instructions in the notebook to get started.
 
 {{< video "challenge-2.mov" >}}
 
+#### Solution for Challenge-2a
+1. Collect the model artifact information
+
+        model_data=estimator2.create_model().model_data
+        primary_container = {
+            'Image': training_image,
+            'ModelDataUrl': model_data
+        }
+2. Create the model 
+        
+        model_name = 'model-test-update-endpoint' ## new model name
+        create_model_response = sgmk_client.create_model(
+            ModelName = model_name,
+            ExecutionRoleArn = sgmk_role,
+            PrimaryContainer = primary_container)
+
+#### Solution for Challenge-2b
+
+        predictor.update_endpoint(initial_instance_count=1, instance_type="ml.m5.large",model_name=model_name)
+
 
 ### Summary
 Congratulations! You have completed all the steps of this lab and have:
@@ -67,3 +87,8 @@ Congratulations! You have completed all the steps of this lab and have:
 1. Learned to train a classification machine learning model with Sagemaker using dataset that you've prepared from medical records.
 2. Learned to optimize your model accuracy with Sagemaker's HyperParameter Optimization (HPO)
 3. Learned to deploy a machine learning model and run inference
+
+### Next Step
+Let us know how you like the workshop and help us to improve it. 
+
+Contact us if you have any specific use cases to solve. 

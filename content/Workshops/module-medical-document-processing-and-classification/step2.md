@@ -22,6 +22,9 @@ Follow the instructions in the notebook to get started.
 > To ensure all resources are deleted and they wont keep incurring cost afterwards, be sure to run the clean up cells at the end.
 
 
+
+
+
 ### Technical recap
 
 #### 1. Load the dataset
@@ -44,6 +47,24 @@ Follow the instructions in the notebook to get started.
 
 
 {{< video "challenge-1.mov" >}}
+
+### Solution for Challenge-1
+1. Define a function to extract all the medical condition
+
+    You can refer to the function `extractMC_v2` defined in util/preprocess.py
+
+        import inspect
+        print(inspect.getsource(extractMC_v2))
+
+
+2. add a unique patient id to each patient, and append it to the patients list
+        
+        df_ind=extractMC_v2(item) ## extract mc
+        df_ind['ID']=patient_id ## add patient id
+        df_final=df_final.append(df_ind) ## append it
+
+
+
 
 ### Summary
 You have completed Step 2 and have learned how to:

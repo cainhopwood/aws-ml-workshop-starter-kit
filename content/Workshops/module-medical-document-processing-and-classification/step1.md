@@ -52,8 +52,6 @@ Choose the Kernal to be "conda_python3" as shown below
 
 ### *Stuck? Watch this*
 
-{{% notice note %}} 
-*This video has no audio*{{% /notice %}}
 
 {{< video "step1-troubleshooting.mov" >}}
 
