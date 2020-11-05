@@ -27,19 +27,13 @@ deseases, based on their unobvious interconnections with some symptoms.
 
 
 ### Getting Started
-> Prerequisites: You must [complete the previous steps](../step3/) of this lab first.
+> Prerequisites: You must [complete the previous steps](../step2/) of this lab first.
 
 To get started, open the `healthcare-workshop` folder and open the notebook `3.Model_building_training_and_deployment.ipynb`
 
 ![](/images/module-medical-document-processing-and-classification/step3-1.png )
 
 Follow the instructions in the notebook to get started.
-
-#### Resources 
-1. [documentations of XGBoost Hyperparameters](https://docs.aws.amazon.com/sagemaker/latest/dg/xgboost_hyperparameters.html)
-2. [documentations of Updating
- endpoint in SageMaker](https://sagemaker.readthedocs.io/en/stable/api/inference/predictors.html#sagemaker.predictor.Predictor.update_endpoint)
-3. [Andrew Ng's course on HyperParameter Optimization](https://www.coursera.org/learn/deep-neural-network)
 
 
 ### Technical recap
@@ -54,6 +48,12 @@ Follow the instructions in the notebook to get started.
  ![](/images/module-medical-document-processing-and-classification/step3-6.png )
  5. Deploy the Model
 ![](/images/module-medical-document-processing-and-classification/step3-7.png )
+
+#### Resources 
+1. [documentations of XGBoost Hyperparameters](https://docs.aws.amazon.com/sagemaker/latest/dg/xgboost_hyperparameters.html)
+2. [documentations of Updating
+ endpoint in SageMaker](https://sagemaker.readthedocs.io/en/stable/api/inference/predictors.html#sagemaker.predictor.Predictor.update_endpoint)
+3. [Andrew Ng's course on HyperParameter Optimization](https://www.coursera.org/learn/deep-neural-network)
 
 
 ### *Stuck? Watch this*
