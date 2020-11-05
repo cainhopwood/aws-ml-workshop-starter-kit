@@ -51,7 +51,7 @@ If you have a dedicated cloudformation template for your workshop:
 
 The Workshop template consists of an example with an overview/scenario page a video and two pages with Lab Steps. You can add/remove steps as required, just be sure to adjust the "weight" property in the metadata section on each page to reflect it's order so that menus etc show the steps in the desired order.
 
-Once you've pushed your content to the github repo you can access the live version of the site with your changes at https://staging.aiml-loft.wwps.aws.dev/ (bear in mind it maight take a few minutes for the site to deploy once you've pushed to git)
+Once you've pushed your content to the github repo you can access the live version of the site with your changes at the staging site (bear in mind it maight take a few minutes for the site to deploy once you've pushed to git)
 
 
 ### Create A New On Demand Talk
