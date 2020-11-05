@@ -4,8 +4,8 @@ date = 2019-11-18T17:11:28+11:00
 weight =6
 +++
 
-In this step, you will learn how to build a data processing pipeline with electronic health reports 
-(EHR) in PDF format to extract key medical information by using the following AWS services:
+In this step, you will learn how to build a data processing pipeline to extract key medical information with electronic health reports 
+(EHR) in PDF format by using the following AWS services:
 
 - [Textract](https://aws.amazon.com/textract/): To extract text from medical report in PDF format
 - [Comprehend Medical](https://aws.amazon.com/comprehend/medical/): To extract relevant medical information from the output of textract
@@ -17,7 +17,7 @@ In this step, you will learn how to build a data processing pipeline with electr
 If it is your first lab of this workshop, open `Amazon SageMaker`
 ![](/images/module-medical-document-processing-and-classification/step0-0-sagemaker.png)
 
-Followed with open `SageMaker Notebook`
+Followed with opening `SageMaker Notebook`
 ![](/images/module-medical-document-processing-and-classification/step0-0-notebook.png)
 
 
@@ -25,7 +25,7 @@ To get started, find the `healthcare-workshop` folder
 ![](/images/module-medical-document-processing-and-classification/step0-0-healthcare.png)
 
 
-Open the `healthcare-workshop` folder and open the notebook `1.Data_Processing.ipynb`
+Open open the notebook `1.Data_Processing.ipynb`
 
 ![](/images/module-medical-document-processing-and-classification/step1-1.png )
 
