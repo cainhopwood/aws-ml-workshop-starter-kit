@@ -62,7 +62,7 @@ So that we gain the experience, let's set up a method of our own within the exis
 
 1.	Make sure you have an image saved on your laptop/PC that has a picture of you holding a mobile phone (or other item of interest)
 
-2.	Use a tool to Base64 encode your image. Here is one such tool on the internet: {{< ext-link "https://base64.guru/converter/encode/image >}}
+2.	Use a tool to Base64 encode your image. Here is one such tool on the internet: {{< ext-link "https://base64.guru/converter/encode/image" >}}
 
 > Note: If you use this tool; select Output Format “Plain text -- just the Base64 value”)
 
