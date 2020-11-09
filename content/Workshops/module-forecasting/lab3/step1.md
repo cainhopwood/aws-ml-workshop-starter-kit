@@ -9,7 +9,7 @@ The lab is split into four parts that should be run in order.
 
 ## Lab steps
 
-### 1. Log in to AWS
+### 1. Login to AWS
 {{< setupsagemaker >}}
 {{< sagemakerbyoa >}}
 

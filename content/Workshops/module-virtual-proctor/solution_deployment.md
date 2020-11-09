@@ -11,7 +11,7 @@ This solution is deployed through a QuickLink provided in the GitHub repository.
 > Note: In future you may want to use this repository as the basis of your own website. If this is the case, take a look at the file `CONTRIBUTING.md` where the authors run you through deploying a customised version of the Web UI.
 
 ### Deploy the solution to your account
-1.	Log into your AWS account on the console
+1.	Login to your AWS account on the console
 2.	In another browser tab, navigate to:
 {{< ext-link "https://github.com/aws-samples/amazon-rekognition-virtual-proctor" >}}
 3.	Select the QuickLink for your closest AWS region

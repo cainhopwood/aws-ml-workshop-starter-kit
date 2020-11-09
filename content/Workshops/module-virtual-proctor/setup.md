@@ -5,7 +5,7 @@ weight =5
 +++
 Before beginning the workshop, you need to first set up your free AWS event account.
 
-### 1. Login in to AWS
+### 1. Login to AWS
 {{< setupsagemaker >}}
 
 

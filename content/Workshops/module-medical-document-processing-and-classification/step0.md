@@ -5,7 +5,7 @@ weight =6
 +++
 Before beginning the workshop, you need to first set up your SageMaker notebook.
 
-### 1. Login in to AWS
+### 1. Login to AWS
 {{< setupsagemaker >}}
 {{< sagemakerbyoa >}}
 

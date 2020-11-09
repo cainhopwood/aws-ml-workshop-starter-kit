@@ -17,7 +17,7 @@ the SageMaker to build and host a Semantic Segmentation model.
 
 ## Lab steps
 
-### 1. Log in to AWS
+### 1. Login to AWS
 {{< setupsagemaker >}}
 {{< sagemakerbyoa >}}
 
