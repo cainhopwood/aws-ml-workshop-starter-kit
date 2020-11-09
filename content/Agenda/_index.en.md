@@ -5,7 +5,8 @@ toc = true
 
 +++
 
-The {{< param description >}} aims to improve your cloud {{< param topic >}} skills through a series of guided workshops, JAM scenario challenges and on-demand talks. 
+The {{< param description >}} aims to improve your cloud {{< param topic >}} skills through a 
+series of guided workshops, JAM scenario challenges and on-demand talks. 
 
 ## Introduction
 {{< video "Virtual Loft Intro.mp4" >}}
@@ -15,22 +16,27 @@ The {{< param description >}} aims to improve your cloud {{< param topic >}} ski
  
 ## Hands-on workshops
 
-These workshops are designed to help you get familiar with {{< param topic >}} services so you can use these services to fulfull your business objectives in new and exciting ways. You'll be working with services such as {{< param servicelist >}}. 
+These workshops are designed to help you get familiar with {{< param topic >}} services so you 
+can use these services to fulfil your business objectives in new and exciting ways. 
+You'll be working with services such as {{< param servicelist >}}. 
 
-At the start of each workshop you will be able to watch a short video that will provide you an overview and a real world example.
+At the start of each workshop you will be able to watch a short video that will 
+provide you an overview and a real world example.
 
-{{< imagelink "/workshops/" "/images/agenda-labs.png" >}}
+{{< imagelink "/workshops/" "Start workshops" "/images/agenda-labs.png" >}}
 
 
 ## On-demand videos
 
-Watch recent talks about AWS AI services and machine learning presented by AWS experts.
+Watch recent talks about AWS Artificial Inteligence (AI) and Machine Learning (ML) services
+presented by AWS experts.
 
-{{< imagelink "/ondemandtracks/" "/images/agenda-ondemand.png" >}}
+{{< imagelink "/ondemandtracks/" "Watch on-demand videos" "/images/agenda-ondemand.png" >}}
 
 
 ## Learning resources
 
-Dive deep into the same machine learning (ML) curriculum used to train Amazon’s developers and data scientists.
+Dive deep into the same machine learning (ML) curriculum used to train Amazon’s developers 
+and data scientists.
 
-{{< imagelink "/training/" "/images/agenda-train.png" >}}
+{{< imagelink "/training/" "Explore learning resources" "/images/agenda-train.png" >}}

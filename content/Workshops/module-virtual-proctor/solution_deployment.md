@@ -13,7 +13,7 @@ This solution is deployed through a QuickLink provided in the GitHub repository.
 ### Deploy the solution to your account
 1.	Log into your AWS account on the console
 2.	In another browser tab, navigate to:
-https://github.com/aws-samples/amazon-rekognition-virtual-proctor
+{{< ext-link "https://github.com/aws-samples/amazon-rekognition-virtual-proctor" >}}
 3.	Select the QuickLink for your closest AWS region
 {{< figure src="/images/virtual-proctor/solution_deployment/quicklink_regions.png" class="img-left" >}}
 

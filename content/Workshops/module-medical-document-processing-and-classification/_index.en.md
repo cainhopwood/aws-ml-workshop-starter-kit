@@ -11,7 +11,7 @@ time = "2hr"
 inlists = true
 +++
 
-The advent of Machine learning is undoubtfully speeding up the medical world development, such as new drug discovery and manufacturing, automating the diagnosis through computer vision, personalized treatments and improvements to organization of patients’ health records. Here is a list of ML applications in healthcare.
+The advent of machine learning is undoubtfully speeding up the medical world development, such as new drug discovery and manufacturing, automating the diagnosis through computer vision, personalized treatments and improvements to organization of patients’ health records. Here is a list of ML applications in healthcare.
 ![](/images/module-medical-document-processing-and-classification/ML_in_healthcare.png )
 
 The availability of large amount of clinical data is opening up lots of new opportunities for digital transformation in the healthcare industry, including patient management optimization, ML predictive diagnosis and forecasting heprogression/recovery trajectories. However, patients’ health records have long been captured and kept as hard copies. In fact, nearly 20% of the doctors still prefer to use paper medical records. Such a phenomenon have greatly affected the pace of digitalization and knowledge sharing, thus limiting the ability to realize the potential from the wealth of medical data. In addition, doctors’ notes are often captured in free texts and is usually difficult to comprehend and extract meaningful data for analysis.  To address the challenges in utilizing medical records, we have specifically developed a workshop that will guide you to: 

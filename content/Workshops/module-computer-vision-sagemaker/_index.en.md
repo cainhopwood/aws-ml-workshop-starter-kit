@@ -7,7 +7,7 @@ chapter = false
 difficulty = "Intermediate / Advanced"
 CFTemplate = "apj_aiml_loft_workshop.yml"
 CFTemplateName = "SagemakerNotebooks"
-time = "1hr"
+time = "1 hr"
 inlists = true
 +++
 

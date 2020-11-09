@@ -2,7 +2,7 @@
 title = "Getting started with AWS DeepRacer"
 description = "Get behind your keyboard for an immersive experience with AWS DeepRacer and reinforcement learning. In this session, developers with no prior machine learning (ML) experience can acquire new skills and apply their knowledge."
 chapter = false
-difficulty = "200"
+difficulty = "Easy"
 time = "35 minutes"
 inlists = true
 hidden = false

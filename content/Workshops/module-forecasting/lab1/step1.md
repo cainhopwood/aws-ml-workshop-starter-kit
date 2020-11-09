@@ -23,7 +23,7 @@ The second lab covers creating the ML production system:
 
 ## Lab steps
 
-### 1. Login in to AWS
+### 1. Log in to AWS
 {{< setupsagemaker >}}
 {{< sagemakerbyoa >}}
 

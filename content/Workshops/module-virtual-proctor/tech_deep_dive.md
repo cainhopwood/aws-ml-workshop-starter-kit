@@ -10,8 +10,12 @@ From an architectural perspective, the key aspect to understand about this solut
 
 This architecture allows the website running in the user’s browser to make calls to the API.
 
-> Note: API security is provided using Amazon Cognito; however, the details of this are beyond the scope of this workshop. 
-> For those who would like more information on this topic, here is a link to the relevant documentation: https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-integrate-with-cognito.html
+> Note: API security is provided using Amazon Cognito; however, the details of this are 
+beyond the scope of this workshop. 
+> For those who would like more information on this topic, here is a link to the 
+relevant documentation: 
+{{< ext-link "https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-integrate-with-cognito.html" >}}
+
 
 ### Lambda Functions
 Where does CloudFormation download the Lambda function code from?

@@ -14,7 +14,7 @@ The lab is split into four parts. After completing the first lab on data analysi
 
 ## Lab steps
 
-### 1. Login in to AWS
+### 1. Log in to AWS
 {{< setupsagemaker >}}
 {{< sagemakerbyoa >}}
 
