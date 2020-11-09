@@ -85,10 +85,15 @@ General Steps to developing a new workshop:
 ## Instruction for creating a production workshop with public access
 
 1. Use Isengard to create a "Production" account.
+1. Create Bucket which will host the website
+  - Does not need to be public, the site will be served by CloudFront
 1. Create Build Project Noting
   - Set environment variable for DEPLOY_S3_BUCKET to match deployment bucket (could be test or Prod.)
   - Set build environment variable VIDEO_BASE_URL to match location. (include trailing slash)
   - Ensure the Build Role has permission to S3.
+  - Use the buildspec.yml file in the same folder as this README.md (Not you ay want to edit the post build steps that make the CF templates public as they're specific to the AIML Loft prod site)
+  - Manually running this build will deploy the site to the bucket in DEPLOY_S3_BUCKET
+  -  
 1. Create the CloudFront-S3-URLRewrite Lambda in us-east-1 (for deploying in CF distro) This is needed so that index.html in subdirs works with s3 bucket sourcesd hugo sites
   - nodejs 12, 128 Mb RAm is fine.
   - public and copy v1 ARN
@@ -116,3 +121,4 @@ General Steps to developing a new workshop:
 ```
 1. Create CloudFront Distro pointing to S3 bucket
   - EnsureEdge Lambda (CloudFront-S3-URLRewrite) is attached to the Origin Request so that index.html is added to subfolders.
+  - Use S3 Origin pointing at the bucket where you've built the site.
