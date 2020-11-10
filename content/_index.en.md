@@ -21,4 +21,4 @@ focused on **Artificial Inteligence and Machine Learning in the Cloud** and they
 through prepared scenarios that represent common use cases and operational tasks you'll face in 
 building AI/ML solutions on AWS. 
 
-{{< figure src="/agenda/" link="/images/overview.png" title="Overview" >}}
+{{< figure link="/agenda/" src="/images/overview.png" title="Overview" >}}
