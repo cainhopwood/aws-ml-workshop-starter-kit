@@ -23,7 +23,7 @@ You'll be working with services such as {{< param servicelist >}}.
 At the start of each workshop you will be able to watch a short video that will 
 provide you an overview and a real world example.
 
-{{< imagelink "/workshops/" "Start workshops" "/images/agenda-labs.png" >}}
+{{< figure link="/workshops/" title="Start workshops" src="/images/agenda-labs.png" >}}
 
 
 ## On-demand videos
@@ -31,7 +31,7 @@ provide you an overview and a real world example.
 Watch recent talks about AWS Artificial Inteligence (AI) and Machine Learning (ML) services
 presented by AWS experts.
 
-{{< imagelink "/ondemandtracks/" "Watch on-demand videos" "/images/agenda-ondemand.png" >}}
+{{< figure link="/ondemandtracks/" title="Watch on-demand videos" src="/images/agenda-ondemand.png" >}}
 
 
 ## Learning resources
@@ -39,4 +39,4 @@ presented by AWS experts.
 Dive deep into the same machine learning (ML) curriculum used to train Amazon’s developers 
 and data scientists.
 
-{{< imagelink "/training/" "Explore learning resources" "/images/agenda-train.png" >}}
+{{< figure link="/training/" title="Explore learning resources" src="/images/agenda-train.png" >}}
